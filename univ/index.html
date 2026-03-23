@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大学別通学ガイド｜青雲寮から通いやすい大学一覧</title>
+  <meta name="description" content="青雲寮から通いやすい大学を写真付きカードで探せる大学別通学ガイド。国公立大学・私立大学の2区分と、漢字・ひらがな・ローマ字検索に対応しています。">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://www.toyama-ryo.or.jp/univ/">
+  <meta property="og:title" content="大学別通学ガイド｜青雲寮から通いやすい大学一覧">
+  <meta property="og:description" content="写真付きカードと漢字・ひらがな・ローマ字検索で大学を探せる通学ガイドです。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.toyama-ryo.or.jp/univ/">
+  <meta property="og:image" content="https://www.toyama-ryo.or.jp/images/seiun-ryo-building.jpg">
+  <meta property="og:site_name" content="公益財団法人 富山県学生寮">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Noto+Sans+JP:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css?v=20260119">
+  <link rel="stylesheet" href="../assets/subpage-modern.css?v=202603171700">
+  <style>
+    .univ-guide-page {
+      color-scheme: light dark;
+    }
+
+    .univ-guide-page .page-hero {
+      padding: clamp(1.35rem, 3vw, 2rem);
+    }
+
+    .univ-guide-page .page-hero__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .univ-guide-page .page-hero__content {
+      max-width: 760px;
+    }
+
+    .univ-guide-page .page-breadcrumbs {
+      margin-bottom: 0.45rem;
+    }
+
+    .univ-guide-page .guide-browser {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .univ-guide-page .guide-browser::before {
+      content: "";
+      position: absolute;
+      right: -9%;
+      bottom: -28%;
+      width: clamp(220px, 28vw, 360px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 122, 255, 0.16) 0%, rgba(0, 122, 255, 0) 72%);
+      pointer-events: none;
+    }
+
+    .guide-browser__header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .guide-browser__header .page-chip {
+      white-space: nowrap;
+    }
+
+    .guide-tab-list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .guide-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 3rem;
+      padding: 0.75rem 1.1rem;
+      border: 1px solid rgba(0, 122, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--text-dark);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
+
+    .guide-tab:hover,
+    .guide-tab:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(0, 122, 255, 0.24);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      outline: none;
+    }
+
+    .guide-tab.is-active {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 16px 34px rgba(0, 122, 255, 0.24);
+    }
+
+    .guide-search-panel {
+      position: relative;
+      z-index: 1;
+      margin-top: 1.2rem;
+      padding: 1.1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(0, 122, 255, 0.1);
+      background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(90, 200, 250, 0.08) 100%);
+    }
+
+    .guide-search-panel[hidden] {
+      display: none;
+    }
+
+    .guide-search-label {
+      display: block;
+      margin-bottom: 0.65rem;
+      color: var(--text-dark);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .guide-search-field {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .guide-search-icon {
+      flex-shrink: 0;
+      color: var(--primary-blue-start);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .guide-search-field input {
+      width: 100%;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      color: var(--text-dark);
+      font-size: 1rem;
+    }
+
+    .guide-search-field input::placeholder {
+      color: #7b8aa0;
+    }
+
+    .guide-search-field input:focus {
+      outline: none;
+    }
+
+    .guide-search-clear {
+      flex-shrink: 0;
+      border: none;
+      border-radius: 999px;
+      background: rgba(0, 122, 255, 0.12);
+      color: var(--primary-blue-start);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.55rem 0.8rem;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .guide-search-clear:hover,
+    .guide-search-clear:focus-visible {
+      background: rgba(0, 122, 255, 0.18);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .guide-search-help {
+      margin: 0.8rem 0 0;
+      color: var(--text-light);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    .guide-search-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.85rem;
+    }
+
+    .guide-search-tags span {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.38rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--text-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .guide-results-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      margin-top: 1.2rem;
+    }
+
+    .guide-results-summary {
+      margin: 0;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .guide-results-summary strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .guide-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.05rem;
+      margin-top: 1.2rem;
+    }
+
+    .guide-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      overflow: hidden;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.09);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .guide-card[hidden] {
+      display: none;
+    }
+
+    .guide-card:hover,
+    .guide-card:focus-visible {
+      transform: translateY(-6px);
+      border-color: rgba(0, 122, 255, 0.22);
+      box-shadow: 0 26px 54px rgba(15, 23, 42, 0.14);
+      outline: none;
+    }
+
+    .guide-card__media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(90, 200, 250, 0.08) 100%);
+    }
+
+    .guide-card__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.04) 0%, rgba(15, 23, 42, 0.24) 100%);
+      pointer-events: none;
+    }
+
+    .guide-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .guide-card:hover .guide-card__media img,
+    .guide-card:focus-visible .guide-card__media img {
+      transform: scale(1.06);
+    }
+
+    .guide-card__badge {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .guide-card[data-category="public"] .guide-card__badge {
+      background: rgba(15, 118, 110, 0.84);
+      color: #ecfeff;
+    }
+
+    .guide-card[data-category="private"] .guide-card__badge {
+      background: rgba(180, 83, 9, 0.84);
+      color: #fff7ed;
+    }
+
+    .guide-card__body {
+      display: grid;
+      gap: 0.75rem;
+      padding: 1.1rem 1.1rem 1.2rem;
+      flex: 1;
+    }
+
+    .guide-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .guide-card__pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.36rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(0, 122, 255, 0.08);
+      color: var(--primary-blue-start);
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .guide-card__pill--ghost {
+      background: rgba(15, 23, 42, 0.06);
+      color: var(--text-light);
+    }
+
+    .guide-card h3 {
+      margin: 0;
+      font-size: 1.14rem;
+      line-height: 1.45;
+      color: var(--text-dark);
+    }
+
+    .guide-card__text {
+      margin: 0;
+      color: var(--text-light);
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    .guide-card__cta {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--primary-blue-start);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .guide-card__cta::after {
+      content: "→";
+      transition: transform 0.25s ease;
+    }
+
+    .guide-card:hover .guide-card__cta::after,
+    .guide-card:focus-visible .guide-card__cta::after {
+      transform: translateX(4px);
+    }
+
+    .guide-empty {
+      position: relative;
+      z-index: 1;
+      margin: 1rem 0 0;
+      padding: 1rem 1.15rem;
+      border-radius: 18px;
+      border: 1px dashed rgba(0, 122, 255, 0.24);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    .guide-empty[hidden] {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .univ-guide-page {
+        background:
+          radial-gradient(circle at top, rgba(14, 165, 233, 0.16), transparent 36%),
+          linear-gradient(180deg, #08111f 0%, #0f172a 100%);
+      }
+
+      .univ-guide-page .header,
+      .univ-guide-page .nav-container {
+        background: rgba(8, 17, 31, 0.82);
+        border-bottom-color: rgba(148, 163, 184, 0.14);
+      }
+
+      .univ-guide-page .additional-nav {
+        background: rgba(15, 23, 42, 0.72);
+        border-bottom-color: rgba(148, 163, 184, 0.14);
+      }
+
+      .univ-guide-page .nav-link,
+      .univ-guide-page .additional-nav a,
+      .univ-guide-page .footer,
+      .univ-guide-page .footer a,
+      .univ-guide-page .footer address,
+      .univ-guide-page .footer-keywords {
+        color: #dbe7f5;
+      }
+
+      .univ-guide-page .nav-link:hover,
+      .univ-guide-page .additional-nav a:hover,
+      .univ-guide-page .additional-nav a[aria-current="page"] {
+        color: #7dd3fc;
+      }
+
+      .univ-guide-page .overlay {
+        background: rgba(2, 6, 23, 0.58);
+      }
+
+      .univ-guide-page .hamburger span {
+        background: #93c5fd;
+      }
+
+      .univ-guide-page .page-hero,
+      .univ-guide-page .guide-browser,
+      .univ-guide-page .page-panel,
+      .univ-guide-page .page-chip,
+      .univ-guide-page .page-button--secondary {
+        background: rgba(15, 23, 42, 0.78);
+        border-color: rgba(148, 163, 184, 0.18);
+        box-shadow: 0 18px 46px rgba(2, 6, 23, 0.34);
+      }
+
+      .univ-guide-page .page-panel--cta {
+        background: rgba(8, 47, 73, 0.34);
+        border-color: rgba(56, 189, 248, 0.18);
+      }
+
+      .univ-guide-page .page-title,
+      .univ-guide-page .page-section-title {
+        background: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .univ-guide-page .page-breadcrumbs,
+      .univ-guide-page .page-lead,
+      .univ-guide-page .page-section-lead,
+      .univ-guide-page .page-chip,
+      .univ-guide-page .page-button--secondary {
+        color: #c7d5e6;
+      }
+
+      .univ-guide-page .page-button--secondary:hover {
+        color: #eff6ff;
+      }
+
+      .univ-guide-page .guide-tab {
+        background: rgba(15, 23, 42, 0.82);
+        color: #dbe7f5;
+        border-color: rgba(56, 189, 248, 0.16);
+        box-shadow: 0 12px 28px rgba(2, 6, 23, 0.2);
+      }
+
+      .univ-guide-page .guide-tab:hover,
+      .univ-guide-page .guide-tab:focus-visible {
+        border-color: rgba(125, 211, 252, 0.3);
+      }
+
+      .univ-guide-page .guide-tab.is-active {
+        background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+        color: #eff6ff;
+      }
+
+      .univ-guide-page .guide-search-panel {
+        background: linear-gradient(135deg, rgba(12, 74, 110, 0.72) 0%, rgba(15, 23, 42, 0.82) 100%);
+        border-color: rgba(56, 189, 248, 0.14);
+      }
+
+      .univ-guide-page .guide-search-label,
+      .univ-guide-page .guide-results-summary strong,
+      .univ-guide-page .guide-card h3 {
+        color: #eff6ff;
+      }
+
+      .univ-guide-page .guide-search-field {
+        background: rgba(15, 23, 42, 0.84);
+        border-color: rgba(148, 163, 184, 0.18);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .univ-guide-page .guide-search-field input,
+      .univ-guide-page .guide-search-help,
+      .univ-guide-page .guide-results-summary,
+      .univ-guide-page .guide-card__text,
+      .univ-guide-page .guide-card__pill--ghost {
+        color: #c7d5e6;
+      }
+
+      .univ-guide-page .guide-search-field input::placeholder {
+        color: #94a3b8;
+      }
+
+      .univ-guide-page .guide-search-tags span,
+      .univ-guide-page .guide-search-clear {
+        background: rgba(15, 23, 42, 0.82);
+        color: #dbe7f5;
+        border: 1px solid rgba(148, 163, 184, 0.14);
+      }
+
+      .univ-guide-page .guide-card {
+        background: rgba(15, 23, 42, 0.9);
+        border-color: rgba(148, 163, 184, 0.18);
+        box-shadow: 0 20px 48px rgba(2, 6, 23, 0.42);
+      }
+
+      .univ-guide-page .guide-card:hover,
+      .univ-guide-page .guide-card:focus-visible {
+        border-color: rgba(125, 211, 252, 0.28);
+        box-shadow: 0 28px 60px rgba(2, 6, 23, 0.5);
+      }
+
+      .univ-guide-page .guide-card__media::after {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(2, 6, 23, 0.42) 100%);
+      }
+
+      .univ-guide-page .guide-card__pill {
+        background: rgba(14, 165, 233, 0.16);
+        color: #bae6fd;
+      }
+
+      .univ-guide-page .guide-card__cta,
+      .univ-guide-page .guide-search-icon {
+        color: #7dd3fc;
+      }
+
+      .univ-guide-page .guide-empty {
+        background: rgba(15, 23, 42, 0.82);
+        border-color: rgba(125, 211, 252, 0.24);
+        color: #c7d5e6;
+      }
+
+      .univ-guide-page .footer {
+        background: rgba(8, 17, 31, 0.92);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .guide-tab {
+        flex: 1 1 calc(50% - 0.375rem);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .guide-tab {
+        flex: 1 1 100%;
+      }
+
+      .guide-search-field {
+        padding: 0.78rem 0.85rem;
+      }
+
+      .guide-search-clear {
+        padding: 0.5rem 0.72rem;
+      }
+
+      .guide-card {
+        border-radius: 20px;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "url": "https://www.toyama-ryo.or.jp/univ/",
+        "name": "大学別通学ガイド｜青雲寮から通いやすい大学一覧",
+        "description": "青雲寮から通いやすい大学を写真付きカードと大学名検索で探せる通学ガイド。",
+        "inLanguage": "ja"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://www.toyama-ryo.or.jp/"},
+          {"@type": "ListItem", "position": 2, "name": "大学別通学ガイド", "item": "https://www.toyama-ryo.or.jp/univ/"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="subpage-modern univ-guide-page">
+  <a class="skip-link" href="#main-content">本文へスキップ</a>
+
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-section">
+        <a href="../index.html" style="text-decoration: none; color: inherit;">
+          <div class="subtitle">公益財団法人</div>
+          <p class="site-name">富山県学生寮</p>
+        </a>
+      </div>
+      <div class="seiun-title">青雲寮</div>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-container" id="nav-menu">
+    <div class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="../info/index.html" class="nav-link">寮の概要</a></li>
+        <li class="nav-item"><a href="../news/index.html" class="nav-link">青雲寮だより</a></li>
+        <li class="nav-item"><a href="../life/index.html" class="nav-link">寮での生活</a></li>
+        <li class="nav-item"><a href="../event/index.html" class="nav-link">年間行事</a></li>
+        <li class="nav-item"><a href="../students/index.html" class="nav-link">入寮生の募集</a></li>
+        <li class="nav-item"><a href="../download/index.html" class="nav-link">資料ダウンロード</a></li>
+        <li class="nav-item"><a href="../contact/index.html" class="nav-link">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <!-- モバイルのみ表示：サブナビ（PCはadditional-navで表示） -->
+    <div class="nav-subnav" aria-label="関連ページ">
+      <span class="nav-subnav-label">関連ページ</span>
+      <a href="../parents/index.html">保護者の方へ</a>
+      <a href="../faq/index.html">よくある質問</a>
+      <a href="../cost/index.html">費用比較</a>
+      <a href="../univ/index.html">大学別通学ガイド</a>
+      <a href="../access/index.html">交通アクセス</a>
+    </div>
+  </nav>
+
+  <nav class="additional-nav">
+    <div class="additional-nav-content">
+        <a href="../parents/index.html">▶ 保護者の方へ</a>
+        <a href="../faq/index.html">▶ よくある質問</a>
+        <a href="../cost/index.html">▶ 費用比較</a>
+        <a href="index.html" aria-current="page">▶ 大学別通学ガイド</a>
+        <a href="../access/index.html">▶ 交通アクセス</a>
+    </div>
+  </nav>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main id="main-content" class="page-main">
+    <section class="page-top-card">
+      <div class="page-top-card__inner">
+        <nav class="page-breadcrumbs" aria-label="パンくず">
+          <a href="../index.html">ホーム</a>
+          <span>›</span>
+          <span>大学別通学ガイド</span>
+        </nav>
+        <p class="page-top-card__eyebrow">University Guide</p>
+        <h1 class="page-title">大学別通学ガイド</h1>
+        <p class="page-lead">通いやすい大学を、国公立大学と私立大学に分けて探せます。大学名は漢字・ひらがな・ローマ字で検索できます。</p>
+        <div class="page-actions">
+          <a class="page-button page-button--primary" href="#guide-browser">大学を探す</a>
+          <a class="page-button page-button--secondary" href="../students/index.html">入寮生の募集を見る</a>
+        </div>
+        <div class="page-top-card__picker" aria-label="関連ページ">
+          <p class="page-top-card__picker-label">入口を選ぶ</p>
+          <div class="page-top-card__picker-list">
+            <a class="page-top-card__link" href="#guide-browser">大学検索</a>
+            <a class="page-top-card__link" href="../compare/index.html">比較ページを見る</a>
+            <a class="page-top-card__link" href="../access/index.html">交通アクセスを見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-panel guide-browser" id="guide-browser">
+      <div class="guide-browser__header">
+        <div>
+          <h2 class="page-section-title">大学を探す</h2>
+          <p class="page-section-lead">検索タブでは大学名を探せます。国公立大学と私立大学はタブで切り替えられます。</p>
+        </div>
+        <a class="page-chip" href="image-attributions.html">画像クレジットを見る</a>
+      </div>
+
+      <div class="guide-tab-list" aria-label="大学の絞り込み">
+        <button class="guide-tab is-active" type="button" data-guide-mode="search" aria-pressed="true">大学検索</button>
+        <button class="guide-tab" type="button" data-guide-mode="public" aria-pressed="false">国公立大学</button>
+        <button class="guide-tab" type="button" data-guide-mode="private" aria-pressed="false">私立大学</button>
+      </div>
+
+      <div class="guide-search-panel" id="guide-search-panel">
+        <label class="guide-search-label" for="guide-search-input">大学名を検索</label>
+        <div class="guide-search-field">
+          <span class="guide-search-icon" aria-hidden="true">⌕</span>
+          <input id="guide-search-input" type="search" inputmode="search" autocomplete="off" placeholder="例: 早稲田 / わせだ / waseda / hitotsubashi">
+          <button class="guide-search-clear" id="guide-search-clear" type="button" hidden>クリア</button>
+        </div>
+        <p class="guide-search-help">漢字だけでなく、ひらがな・ローマ字でも大学名の途中一致で探せます。大学の通称や英字略称も一部カバーしています。</p>
+        <div class="guide-search-tags" aria-hidden="true">
+          <span>わせだ / waseda</span>
+          <span>ひとつばし / hitotsubashi</span>
+          <span>むさび / musabi</span>
+          <span>science tokyo</span>
+        </div>
+      </div>
+
+      <div class="guide-results-bar">
+        <p class="guide-results-summary" id="guide-results-summary" aria-live="polite"><strong>33校</strong>から探せます。漢字・ひらがな・ローマ字の部分一致に対応しています。</p>
+      </div>
+
+      <div class="guide-grid" id="guide-grid">
+        <a class="guide-card" href="nokodai.html" data-category="public" data-search-index="東京農工大学 とうきょうのうこうだいがく のうこうだい 農工大 tokyo noukou daigaku tokyo noko daigaku tokyo university of agriculture and technology tuat nokodai">
+          <div class="guide-card__media">
+            <img src="img/nokodai.jpg" alt="東京農工大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">府中・小金井</span>
+              <span class="guide-card__pill guide-card__pill--ghost">農工大 / TUAT</span>
+            </div>
+            <h3>東京農工大学</h3>
+            <p class="guide-card__text">府中・小金井の2キャンパスを軸に、通学時間と暮らし方を見比べられます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="dentsu.html" data-category="public" data-search-index="電気通信大学 でんきつうしんだいがく でんつうだい 電通大 denki tsushin daigaku denki tsuushin daigaku the university of electro communications uec dentsu">
+          <div class="guide-card__media">
+            <img src="img/dentsu.jpg" alt="電気通信大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">調布</span>
+              <span class="guide-card__pill guide-card__pill--ghost">電通大 / UEC</span>
+            </div>
+            <h3>電気通信大学</h3>
+            <p class="guide-card__text">調布エリアの通学動線を中心に、生活コストと通いやすさを確認できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="hitotsubashi.html" data-category="public" data-search-index="一橋大学 ひとつばしだいがく hitotsubashi daigaku hitotsubashi university">
+          <div class="guide-card__media">
+            <img src="img/hitotsubashi.jpg" alt="一橋大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">国立</span>
+              <span class="guide-card__pill guide-card__pill--ghost">一橋 / Hitotsubashi</span>
+            </div>
+            <h3>一橋大学</h3>
+            <p class="guide-card__text">国立キャンパスへの通学を前提に、学業と生活のバランスを見やすく整理しています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="tufs.html" data-category="public" data-search-index="東京外国語大学 とうきょうがいこくごだいがく とうがいだい 東京外大 tokyo gaikokugo daigaku tokyo university of foreign studies tufs">
+          <div class="guide-card__media">
+            <img src="img/tufs.jpg" alt="東京外国語大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">府中</span>
+              <span class="guide-card__pill guide-card__pill--ghost">外大 / TUFS</span>
+            </div>
+            <h3>東京外国語大学</h3>
+            <p class="guide-card__text">府中キャンパスへ通う学生向けに、移動時間と毎日の過ごし方をまとめています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="gakugei.html" data-category="public" data-search-index="東京学芸大学 とうきょうがくげいだいがく がくげいだい 学芸大 tokyo gakugei daigaku tokyo gakugei university">
+          <div class="guide-card__media">
+            <img src="img/gakugei.jpg" alt="東京学芸大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">小金井</span>
+              <span class="guide-card__pill guide-card__pill--ghost">学芸大 / Gakugei</span>
+            </div>
+            <h3>東京学芸大学</h3>
+            <p class="guide-card__text">小金井方面への通学を想定し、勉強と生活費の両立を考えやすい内容です。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="science-tokyo.html" data-category="public" data-search-index="東京科学大学 とうきょうかがくだいがく かがくだい 科学大 science tokyo institute of science tokyo tokyo kagaku daigaku 東京工業大学 とうきょうこうぎょうだいがく 東工大 tokyo institute of technology 東京医科歯科大学 とうきょういかしかだいがく">
+          <div class="guide-card__media">
+            <img src="img/science-tokyo.jpg" alt="東京科学大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">大岡山ほか</span>
+              <span class="guide-card__pill guide-card__pill--ghost">Science Tokyo</span>
+            </div>
+            <h3>東京科学大学</h3>
+            <p class="guide-card__text">大岡山など複数キャンパスを意識しながら、寮選びの比較軸を掴めます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="utokyo.html" data-category="public" data-search-index="東京大学 とうきょうだいがく とうだい 東大 tokyo daigaku university of tokyo utokyo todai">
+          <div class="guide-card__media">
+            <img src="img/utokyo.jpg" alt="東京大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">本郷・駒場</span>
+              <span class="guide-card__pill guide-card__pill--ghost">東大 / UTokyo</span>
+            </div>
+            <h3>東京大学</h3>
+            <p class="guide-card__text">本郷・駒場を見据えて、学内寮との比較や食事付き寮の価値を整理できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="tmu.html" data-category="public" data-search-index="東京都立大学 とうきょうとりつだいがく とりつだい 都立大 tokyo toritsu daigaku tokyo metropolitan university tmu">
+          <div class="guide-card__media">
+            <img src="img/tmu.jpg" alt="東京都立大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">南大沢・都心</span>
+              <span class="guide-card__pill guide-card__pill--ghost">都立大 / TMU</span>
+            </div>
+            <h3>東京都立大学</h3>
+            <p class="guide-card__text">南大沢や都心キャンパスを含めて、無理のない通学ラインを確認できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="ynu.html" data-category="public" data-search-index="横浜国立大学 よこはまこくりつだいがく よここく 横国 yokohama kokuritsu daigaku yokokoku yokohama national university ynu">
+          <div class="guide-card__media">
+            <img src="img/ynu-campus.jpg" alt="横浜国立大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">常盤台</span>
+              <span class="guide-card__pill guide-card__pill--ghost">横国 / YNU</span>
+            </div>
+            <h3>横浜国立大学</h3>
+            <p class="guide-card__text">横浜方面でも通学可能かを、時間感覚と住まいの条件からチェックできます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="kaiyo.html" data-category="public" data-search-index="東京海洋大学 とうきょうかいようだいがく かいようだい 海洋大 tokyo kaiyo daigaku tokyo university of marine science and technology">
+          <div class="guide-card__media">
+            <img src="img/kaiyo-campus.jpg" alt="東京海洋大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">品川・越中島</span>
+              <span class="guide-card__pill guide-card__pill--ghost">海洋大 / Kaiyo</span>
+            </div>
+            <h3>東京海洋大学</h3>
+            <p class="guide-card__text">品川・越中島の両キャンパスを踏まえて、移動のしやすさを比べられます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="geidai.html" data-category="public" data-search-index="東京藝術大学 とうきょうげいじゅつだいがく げいだい 藝大 tokyo geijutsu daigaku tokyo university of the arts geidai">
+          <div class="guide-card__media">
+            <img src="img/geidai-campus.jpg" alt="東京藝術大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">国公立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">上野・取手</span>
+              <span class="guide-card__pill guide-card__pill--ghost">藝大 / Geidai</span>
+            </div>
+            <h3>東京藝術大学</h3>
+            <p class="guide-card__text">上野を中心に、制作時間を確保しやすい住環境の考え方をまとめています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+
+        <a class="guide-card" href="waseda.html" data-category="private" data-search-index="早稲田大学 わせだだいがく waseda daigaku waseda university">
+          <div class="guide-card__media">
+            <img src="img/waseda.jpg" alt="早稲田大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">早稲田・戸山</span>
+              <span class="guide-card__pill guide-card__pill--ghost">早稲田 / Waseda</span>
+            </div>
+            <h3>早稲田大学</h3>
+            <p class="guide-card__text">早稲田・戸山周辺に通う場合の費用差や、食事付き寮の安心感を確認できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="keio.html" data-category="private" data-search-index="慶應義塾大学 慶応義塾大学 けいおうぎじゅくだいがく けいおう 慶應 慶応 keio keio gijuku daigaku keio university">
+          <div class="guide-card__media">
+            <img src="img/keio.jpg" alt="慶應義塾大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">三田・日吉</span>
+              <span class="guide-card__pill guide-card__pill--ghost">慶應 / Keio</span>
+            </div>
+            <h3>慶應義塾大学</h3>
+            <p class="guide-card__text">三田・日吉などを想定しながら、都内私立の住まい選びを整理できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="meiji.html" data-category="private" data-search-index="明治大学 めいじだいがく meiji daigaku meiji university">
+          <div class="guide-card__media">
+            <img src="img/meiji.jpg" alt="明治大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">駿河台・和泉</span>
+              <span class="guide-card__pill guide-card__pill--ghost">明治 / Meiji</span>
+            </div>
+            <h3>明治大学</h3>
+            <p class="guide-card__text">駿河台・和泉など複数キャンパスを見据えて、通学のしやすさを比較できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="chuo.html" data-category="private" data-search-index="中央大学 ちゅうおうだいがく chuo daigaku chuo university">
+          <div class="guide-card__media">
+            <img src="img/chuo.jpg" alt="中央大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">多摩・後楽園</span>
+              <span class="guide-card__pill guide-card__pill--ghost">中央 / Chuo</span>
+            </div>
+            <h3>中央大学</h3>
+            <p class="guide-card__text">多摩・後楽園への通学を軸に、生活コストとのバランスを掴みやすい内容です。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="hosei.html" data-category="private" data-search-index="法政大学 ほうせいだいがく hosei daigaku hosei university">
+          <div class="guide-card__media">
+            <img src="img/hosei.jpg" alt="法政大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">市ヶ谷・多摩</span>
+              <span class="guide-card__pill guide-card__pill--ghost">法政 / Hosei</span>
+            </div>
+            <h3>法政大学</h3>
+            <p class="guide-card__text">市ヶ谷・多摩などキャンパス差を意識しながら、住む場所の考え方をまとめています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="rikkyo.html" data-category="private" data-search-index="立教大学 りっきょうだいがく rikkyo daigaku rikkyo university st pauls university">
+          <div class="guide-card__media">
+            <img src="img/rikkyo.jpg" alt="立教大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">池袋・新座</span>
+              <span class="guide-card__pill guide-card__pill--ghost">立教 / Rikkyo</span>
+            </div>
+            <h3>立教大学</h3>
+            <p class="guide-card__text">池袋・新座への通学動線を、毎日の暮らしとあわせて検討できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="sophia.html" data-category="private" data-search-index="上智大学 じょうちだいがく jochi daigaku sophia university sophia">
+          <div class="guide-card__media">
+            <img src="img/sophia.jpg" alt="上智大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">四ツ谷</span>
+              <span class="guide-card__pill guide-card__pill--ghost">上智 / Sophia</span>
+            </div>
+            <h3>上智大学</h3>
+            <p class="guide-card__text">四ツ谷キャンパスに通う場合の距離感と、生活環境の整えやすさを確認できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="gakushuin.html" data-category="private" data-search-index="学習院大学 がくしゅういんだいがく gakushuin daigaku gakushuin university">
+          <div class="guide-card__media">
+            <img src="img/gakushuin.jpg" alt="学習院大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">目白</span>
+              <span class="guide-card__pill guide-card__pill--ghost">学習院 / Gakushuin</span>
+            </div>
+            <h3>学習院大学</h3>
+            <p class="guide-card__text">目白エリアへの通学を前提に、都内生活の固定費を比較しやすくしています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="aoyama.html" data-category="private" data-search-index="青山学院大学 あおやまがくいんだいがく あおがく 青学 aoyama gakuin daigaku aoyama gakuin university agu">
+          <div class="guide-card__media">
+            <img src="img/aoyama.jpg" alt="青山学院大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">青山・相模原</span>
+              <span class="guide-card__pill guide-card__pill--ghost">青学 / Aoyama</span>
+            </div>
+            <h3>青山学院大学</h3>
+            <p class="guide-card__text">青山・相模原のキャンパス差を見ながら、住まい選びの軸を整理できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="nihon.html" data-category="private" data-search-index="日本大学 にほんだいがく にちだい 日大 nihon daigaku nihon university nichidai">
+          <div class="guide-card__media">
+            <img src="img/nihon.jpg" alt="日本大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">水道橋ほか</span>
+              <span class="guide-card__pill guide-card__pill--ghost">日大 / Nihon</span>
+            </div>
+            <h3>日本大学</h3>
+            <p class="guide-card__text">学部ごとのキャンパス分散も踏まえて、通学時間の考え方を確認できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="tokai.html" data-category="private" data-search-index="東海大学 とうかいだいがく tokai daigaku tokai university">
+          <div class="guide-card__media">
+            <img src="img/tokai.jpg" alt="東海大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">湘南・品川</span>
+              <span class="guide-card__pill guide-card__pill--ghost">東海 / Tokai</span>
+            </div>
+            <h3>東海大学</h3>
+            <p class="guide-card__text">湘南や品川方面を含めて、私立大進学時の住まいの選択肢を見やすく整理しています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="shibaura.html" data-category="private" data-search-index="芝浦工業大学 しばうらこうぎょうだいがく しばうら 芝浦工大 shibaura kogyo daigaku shibaura institute of technology sit">
+          <div class="guide-card__media">
+            <img src="img/shibaura.jpg" alt="芝浦工業大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">豊洲・大宮</span>
+              <span class="guide-card__pill guide-card__pill--ghost">芝浦工大 / SIT</span>
+            </div>
+            <h3>芝浦工業大学</h3>
+            <p class="guide-card__text">豊洲・大宮を意識しながら、理工系学生の通学と学習時間を考えやすい内容です。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="kogakuin.html" data-category="private" data-search-index="工学院大学 こうがくいんだいがく kogakuin daigaku kogakuin university">
+          <div class="guide-card__media">
+            <img src="img/kogakuin.jpg" alt="工学院大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">新宿・八王子</span>
+              <span class="guide-card__pill guide-card__pill--ghost">工学院 / Kogakuin</span>
+            </div>
+            <h3>工学院大学</h3>
+            <p class="guide-card__text">新宿・八王子キャンパスを踏まえ、都市型と郊外型の通学差を比べられます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="denki.html" data-category="private" data-search-index="東京電機大学 とうきょうでんきだいがく でんきだい 電機大 tokyo denki daigaku tokyo denki university tdu">
+          <div class="guide-card__media">
+            <img src="img/denki.jpg" alt="東京電機大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">北千住</span>
+              <span class="guide-card__pill guide-card__pill--ghost">電機大 / TDU</span>
+            </div>
+            <h3>東京電機大学</h3>
+            <p class="guide-card__text">北千住方面へのアクセスを中心に、実学系大学での暮らし方をイメージできます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="tus.html" data-category="private" data-search-index="東京理科大学 とうきょうりかだいがく りかだい 理科大 tokyo rika daigaku tokyo university of science tus">
+          <div class="guide-card__media">
+            <img src="img/tus.jpg" alt="東京理科大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">神楽坂・野田</span>
+              <span class="guide-card__pill guide-card__pill--ghost">理科大 / TUS</span>
+            </div>
+            <h3>東京理科大学</h3>
+            <p class="guide-card__text">神楽坂・野田などを想定しながら、学びと生活費の両立を検討できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="toshi.html" data-category="private" data-search-index="東京都市大学 とうきょうとしだいがく としだい 都市大 tokyo toshi daigaku tokyo city university tcu">
+          <div class="guide-card__media">
+            <img src="img/toshi.jpg" alt="東京都市大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">世田谷</span>
+              <span class="guide-card__pill guide-card__pill--ghost">都市大 / TCU</span>
+            </div>
+            <h3>東京都市大学</h3>
+            <p class="guide-card__text">世田谷を中心に、理工系学生が落ち着いて暮らせる条件を整理しています。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="tcu.html" data-category="private" data-search-index="東京工科大学 とうきょうこうかだいがく こうかだい 工科大 tokyo koka daigaku tokyo university of technology tut">
+          <div class="guide-card__media">
+            <img src="img/tcu.jpg" alt="東京工科大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">八王子・蒲田</span>
+              <span class="guide-card__pill guide-card__pill--ghost">工科大 / TUT</span>
+            </div>
+            <h3>東京工科大学</h3>
+            <p class="guide-card__text">八王子・蒲田キャンパスを視野に入れて、通学時間の目安を掴めます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="juntendo.html" data-category="private" data-search-index="順天堂大学 じゅんてんどうだいがく juntendo daigaku juntendo university">
+          <div class="guide-card__media">
+            <img src="img/juntendo.jpg" alt="順天堂大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">御茶ノ水ほか</span>
+              <span class="guide-card__pill guide-card__pill--ghost">順天堂 / Juntendo</span>
+            </div>
+            <h3>順天堂大学</h3>
+            <p class="guide-card__text">御茶ノ水など医療系キャンパスへ通う際の、生活リズムの組み立て方を見られます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="kitasato.html" data-category="private" data-search-index="北里大学 きたさとだいがく kitasato daigaku kitasato university">
+          <div class="guide-card__media">
+            <img src="img/kitasato.jpg" alt="北里大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">相模原・白金</span>
+              <span class="guide-card__pill guide-card__pill--ghost">北里 / Kitasato</span>
+            </div>
+            <h3>北里大学</h3>
+            <p class="guide-card__text">相模原・白金にまたがる通学を想定し、住まい選びの条件を比較できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="toyaku.html" data-category="private" data-search-index="東京薬科大学 とうきょうやっかだいがく やっかだい 薬科大 tokyo yakka daigaku tokyo university of pharmacy and life sciences toyaku">
+          <div class="guide-card__media">
+            <img src="img/toyaku.jpg" alt="東京薬科大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">八王子</span>
+              <span class="guide-card__pill guide-card__pill--ghost">東京薬科 / Toyaku</span>
+            </div>
+            <h3>東京薬科大学</h3>
+            <p class="guide-card__text">八王子で学ぶ場合の通学のしやすさと、落ち着いた生活環境を確認できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="musabi.html" data-category="private" data-search-index="武蔵野美術大学 むさしのびじゅつだいがく むさび 武蔵美 musabi musashino art university">
+          <div class="guide-card__media">
+            <img src="img/musabi.jpg" alt="武蔵野美術大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">鷹の台・市ヶ谷</span>
+              <span class="guide-card__pill guide-card__pill--ghost">武蔵美 / Musabi</span>
+            </div>
+            <h3>武蔵野美術大学</h3>
+            <p class="guide-card__text">制作時間を確保しやすい住環境を、通学面とあわせて考えられます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+        <a class="guide-card" href="tamaart.html" data-category="private" data-search-index="多摩美術大学 たまびじゅつだいがく たまび 多摩美 tamabi tama art university">
+          <div class="guide-card__media">
+            <img src="img/tamaart.jpg" alt="多摩美術大学のキャンパス" loading="lazy" decoding="async">
+            <span class="guide-card__badge">私立大学</span>
+          </div>
+          <div class="guide-card__body">
+            <div class="guide-card__meta">
+              <span class="guide-card__pill">八王子・上野毛</span>
+              <span class="guide-card__pill guide-card__pill--ghost">多摩美 / Tamabi</span>
+            </div>
+            <h3>多摩美術大学</h3>
+            <p class="guide-card__text">八王子・上野毛を視野に入れ、作品制作と生活の両立を検討できます。</p>
+            <span class="guide-card__cta">個別ガイドを見る</span>
+          </div>
+        </a>
+      </div>
+
+      <p class="guide-empty" id="guide-empty" hidden>該当する大学が見つかりませんでした。漢字・ひらがな・ローマ字の別表記や通称でも試してみてください。</p>
+    </section>
+
+    <section class="page-panel">
+      <div class="page-panel__header">
+        <h2 class="page-section-title">比較コンテンツ</h2>
+        <p class="page-section-lead">大学別ページとあわせて、費用や他寮との比較も見ておくと判断しやすくなります。</p>
+      </div>
+      <div class="page-chip-list">
+        <a class="page-chip" href="../compare/index.html">比較一覧</a>
+        <a class="page-chip" href="../compare/ogino.html">荻布寮との比較</a>
+        <a class="page-chip" href="../compare/meirin.html">明倫館との比較</a>
+        <a class="page-chip" href="../cost/index.html">寮費・生活コスト比較</a>
+      </div>
+    </section>
+
+    <section class="page-panel page-panel--cta">
+      <div class="page-panel__header">
+        <h2 class="page-section-title">住まい選びで次に見るページ</h2>
+      </div>
+      <div class="page-grid">
+        <article class="page-card">
+          <h3>応募資格・日程</h3>
+          <p>募集条件や選考日程を先に確認したい方向けです。</p>
+          <div class="page-actions">
+            <a class="page-button page-button--secondary" href="../students/eligibility/index.html">応募資格・選考日程へ</a>
+          </div>
+        </article>
+        <article class="page-card">
+          <h3>入寮までの流れ</h3>
+          <p>書類準備から結果通知、入寮までの手順を確認できます。</p>
+          <div class="page-actions">
+            <a class="page-button page-button--secondary" href="../students/application-flow/index.html">入寮までの流れへ</a>
+          </div>
+        </article>
+        <article class="page-card">
+          <h3>保護者の方へ</h3>
+          <p>費用、安全、生活面のサポートをまとめています。</p>
+          <div class="page-actions">
+            <a class="page-button page-button--secondary" href="../parents/index.html">保護者向けページへ</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>アクセス・連絡先</h3>
+        <address>
+          〒183-0005<br>
+          東京都府中市若松町4丁目1-1<br>
+          TEL: <a href="tel:042-369-7761">042-369-7761</a><br>
+          Email: <a href="mailto:info@toyama-ryo.or.jp">info@toyama-ryo.or.jp</a>
+          Instagram: <a href="https://www.instagram.com/seiunryo_toyama">@seiunryo_toyama</a>
+        </address>
+      </div>
+      <div class="footer-section">
+        <h3>サイトマップ</h3>
+        <ul>
+          <li><a href="../sitemap/index.html">サイトマップ</a></li>
+          <li><a href="../access/index.html">交通アクセス</a></li>
+          <li><a href="../about/index.html">このサイトについて</a></li>
+          <li><a href="../privacy/index.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>関連ページ</h3>
+        <ul>
+          <li><a href="../seiun/index.html">青雲会(OB会)</a></li>
+          <li><a href="../download/index.html">各種資料ダウンロード</a></li>
+          <li><a href="../contact/index.html">お問い合わせフォーム</a></li>
+          <li><a href="image-attributions.html">画像クレジット</a></li>
+          <li><a href="../kouki/index.html">後期合格・追加合格の入寮相談</a></li>
+          <li><a href="https://www.instagram.com/seiunryo_toyama" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>関連キーワード</h3>
+        <p class="footer-keywords">
+          東京 学生寮 | 大学 寮 東京 | 男子寮 | 上京 寮 |
+          学生寮 安い | 府中市 寮 | 富山県 学生寮 |
+          食事付き 寮 | セキュリティ 学生寮
+        </p>
+      </div>
+    </div>
+    <div class="footer-brand">
+      <h2 class="footer-brand-text">toyama-ryo.or.jp</h2>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2007-<span id="copyright-year">2025</span> 公益財団法人 富山県学生寮 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const tabs = Array.from(document.querySelectorAll(".guide-tab"));
+      const cards = Array.from(document.querySelectorAll(".guide-card"));
+      const searchPanel = document.getElementById("guide-search-panel");
+      const searchInput = document.getElementById("guide-search-input");
+      const searchClear = document.getElementById("guide-search-clear");
+      const summary = document.getElementById("guide-results-summary");
+      const empty = document.getElementById("guide-empty");
+
+      if (!tabs.length || !cards.length || !searchInput || !summary || !empty) {
+        return;
+      }
+
+      const totalCount = cards.length;
+      const searchIndexMap = new Map(
+        cards.map((card) => [card, normalizeForSearch(card.dataset.searchIndex || card.textContent || "")])
+      );
+
+      let activeMode = "search";
+      let isComposingSearch = false;
+      let pendingSearchFrame = 0;
+
+      function normalizeForSearch(value) {
+        return value
+          .normalize("NFKC")
+          .toLowerCase()
+          .replace(/[\u30a1-\u30f6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60))
+          .normalize("NFKD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[\s\u3000]+/g, "")
+          .replace(/[‐-―ーｰ・'".,()/]/g, "");
+      }
+
+      function updateSummary(mode, count, query) {
+        if (mode === "search") {
+          if (query) {
+            summary.innerHTML = `<strong>「${escapeHtml(query)}」</strong> の検索結果: <strong>${count}校</strong>`;
+            return;
+          }
+          summary.innerHTML = `<strong>${totalCount}校</strong>から探せます。漢字・ひらがな・ローマ字の部分一致に対応しています。`;
+          return;
+        }
+
+        const label = mode === "public" ? "国公立大学" : "私立大学";
+        summary.innerHTML = `<strong>${label}</strong>を <strong>${count}校</strong> 表示しています。`;
+      }
+
+      function escapeHtml(value) {
+        return value
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function updateView(mode = activeMode) {
+        activeMode = mode;
+        const rawQuery = searchInput.value.trim();
+        const normalizedQuery = normalizeForSearch(rawQuery);
+        let visibleCount = 0;
+
+        tabs.forEach((tab) => {
+          const isActive = tab.dataset.guideMode === mode;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-pressed", String(isActive));
+        });
+
+        searchPanel.hidden = mode !== "search";
+        if (searchClear) {
+          searchClear.hidden = mode !== "search" || rawQuery === "";
+        }
+
+        cards.forEach((card) => {
+          const matchesCategory = mode === "search" ? true : card.dataset.category === mode;
+          const matchesQuery = mode !== "search" || normalizedQuery === ""
+            ? true
+            : searchIndexMap.get(card).includes(normalizedQuery);
+          const visible = matchesCategory && matchesQuery;
+
+          card.hidden = !visible;
+          if (visible) {
+            visibleCount += 1;
+          }
+        });
+
+        empty.hidden = visibleCount !== 0;
+        updateSummary(mode, visibleCount, rawQuery);
+      }
+
+      function queueSearchUpdate() {
+        if (pendingSearchFrame) {
+          cancelAnimationFrame(pendingSearchFrame);
+        }
+
+        pendingSearchFrame = requestAnimationFrame(() => {
+          pendingSearchFrame = 0;
+          updateView("search");
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => updateView(tab.dataset.guideMode || "search"));
+      });
+
+      searchInput.addEventListener("compositionstart", () => {
+        isComposingSearch = true;
+      });
+
+      searchInput.addEventListener("compositionend", () => {
+        isComposingSearch = false;
+        queueSearchUpdate();
+      });
+
+      ["input", "change", "search", "keyup"].forEach((eventName) => {
+        searchInput.addEventListener(eventName, () => {
+          if (isComposingSearch) {
+            return;
+          }
+
+          queueSearchUpdate();
+        });
+      });
+
+      if (searchClear) {
+        searchClear.addEventListener("click", () => {
+          searchInput.value = "";
+          searchInput.focus();
+          updateView("search");
+        });
+      }
+
+      updateView("search");
+    })();
+  </script>
+  <script src="../assets/script.20251227161716.js" defer></script>
+</body>
+</html>

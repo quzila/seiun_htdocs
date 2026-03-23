@@ -1,0 +1,26 @@
+# ディレクトリ一覧の表示を禁止（セキュリティ向上）
+Options -Indexes
+
+<IfModule mod_headers.c>
+Header set X-Robots-Tag "noindex, follow"
+</IfModule>
+
+# タイムゾーンを日本標準時に設定
+SetEnv TZ JST-9
+
+# PHP4用の設定（既存のものを維持）
+AddType application/x-httpd-php4 .php4
+Action application/x-httpd-php4 /global-bin/php4.cgi
+
+# ▼▼▼ ここからURLの書き換え（.htmlを削除する設定）▼▼▼
+
+# 1. .html付きのURLにアクセスしたら、.htmlなしへリダイレクト（SEO対策）
+RewriteEngine On
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# 2. .htmlを省略したURLでも表示できるようにする
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+# ▲▲▲ ここまで追記部分 ▲▲▲

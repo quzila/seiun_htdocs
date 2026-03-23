@@ -1,0 +1,2380 @@
+.cost-page {
+    color-scheme: light;
+    --cost-ink: #1d1d1f;
+    --cost-muted: #515154;
+    --cost-subtle: #86868b;
+    --cost-surface: rgba(255, 255, 255, 0.78);
+    --cost-surface-strong: rgba(255, 255, 255, 0.92);
+    --cost-line: rgba(15, 23, 42, 0.08);
+    --cost-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+    --cost-shadow-soft: 0 12px 40px rgba(15, 23, 42, 0.06);
+    --cost-accent: linear-gradient(135deg, #0071e3 0%, #4da3ff 100%);
+    --cost-accent-solid: #0071e3;
+    --cost-accent-soft: rgba(0, 113, 227, 0.1);
+    --cost-panel-radius: 34px;
+    background:
+        radial-gradient(circle at top left, rgba(0, 113, 227, 0.09), transparent 32%),
+        linear-gradient(180deg, #f4f5f7 0%, #ffffff 30%, #f6f7fa 100%);
+    color: var(--cost-ink);
+    overflow-x: clip;
+}
+
+.cost-page .page-main.cost-main {
+    width: min(1280px, calc(100% - 2rem));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.cost-page .cost-top-card {
+    padding: 1rem 0 0.25rem;
+}
+
+.cost-page .cost-top-card__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: clamp(1.6rem, 4vw, 2.8rem);
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82));
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    box-shadow: 0 22px 54px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    text-align: center;
+}
+
+.cost-page .cost-top-card__eyebrow {
+    margin: 0;
+    color: var(--cost-muted);
+    font-size: 0.79rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-top-card__title {
+    margin: 0.7rem 0 0;
+    font-size: clamp(2rem, 6vw, 3.9rem);
+    line-height: 1.04;
+    letter-spacing: -0.05em;
+    font-weight: 700;
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-top-card__lead {
+    margin: 0.95rem auto 0;
+    max-width: 40rem;
+    color: #4b5563;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
+}
+
+.cost-page .cost-top-card__actions {
+    justify-content: center;
+    margin-top: 1.4rem;
+}
+
+.cost-page .cost-top-card__summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 1.3rem;
+}
+
+.cost-page .cost-top-metric {
+    padding: 1rem 1.05rem;
+    border-radius: 24px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--cost-shadow-soft);
+    text-align: left;
+}
+
+.cost-page .cost-top-metric--base {
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.12) 0%, rgba(77, 163, 255, 0.18) 100%);
+}
+
+.cost-page .cost-top-metric__label,
+.cost-page .cost-glance-card__eyebrow,
+.cost-page .cost-composition-card__eyebrow,
+.cost-page .cost-market-card__eyebrow {
+    margin: 0;
+    color: var(--cost-subtle);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-top-metric__value {
+    margin: 0.55rem 0 0;
+    color: var(--cost-ink);
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.75rem);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+}
+
+.cost-page .cost-top-metric__sub,
+.cost-page .cost-glance-card__note,
+.cost-page .cost-market-card__note,
+.cost-page .cost-composition-card__note {
+    margin: 0.45rem 0 0;
+    color: var(--cost-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.cost-page .cost-top-card__picker {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.cost-page .cost-top-card__picker-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.cost-page .cost-top-card__picker-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+}
+
+.cost-page .cost-top-card__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 10rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+    color: var(--cost-ink);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+}
+
+.cost-page .cost-top-card__link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(15, 23, 42, 0.18);
+    box-shadow: 0 14px 24px rgba(15, 23, 42, 0.09);
+}
+
+.cost-page .cost-hero,
+.cost-page .cost-summary,
+.cost-page .cost-section,
+.cost-page .cost-closing {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: var(--cost-panel-radius);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: var(--cost-surface);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    box-shadow: var(--cost-shadow);
+}
+
+.cost-page .cost-hero::before,
+.cost-page .cost-section::before,
+.cost-page .cost-summary::before,
+.cost-page .cost-closing::before {
+    content: "";
+    position: absolute;
+    inset: auto auto -30% -12%;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 72%);
+    pointer-events: none;
+}
+
+.cost-page .cost-hero::after {
+    content: "";
+    position: absolute;
+    top: -10%;
+    right: -8%;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.16) 0%, rgba(0, 113, 227, 0) 68%);
+    pointer-events: none;
+}
+
+.cost-page .cost-hero__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    color: var(--cost-muted);
+    font-size: 0.84rem;
+}
+
+.cost-page .cost-hero__meta::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--cost-accent-solid);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
+}
+
+.cost-page .cost-hero__utility {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.9rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.cost-page .cost-segmented {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.06);
+    max-width: 100%;
+}
+
+.cost-page .cost-hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.9fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+}
+
+.cost-page .cost-eyebrow,
+.cost-page .cost-section__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+    color: var(--cost-accent-solid);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-eyebrow::before,
+.cost-page .cost-section__eyebrow::before {
+    content: "";
+    width: 2.4rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 113, 227, 0.95), rgba(0, 113, 227, 0));
+}
+
+.cost-page .cost-hero h1 {
+    max-width: 11ch;
+    margin: 0;
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.8rem);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-hero__lead,
+.cost-page .cost-hero__support,
+.cost-page .cost-section__lead,
+.cost-page .cost-prose p,
+.cost-page .cost-summary__list li,
+.cost-page .cost-callout p,
+.cost-page .cost-source-list a,
+.cost-page .cost-source-card p,
+.cost-page .cost-table-note,
+.cost-page .cost-section__caption {
+    color: var(--cost-muted);
+    line-height: 1.95;
+    font-size: 1rem;
+}
+
+.cost-page .cost-hero__lead {
+    max-width: 58ch;
+    margin: 1.4rem 0 0;
+    font-size: 1.08rem;
+}
+
+.cost-page .cost-hero__support {
+    max-width: 58ch;
+    margin: 1rem 0 0;
+}
+
+.cost-page .cost-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.cost-page .cost-hero__anchors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.6rem;
+}
+
+.cost-page .cost-hero__anchors a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.94);
+    box-shadow: var(--cost-shadow-soft);
+    color: var(--cost-ink);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.cost-page .cost-hero__anchors a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+    color: var(--cost-accent-solid);
+}
+
+.cost-page .cost-hero__panel {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.96);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 248, 250, 0.88) 100%);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.1);
+}
+
+.cost-page .cost-hero__panel-label {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cost-subtle);
+}
+
+.cost-page .cost-hero__headline-number {
+    margin: 0.8rem 0 1rem;
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-hero__metrics {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.cost-page .cost-hero__metrics li {
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--cost-line);
+    color: var(--cost-muted);
+    line-height: 1.8;
+}
+
+.cost-page .cost-hero__metrics strong {
+    display: block;
+    color: var(--cost-ink);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.cost-page .cost-summary {
+    z-index: 1;
+}
+
+.cost-page .cost-summary__header {
+    max-width: 64ch;
+}
+
+.cost-page .cost-summary h2,
+.cost-page .cost-section h2,
+.cost-page .cost-closing h2 {
+    margin: 0;
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-summary__lead,
+.cost-page .cost-section__lead {
+    max-width: 66ch;
+    margin-top: 1rem;
+}
+
+.cost-page .cost-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.cost-page .cost-glance-card,
+.cost-page .cost-market-card,
+.cost-page .cost-method-card {
+    padding: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.cost-page .cost-summary__list {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.cost-page .cost-summary__list li {
+    padding: 1.2rem 1.3rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.96);
+    box-shadow: var(--cost-shadow-soft);
+}
+
+.cost-page .cost-summary__list strong {
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-section {
+    scroll-margin-top: 140px;
+}
+
+.cost-page .cost-section--soft {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(248, 249, 252, 0.92) 100%);
+}
+
+.cost-page .cost-section__intro {
+    max-width: 72ch;
+}
+
+.cost-page .cost-card {
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.96);
+    background: var(--cost-surface-strong);
+    box-shadow: var(--cost-shadow-soft);
+}
+
+.cost-page .cost-dashboard {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+}
+
+.cost-page .cost-toolbar__meta,
+.cost-page .cost-toolbar__label {
+    margin: 0;
+    color: var(--cost-subtle);
+    font-size: 0.94rem;
+}
+
+.cost-page .cost-mini-bars,
+.cost-page .cost-initial-bars,
+.cost-page .cost-market-startup,
+.cost-page .cost-step-list,
+.cost-page .cost-stat-pair,
+.cost-page .cost-data-points {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.cost-page .cost-mini-bars__row,
+.cost-page .cost-initial-bars__row,
+.cost-page .cost-market-startup__row {
+    display: grid;
+    grid-template-columns: minmax(86px, 110px) minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.cost-page .cost-mini-bars__row span,
+.cost-page .cost-initial-bars__row span,
+.cost-page .cost-market-startup__row span,
+.cost-page .cost-stat-pair__item span,
+.cost-page .cost-data-point span {
+    color: var(--cost-subtle);
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.cost-page .cost-mini-bars__row strong,
+.cost-page .cost-initial-bars__row strong,
+.cost-page .cost-market-startup__row strong,
+.cost-page .cost-stat-pair__item strong,
+.cost-page .cost-data-point strong {
+    color: var(--cost-ink);
+    font-weight: 700;
+}
+
+.cost-page .cost-mini-bars__track,
+.cost-page .cost-initial-bars__track,
+.cost-page .cost-market-startup__track,
+.cost-page .cost-market-scale__track {
+    position: relative;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.cost-page .cost-mini-bars__track,
+.cost-page .cost-initial-bars__track,
+.cost-page .cost-market-startup__track {
+    height: 12px;
+}
+
+.cost-page .cost-mini-bars__fill,
+.cost-page .cost-initial-bars__fill,
+.cost-page .cost-market-startup__fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.cost-page .cost-mini-bars__fill--seiun,
+.cost-page .cost-initial-bars__fill--seiun,
+.cost-page .cost-market-startup__fill--seiun {
+    background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+}
+
+.cost-page .cost-mini-bars__fill--tokyo {
+    background: linear-gradient(135deg, #1d1d1f 0%, #5f6368 100%);
+}
+
+.cost-page .cost-mini-bars__fill--toyama {
+    background: linear-gradient(135deg, #8b5cf6 0%, #d8b4fe 100%);
+}
+
+.cost-page .cost-initial-bars__fill--mid,
+.cost-page .cost-market-startup__fill--mid {
+    background: linear-gradient(135deg, #fb923c 0%, #fbbf24 100%);
+}
+
+.cost-page .cost-initial-bars__fill--high,
+.cost-page .cost-market-startup__fill--high,
+.cost-page .cost-mini-bars__range {
+    background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+}
+
+.cost-page .cost-mini-bars__range {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: 0 10px 24px rgba(249, 115, 22, 0.18);
+}
+
+.cost-page .cost-stat-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cost-page .cost-stat-pair__item,
+.cost-page .cost-data-point,
+.cost-page .cost-step-list__item {
+    padding: 0.95rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    background: rgba(255, 255, 255, 0.76);
+}
+
+.cost-page .cost-stat-pair__item strong,
+.cost-page .cost-data-point strong {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.cost-page .cost-step-list__item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.cost-page .cost-step-list__item span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 999px;
+    background: var(--cost-accent);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.cost-page .cost-step-list__item strong {
+    color: var(--cost-ink);
+    font-size: 1rem;
+}
+
+.cost-page .cost-segmented,
+.cost-page .cost-chip-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.06);
+}
+
+.cost-page .cost-segmented button,
+.cost-page .cost-chip-group button {
+    min-height: 2.65rem;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--cost-muted);
+    font-size: 0.94rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cost-page .cost-segmented button:hover,
+.cost-page .cost-chip-group button:hover {
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-segmented button.is-active,
+.cost-page .cost-chip-group button.is-active {
+    background: #ffffff;
+    color: var(--cost-ink);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.cost-page .cost-chart {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.cost-page .cost-chart__title {
+    margin-bottom: 1.2rem;
+    color: var(--cost-ink);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.cost-page .cost-bar-chart {
+    display: grid;
+    gap: 1rem;
+}
+
+.cost-page .cost-bar-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 230px) minmax(0, 1fr) minmax(150px, 180px);
+    gap: 1rem;
+    align-items: center;
+}
+
+.cost-page .cost-bar-row__head strong,
+.cost-page .cost-table-card h3,
+.cost-page .cost-callout h3,
+.cost-page .cost-glance-card h3,
+.cost-page .cost-market-card h3,
+.cost-page .cost-method-card h3,
+.cost-page .cost-prose-card h3,
+.cost-page .cost-source-card h3 {
+    display: block;
+    color: var(--cost-ink);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+
+.cost-page .cost-bar-row__head span,
+.cost-page .cost-bar-row__numbers span,
+.cost-page .cost-legend__label,
+.cost-page .cost-market-table td,
+.cost-page .cost-market-table th,
+.cost-page .cost-matrix td,
+.cost-page .cost-matrix th,
+.cost-page .cost-prose-card li,
+.cost-page .cost-source-list li {
+    color: var(--cost-muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.cost-page .cost-bar-row__track {
+    position: relative;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.08);
+    overflow: visible;
+}
+
+.cost-page .cost-bar-row__fill,
+.cost-page .cost-bar-row__range {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 999px;
+    transition: width 0.5s ease, left 0.5s ease;
+}
+
+.cost-page .cost-bar-row__fill {
+    width: 0 !important;
+    opacity: 0;
+}
+
+.cost-page .cost-bar-row__point {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+    transition: left 0.5s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cost-page .cost-bar-row[data-scenario="seiun"] .cost-bar-row__point {
+    background: #0071e3;
+}
+
+.cost-page .cost-bar-row[data-scenario="tokyo"] .cost-bar-row__point {
+    background: #2f3640;
+}
+
+.cost-page .cost-bar-row[data-scenario="toyama"] .cost-bar-row__point {
+    background: #8b5cf6;
+}
+
+.cost-page .cost-bar-row--range .cost-bar-row__range {
+    left: var(--range-start, 0%);
+    width: var(--range-span, 0%);
+    background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+    box-shadow: 0 10px 24px rgba(249, 115, 22, 0.22);
+}
+
+.cost-page .cost-bar-row--range .cost-bar-row__range::before,
+.cost-page .cost-bar-row--range .cost-bar-row__range::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: #fbbf24;
+    border: 2px solid rgba(255, 255, 255, 0.92);
+    transform: translateY(-50%);
+}
+
+.cost-page .cost-bar-row--range .cost-bar-row__range::before {
+    left: 0;
+    transform: translate(-35%, -50%);
+}
+
+.cost-page .cost-bar-row--range .cost-bar-row__range::after {
+    right: 0;
+    transform: translate(35%, -50%);
+}
+
+.cost-page .cost-bar-row--range .cost-bar-row__point {
+    opacity: 0;
+}
+
+.cost-page .cost-bar-row__numbers {
+    text-align: right;
+}
+
+.cost-page .cost-bar-row__numbers strong {
+    display: block;
+    color: var(--cost-ink);
+    font-size: 1.05rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.cost-page .cost-bar-row__numbers span {
+    display: block;
+}
+
+.cost-page .cost-table-card {
+    padding: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.cost-page .cost-table-card__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.8rem;
+    align-items: end;
+    margin-bottom: 1rem;
+}
+
+.cost-page .cost-table-wrap {
+    overflow-x: auto;
+    border-radius: 22px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.cost-page .cost-matrix,
+.cost-page .cost-market-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.cost-page .cost-matrix th,
+.cost-page .cost-matrix td,
+.cost-page .cost-market-table th,
+.cost-page .cost-market-table td {
+    padding: 1rem 1.1rem;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    text-align: left;
+}
+
+.cost-page .cost-matrix td strong,
+.cost-page .cost-market-table td strong {
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-matrix thead th,
+.cost-page .cost-market-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: rgba(247, 248, 250, 0.96);
+    color: var(--cost-ink);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-matrix tbody tr:hover,
+.cost-page .cost-market-table tbody tr:hover {
+    background: rgba(0, 113, 227, 0.03);
+}
+
+.cost-page .cost-matrix tbody tr[data-scenario="seiun"] th,
+.cost-page .cost-matrix tbody tr[data-scenario="seiun"] td:first-of-type {
+    color: var(--cost-ink);
+    font-weight: 700;
+}
+
+.cost-page .cost-composition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-composition-card {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.cost-page .cost-composition-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+}
+
+.cost-page .cost-composition-card--seiun::before {
+    background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+}
+
+.cost-page .cost-composition-card--tokyo::before {
+    background: linear-gradient(135deg, #1d1d1f 0%, #636366 100%);
+}
+
+.cost-page .cost-composition-card--toyama::before {
+    background: linear-gradient(135deg, #8b5cf6 0%, #d8b4fe 100%);
+}
+
+.cost-page .cost-composition-card__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: start;
+}
+
+.cost-page .cost-composition-card__delta {
+    margin: 0;
+    color: var(--cost-muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.cost-page .cost-composition-card__total {
+    margin: 0;
+    color: var(--cost-ink);
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    font-weight: 700;
+}
+
+.cost-page .cost-composition-card__stack {
+    display: flex;
+    min-height: 18px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(15, 23, 42, 0.06);
+}
+
+.cost-page .cost-composition-card__segment {
+    display: block;
+    height: 18px;
+}
+
+.cost-page .cost-composition-card__segment--housing {
+    background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+}
+
+.cost-page .cost-composition-card__segment--food {
+    background: linear-gradient(135deg, #1d1d1f 0%, #636366 100%);
+}
+
+.cost-page .cost-composition-card__segment--living {
+    background: linear-gradient(135deg, #a855f7 0%, #d8b4fe 100%);
+}
+
+.cost-page .cost-composition-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+}
+
+.cost-page .cost-composition-list div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--cost-line);
+}
+
+.cost-page .cost-composition-list dt,
+.cost-page .cost-composition-list dd {
+    margin: 0;
+}
+
+.cost-page .cost-composition-list dt {
+    color: var(--cost-muted);
+    font-size: 0.92rem;
+}
+
+.cost-page .cost-composition-list dd {
+    color: var(--cost-ink);
+    font-size: 0.94rem;
+    font-weight: 700;
+}
+
+.cost-page .cost-breakdown {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    gap: 1.2rem;
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-breakdown__main,
+.cost-page .cost-breakdown__aside,
+.cost-page .cost-range-note,
+.cost-page .cost-prose-card,
+.cost-page .cost-source-card {
+    padding: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.cost-page .cost-breakdown__figure {
+    margin: 1.3rem 0 0;
+}
+
+.cost-page .cost-breakdown__stack {
+    display: flex;
+    gap: 0.4rem;
+    width: 100%;
+    min-height: 84px;
+}
+
+.cost-page .cost-stack__segment {
+    min-width: 70px;
+    border-radius: 22px;
+    transition: flex-basis 0.4s ease;
+}
+
+.cost-page .cost-stack__segment--housing {
+    background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+}
+
+.cost-page .cost-stack__segment--food {
+    background: linear-gradient(135deg, #1d1d1f 0%, #636366 100%);
+}
+
+.cost-page .cost-stack__segment--living {
+    background: linear-gradient(135deg, #a855f7 0%, #d8b4fe 100%);
+}
+
+.cost-page .cost-breakdown__figure figcaption {
+    margin-top: 1rem;
+    color: var(--cost-muted);
+    line-height: 1.85;
+}
+
+.cost-page .cost-breakdown__legend {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+}
+
+.cost-page .cost-legend {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.cost-page .cost-legend__swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+}
+
+.cost-page .cost-legend__swatch--housing {
+    background: #0071e3;
+}
+
+.cost-page .cost-legend__swatch--food {
+    background: #3a3a3c;
+}
+
+.cost-page .cost-legend__swatch--living {
+    background: #c084fc;
+}
+
+.cost-page .cost-legend__value {
+    color: var(--cost-ink);
+    font-weight: 700;
+    font-size: 0.94rem;
+}
+
+.cost-page .cost-callout {
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: 28px;
+    background: linear-gradient(180deg, #111214 0%, #1d1f24 100%);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.18);
+}
+
+.cost-page .cost-callout__eyebrow {
+    margin: 0 0 0.8rem;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-callout h3 {
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+}
+
+.cost-page .cost-callout p {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.cost-page .cost-prose {
+    display: grid;
+    gap: 1rem;
+}
+
+.cost-page .cost-reading-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+    gap: 1.2rem;
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-market-grid,
+.cost-page .cost-method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cost-page .cost-market-scale {
+    margin-top: 1rem;
+}
+
+.cost-page .cost-market-scale__track {
+    height: 18px;
+}
+
+.cost-page .cost-market-scale__range {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 47.4%;
+    width: 52.6%;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+    box-shadow: 0 10px 24px rgba(249, 115, 22, 0.18);
+}
+
+.cost-page .cost-market-scale__point {
+    position: absolute;
+    top: 50%;
+    left: 37.8%;
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: #0071e3;
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+}
+
+.cost-page .cost-market-scale__labels {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.9rem;
+    color: var(--cost-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cost-page .cost-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}
+
+.cost-page .cost-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.65rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--cost-ink);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.cost-page .cost-range-note {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    background: linear-gradient(180deg, rgba(17, 17, 17, 0.95) 0%, rgba(31, 31, 31, 0.92) 100%);
+}
+
+.cost-page .cost-range-note p,
+.cost-page .cost-range-note li {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.cost-page .cost-range-note strong {
+    color: #ffffff;
+}
+
+.cost-page .cost-range-note ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.cost-page .cost-source-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-prose-card ul {
+    margin: 1rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.cost-page .cost-source-card {
+    margin-top: 1.2rem;
+}
+
+.cost-page .cost-source-card__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.cost-page .cost-source-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.7rem;
+}
+
+.cost-page .cost-source-list a {
+    display: block;
+    padding: 0.9rem 1rem;
+    border-radius: 18px;
+    background: rgba(247, 248, 250, 0.94);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    color: var(--cost-ink);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.cost-page .cost-source-list a:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--cost-shadow-soft);
+    color: var(--cost-accent-solid);
+}
+
+.cost-page .cost-closing__body {
+    max-width: 72ch;
+    position: relative;
+    z-index: 1;
+}
+
+.cost-page .cost-closing__body p {
+    margin-top: 1rem;
+    color: var(--cost-muted);
+    line-height: 1.95;
+}
+
+.cost-page .cost-closing .page-actions {
+    margin-top: 1.6rem;
+}
+
+.cost-page .cost-closing .page-button--primary {
+    background: var(--cost-accent);
+}
+
+.cost-page .cost-closing .page-button--secondary {
+    background: rgba(255, 255, 255, 0.78);
+}
+
+.cost-page .cost-table-note {
+    margin-top: 1rem;
+}
+
+.cost-page .cost-market-table td strong,
+.cost-page .cost-matrix td strong {
+    color: var(--cost-ink);
+}
+
+/* ================================================================
+   NEW: Hero Vertical Bar Chart (Section 1)
+   ================================================================ */
+
+.cost-page .cost-summary--hero .cost-summary__header {
+    margin-bottom: 2rem;
+}
+
+.cost-page .cost-vbar-chart {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    height: 340px;
+    margin-top: 1.5rem;
+}
+
+.cost-page .cost-vbar-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cost-page .cost-vbar-col__bar-wrap {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--cost-line);
+}
+
+.cost-page .cost-vbar-col__bar-wrap--range {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 0;
+}
+
+/* Single bars: animate height from 0 */
+.cost-page .cost-vbar-col__bar:not(.cost-vbar-col__bar--range-top):not(.cost-vbar-col__bar--floor) {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    height: 0;
+    transition: height 0.8s cubic-bezier(0.34, 1.08, 0.64, 1);
+}
+
+.cost-page .cost-vbar-chart.is-ready .cost-vbar-col--seiun .cost-vbar-col__bar {
+    height: 37.8%;
+}
+
+.cost-page .cost-vbar-chart.is-ready .cost-vbar-col--toyama .cost-vbar-col__bar {
+    height: 59.6%;
+}
+
+.cost-page .cost-vbar-chart.is-ready .cost-vbar-col--tokyo .cost-vbar-col__bar {
+    height: 72.3%;
+}
+
+/* Bar colors */
+.cost-page .cost-vbar-col--seiun .cost-vbar-col__bar {
+    background: linear-gradient(180deg, #5ac8fa 0%, #0071e3 100%);
+    box-shadow: 0 -6px 24px rgba(0, 113, 227, 0.3);
+}
+
+.cost-page .cost-vbar-col--toyama .cost-vbar-col__bar {
+    background: linear-gradient(180deg, #c4b5fd 0%, #7c3aed 100%);
+    opacity: 0.6;
+}
+
+.cost-page .cost-vbar-col--tokyo .cost-vbar-col__bar {
+    background: linear-gradient(180deg, #9ca3af 0%, #374151 100%);
+    opacity: 0.6;
+}
+
+/* Private range bars */
+.cost-page .cost-vbar-col__bar--range-top {
+    border-radius: 10px 10px 0 0;
+    height: 0;
+    background: linear-gradient(180deg, rgba(251, 191, 36, 0.55) 0%, rgba(249, 115, 22, 0.35) 100%);
+    transition: height 0.8s cubic-bezier(0.34, 1.08, 0.64, 1) 0.08s;
+}
+
+.cost-page .cost-vbar-col__bar--floor {
+    border-radius: 0;
+    height: 0;
+    background: linear-gradient(180deg, rgba(249, 115, 22, 0.75) 0%, rgba(234, 88, 12, 0.85) 100%);
+    transition: height 0.8s cubic-bezier(0.34, 1.08, 0.64, 1);
+}
+
+.cost-page .cost-vbar-chart.is-ready .cost-vbar-col__bar--range-top {
+    height: 52.6%;
+}
+
+.cost-page .cost-vbar-chart.is-ready .cost-vbar-col__bar--floor {
+    height: 47.4%;
+}
+
+/* Labels below bars */
+.cost-page .cost-vbar-col__label {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding-top: 0.75rem;
+    text-align: center;
+}
+
+.cost-page .cost-vbar-col__label strong {
+    color: var(--cost-ink);
+    font-size: clamp(0.75rem, 1.2vw, 0.88rem);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.cost-page .cost-vbar-col__amount {
+    color: var(--cost-ink);
+    font-size: clamp(0.82rem, 1.3vw, 0.96rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    overflow-wrap: anywhere;
+}
+
+.cost-page .cost-vbar-col--seiun .cost-vbar-col__amount {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: var(--cost-accent-solid);
+}
+
+.cost-page .cost-vbar-col__badge {
+    display: inline-flex;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.06);
+    color: var(--cost-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.cost-page .cost-vbar-col__badge--base {
+    background: rgba(0, 113, 227, 0.1);
+    color: var(--cost-accent-solid);
+}
+
+/* Savings row — no card boxes */
+.cost-page .cost-savings-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 5vw, 5rem);
+    padding-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.cost-page .cost-savings-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+}
+
+.cost-page .cost-savings-item__label {
+    margin: 0;
+    color: var(--cost-subtle);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-savings-item__number {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    color: var(--cost-ink);
+    line-height: 1.05;
+}
+
+.cost-page .cost-savings-item__sub {
+    margin: 0;
+    color: var(--cost-muted);
+    font-size: 0.88rem;
+}
+
+.cost-page .cost-savings-divider {
+    width: 1px;
+    height: 56px;
+    background: var(--cost-line);
+    flex-shrink: 0;
+}
+
+/* Mobile: switch to horizontal bars */
+@media (max-width: 600px) {
+    .cost-page .cost-vbar-chart {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+
+    .cost-page .cost-vbar-col {
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+        gap: 0.75rem;
+    }
+
+    .cost-page .cost-vbar-col__bar-wrap {
+        flex: 1;
+        height: 28px;
+        align-items: stretch;
+        border-bottom: none;
+        border-right: 2px solid var(--cost-line);
+    }
+
+    .cost-page .cost-vbar-col__bar-wrap--range {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .cost-page .cost-vbar-col__bar:not(.cost-vbar-col__bar--range-top):not(.cost-vbar-col__bar--floor) {
+        height: 100% !important;
+        width: 0;
+        border-radius: 0 10px 10px 0;
+        transition: width 0.8s cubic-bezier(0.34, 1.08, 0.64, 1);
+    }
+
+    .cost-page .cost-vbar-chart.is-ready .cost-vbar-col--seiun .cost-vbar-col__bar { width: 37.8%; height: 100% !important; }
+    .cost-page .cost-vbar-chart.is-ready .cost-vbar-col--toyama .cost-vbar-col__bar { width: 59.6%; height: 100% !important; }
+    .cost-page .cost-vbar-chart.is-ready .cost-vbar-col--tokyo .cost-vbar-col__bar { width: 72.3%; height: 100% !important; }
+
+    .cost-page .cost-vbar-col__bar--range-top {
+        height: 100%;
+        width: 0;
+        border-radius: 0;
+        transition: width 0.8s cubic-bezier(0.34, 1.08, 0.64, 1) 0.08s;
+    }
+
+    .cost-page .cost-vbar-col__bar--floor {
+        height: 100%;
+        width: 0;
+        border-radius: 0 10px 10px 0;
+        transition: width 0.8s cubic-bezier(0.34, 1.08, 0.64, 1);
+    }
+
+    .cost-page .cost-vbar-chart.is-ready .cost-vbar-col__bar--floor { width: 47.4%; }
+    .cost-page .cost-vbar-chart.is-ready .cost-vbar-col__bar--range-top { width: 52.6%; }
+
+    .cost-page .cost-vbar-col__label {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        flex: 0 0 min(46%, 12rem);
+        min-width: 0;
+        max-width: none;
+        text-align: left;
+        padding-top: 0;
+        gap: 0.15rem;
+    }
+
+    .cost-page .cost-savings-divider {
+        width: 56px;
+        height: 1px;
+    }
+}
+
+/* ================================================================
+   NEW: Chart (Section 2) — flatten card chrome
+   ================================================================ */
+
+.cost-page .cost-chart {
+    border: none;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0 0 1.5rem;
+    border-bottom: 1px solid var(--cost-line);
+}
+
+/* ================================================================
+   NEW: Interactive Breakdown Panel (Section 3)
+   ================================================================ */
+
+.cost-page .cost-breakdown__panel {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    margin-top: 1.75rem;
+}
+
+.cost-page .cost-breakdown__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--cost-line);
+}
+
+.cost-page .cost-breakdown__tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    flex: 1;
+    min-width: 120px;
+    padding: 0.9rem 1.1rem;
+    border-radius: 18px;
+    border: 1px solid transparent;
+    background: rgba(15, 23, 42, 0.04);
+    color: var(--cost-muted);
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    text-align: left;
+}
+
+.cost-page .cost-breakdown__tab:hover {
+    background: rgba(0, 113, 227, 0.05);
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-breakdown__tab.is-active {
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--cost-accent-solid);
+    border-color: rgba(0, 113, 227, 0.18);
+    box-shadow: 0 4px 16px rgba(0, 113, 227, 0.1);
+}
+
+.cost-page .cost-breakdown__tab-sub {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--cost-subtle);
+    display: block;
+}
+
+.cost-page .cost-breakdown__tab.is-active .cost-breakdown__tab-sub {
+    color: var(--cost-accent-solid);
+    opacity: 0.75;
+}
+
+.cost-page .cost-breakdown__tab-diff {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.cost-page .cost-breakdown__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Inside the panel, __main and __aside don't need their own padding */
+.cost-page .cost-breakdown__panel .cost-breakdown__main,
+.cost-page .cost-breakdown__panel .cost-breakdown__aside {
+    padding: 0;
+}
+
+.cost-page .cost-breakdown__kicker {
+    margin: 0 0 0.25rem;
+    color: var(--cost-accent-solid);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cost-page .cost-breakdown__total {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+    color: var(--cost-ink);
+    line-height: 1.05;
+}
+
+.cost-page .cost-breakdown__aside h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cost-ink);
+    line-height: 1.4;
+}
+
+.cost-page .cost-breakdown__aside p {
+    margin: 0;
+    color: var(--cost-muted);
+    line-height: 1.9;
+    font-size: 0.97rem;
+}
+
+@media (max-width: 980px) {
+    .cost-page .cost-breakdown__body {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cost-page .cost-breakdown__tab {
+        min-width: 0;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.88rem;
+    }
+}
+
+/* ================================================================
+   NEW: Market Callout (Section 4)
+   ================================================================ */
+
+.cost-page .cost-market-callout {
+    margin-top: 1.25rem;
+    padding: 1.1rem 1.4rem;
+    border-radius: 20px;
+    background: rgba(249, 115, 22, 0.05);
+    border: 1px solid rgba(249, 115, 22, 0.14);
+}
+
+.cost-page .cost-market-callout__text {
+    margin: 0;
+    color: var(--cost-muted);
+    font-size: 0.96rem;
+    line-height: 1.9;
+}
+
+.cost-page .cost-market-callout__text strong {
+    color: var(--cost-ink);
+}
+
+.cost-page .cost-market-callout .cost-pill {
+    background: rgba(249, 115, 22, 0.07);
+    border-color: rgba(249, 115, 22, 0.15);
+    color: #c2410c;
+    vertical-align: middle;
+    min-height: auto;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.85rem;
+}
+
+.cost-page #market .cost-table-card {
+    margin-top: 1rem;
+}
+
+@media (max-width: 980px) {
+    .cost-page .cost-hero__grid,
+    .cost-page .cost-breakdown,
+    .cost-page .cost-reading-grid,
+    .cost-page .cost-source-layout,
+    .cost-page .cost-composition-grid,
+    .cost-page .cost-market-grid,
+    .cost-page .cost-method-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cost-page .cost-top-card__summary-grid,
+    .cost-page .cost-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cost-page .cost-hero h1 {
+        max-width: none;
+    }
+
+    .cost-page .cost-bar-row {
+        grid-template-columns: 1fr;
+        gap: 0.55rem;
+    }
+
+    .cost-page .cost-bar-row__numbers {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .cost-page .page-main.cost-main {
+        width: calc(100% - 1rem);
+    }
+
+    .cost-page .cost-top-card__inner {
+        padding: 1.25rem;
+        border-radius: 24px;
+    }
+
+    .cost-page .cost-hero,
+    .cost-page .cost-summary,
+    .cost-page .cost-section,
+    .cost-page .cost-closing {
+        padding: 1.25rem;
+        border-radius: 24px;
+    }
+
+    .cost-page .cost-hero__panel,
+    .cost-page .cost-card,
+    .cost-page .cost-callout {
+        border-radius: 22px;
+    }
+
+    .cost-page .cost-hero__anchors,
+    .cost-page .cost-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cost-page .cost-hero__utility {
+        align-items: stretch;
+    }
+
+    .cost-page .cost-toolbar {
+        align-items: stretch;
+    }
+
+    .cost-page .cost-segmented {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .cost-page .cost-segmented button {
+        flex: 1 1 0;
+    }
+
+    .cost-page .cost-hero__anchors a,
+    .cost-page .page-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cost-page .cost-chart,
+    .cost-page .cost-table-card,
+    .cost-page .cost-glance-card,
+    .cost-page .cost-market-card,
+    .cost-page .cost-method-card,
+    .cost-page .cost-composition-card,
+    .cost-page .cost-breakdown__main,
+    .cost-page .cost-breakdown__aside,
+    .cost-page .cost-range-note,
+    .cost-page .cost-prose-card,
+    .cost-page .cost-source-card {
+        padding: 1.1rem;
+    }
+
+    .cost-page .cost-top-card__summary-grid,
+    .cost-page .cost-summary-grid,
+    .cost-page .cost-stat-pair {
+        grid-template-columns: 1fr;
+    }
+
+    .cost-page .cost-mini-bars__row,
+    .cost-page .cost-initial-bars__row,
+    .cost-page .cost-market-startup__row {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+    }
+
+    .cost-page .cost-market-scale__labels {
+        flex-direction: column;
+    }
+
+    .cost-page .cost-matrix,
+    .cost-page .cost-market-table {
+        min-width: 640px;
+    }
+}
+
+@media (max-width: 640px) {
+    .cost-page .cost-table-wrap {
+        overflow: visible;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .cost-page .cost-matrix,
+    .cost-page .cost-market-table {
+        display: block;
+        min-width: 0;
+        background: transparent;
+    }
+
+    .cost-page .cost-matrix thead,
+    .cost-page .cost-market-table thead {
+        display: none;
+    }
+
+    .cost-page .cost-matrix tbody,
+    .cost-page .cost-market-table tbody {
+        display: grid;
+        gap: 0.9rem;
+    }
+
+    .cost-page .cost-matrix tr,
+    .cost-page .cost-market-table tr {
+        display: grid;
+        gap: 0.75rem;
+        padding: 1rem;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 20px;
+        background: var(--cost-surface-strong);
+        box-shadow: var(--cost-shadow-soft);
+    }
+
+    .cost-page .cost-matrix tbody tr:hover,
+    .cost-page .cost-market-table tbody tr:hover {
+        background: var(--cost-surface-strong);
+    }
+
+    .cost-page .cost-matrix th,
+    .cost-page .cost-market-table th,
+    .cost-page .cost-matrix td,
+    .cost-page .cost-market-table td {
+        display: grid;
+        grid-template-columns: minmax(7rem, 8.25rem) minmax(0, 1fr);
+        gap: 0.75rem;
+        padding: 0;
+        border-bottom: none;
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+
+    .cost-page .cost-matrix th[scope="row"],
+    .cost-page .cost-market-table th[scope="row"] {
+        grid-template-columns: 1fr;
+        padding-bottom: 0.35rem;
+        border-bottom: 1px solid var(--cost-line);
+        color: var(--cost-ink);
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .cost-page .cost-matrix td::before,
+    .cost-page .cost-market-table td::before {
+        content: attr(data-label);
+        color: var(--cost-subtle);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+}
+
+@media (max-width: 560px) {
+    .cost-page .cost-breakdown__tab {
+        flex-basis: 100%;
+    }
+
+    .cost-page .cost-breakdown__stack {
+        min-height: 68px;
+    }
+
+    .cost-page .cost-stack__segment {
+        min-width: 0;
+        border-radius: 18px;
+    }
+
+    .cost-page .cost-legend {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+    }
+
+    .cost-page .cost-legend__value {
+        grid-column: 2;
+    }
+
+    .cost-page .cost-market-callout {
+        padding: 1rem;
+    }
+
+    .cost-page .cost-market-callout__text,
+    .cost-page .cost-top-card__lead,
+    .cost-page .cost-summary__lead,
+    .cost-page .cost-section__lead {
+        font-size: 0.96rem;
+        line-height: 1.8;
+    }
+}
+
+.cost-page[data-cost-theme="light"] {
+    color-scheme: light;
+}
+
+.cost-page[data-cost-theme="light"] .header,
+.cost-page[data-cost-theme="light"] .nav-container {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(255, 255, 255, 0.48);
+    box-shadow: none;
+}
+
+.cost-page[data-cost-theme="light"] .additional-nav {
+    background: rgba(242, 242, 247, 0.42);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.cost-page[data-cost-theme="light"] .nav-link,
+.cost-page[data-cost-theme="light"] .additional-nav a {
+    color: #1d1d1f;
+}
+
+.cost-page[data-cost-theme="light"] .nav-link:hover,
+.cost-page[data-cost-theme="light"] .additional-nav a:hover,
+.cost-page[data-cost-theme="light"] .additional-nav a[aria-current="page"] {
+    color: var(--cost-accent-solid);
+}
+
+.cost-page[data-cost-theme="light"] .hamburger span {
+    background: var(--cost-accent-solid);
+}
+
+.cost-page[data-cost-theme="light"] .page-button--secondary,
+.cost-page[data-cost-theme="light"] .cost-closing .page-button--secondary {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(15, 23, 42, 0.08);
+    color: var(--cost-ink);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.cost-page[data-cost-theme="dark"] {
+    color-scheme: dark;
+    --cost-ink: #f5f5f7;
+    --cost-muted: #d2d2d7;
+    --cost-subtle: #9ea2aa;
+    --cost-surface: rgba(18, 20, 24, 0.88);
+    --cost-surface-strong: rgba(24, 26, 32, 0.94);
+    --cost-line: rgba(255, 255, 255, 0.08);
+    --cost-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+    --cost-shadow-soft: 0 18px 44px rgba(0, 0, 0, 0.24);
+    background:
+        radial-gradient(circle at top left, rgba(0, 113, 227, 0.18), transparent 32%),
+        linear-gradient(180deg, #050608 0%, #0b0d12 30%, #12151c 100%);
+}
+
+.cost-page[data-cost-theme="dark"] .header,
+.cost-page[data-cost-theme="dark"] .nav-container,
+.cost-page[data-cost-theme="dark"] .additional-nav {
+    background: rgba(8, 10, 14, 0.82);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+.cost-page[data-cost-theme="dark"] .hamburger span {
+    background: #f5f5f7;
+}
+
+.cost-page[data-cost-theme="dark"] .nav-link,
+.cost-page[data-cost-theme="dark"] .additional-nav a,
+.cost-page[data-cost-theme="dark"] .page-breadcrumbs a,
+.cost-page[data-cost-theme="dark"] .page-breadcrumbs {
+    color: var(--cost-ink);
+}
+
+.cost-page[data-cost-theme="dark"] .logo-section .subtitle {
+    color: var(--primary-blue-start);
+}
+
+.cost-page[data-cost-theme="dark"] .logo-section .site-name,
+.cost-page[data-cost-theme="dark"] .seiun-title {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cost-page[data-cost-theme="dark"] .nav-link:hover,
+.cost-page[data-cost-theme="dark"] .additional-nav a:hover,
+.cost-page[data-cost-theme="dark"] .additional-nav a[aria-current="page"],
+.cost-page[data-cost-theme="dark"] .page-breadcrumbs a:hover {
+    color: #7cc0ff;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero,
+.cost-page[data-cost-theme="dark"] .cost-summary,
+.cost-page[data-cost-theme="dark"] .cost-section,
+.cost-page[data-cost-theme="dark"] .cost-closing {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-card__inner {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(148, 163, 184, 0.16);
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.3);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-card__title {
+    color: #eff6ff;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-card__lead,
+.cost-page[data-cost-theme="dark"] .cost-top-card__eyebrow {
+    color: #c7d5e6;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-metric {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(148, 163, 184, 0.12);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-metric--base {
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.22) 0%, rgba(77, 163, 255, 0.16) 100%);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-metric__label,
+.cost-page[data-cost-theme="dark"] .cost-top-metric__sub,
+.cost-page[data-cost-theme="dark"] .cost-glance-card__eyebrow,
+.cost-page[data-cost-theme="dark"] .cost-market-card__eyebrow,
+.cost-page[data-cost-theme="dark"] .cost-composition-card__eyebrow {
+    color: #c7d5e6;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-card__picker {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(148, 163, 184, 0.1);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-card__picker-label {
+    color: #e5eefb;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-top-card__link {
+    background: rgba(18, 28, 46, 0.85);
+    border-color: rgba(148, 163, 184, 0.26);
+    box-shadow: none;
+    color: #e5eefb;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero::before,
+.cost-page[data-cost-theme="dark"] .cost-section::before,
+.cost-page[data-cost-theme="dark"] .cost-summary::before,
+.cost-page[data-cost-theme="dark"] .cost-closing::before {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 72%);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero__meta,
+.cost-page[data-cost-theme="dark"] .cost-hero__anchors a,
+.cost-page[data-cost-theme="dark"] .cost-summary__list li,
+.cost-page[data-cost-theme="dark"] .cost-source-list a {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--cost-ink);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero__anchors a:hover,
+.cost-page[data-cost-theme="dark"] .cost-source-list a:hover {
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+    color: #9bd3ff;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero__panel,
+.cost-page[data-cost-theme="dark"] .cost-card,
+.cost-page[data-cost-theme="dark"] .cost-table-wrap,
+.cost-page[data-cost-theme="dark"] .cost-source-list a {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero__panel {
+    background: linear-gradient(180deg, rgba(24, 27, 33, 0.96) 0%, rgba(17, 19, 24, 0.9) 100%);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-prose-card,
+.cost-page[data-cost-theme="dark"] .cost-source-card {
+    background: rgba(18, 21, 27, 0.94);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-glance-card,
+.cost-page[data-cost-theme="dark"] .cost-market-card,
+.cost-page[data-cost-theme="dark"] .cost-method-card,
+.cost-page[data-cost-theme="dark"] .cost-composition-card,
+.cost-page[data-cost-theme="dark"] .cost-stat-pair__item,
+.cost-page[data-cost-theme="dark"] .cost-data-point,
+.cost-page[data-cost-theme="dark"] .cost-step-list__item,
+.cost-page[data-cost-theme="dark"] .cost-pill {
+    background: rgba(18, 21, 27, 0.94);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-segmented,
+.cost-page[data-cost-theme="dark"] .cost-chip-group {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-segmented button.is-active,
+.cost-page[data-cost-theme="dark"] .cost-chip-group button.is-active {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--cost-ink);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-bar-row__track {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-mini-bars__track,
+.cost-page[data-cost-theme="dark"] .cost-initial-bars__track,
+.cost-page[data-cost-theme="dark"] .cost-market-startup__track,
+.cost-page[data-cost-theme="dark"] .cost-market-scale__track,
+.cost-page[data-cost-theme="dark"] .cost-composition-card__stack {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-bar-row__point {
+    border-color: rgba(17, 19, 24, 0.92);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-market-scale__point {
+    border-color: rgba(17, 19, 24, 0.92);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-bar-row--range .cost-bar-row__range::before,
+.cost-page[data-cost-theme="dark"] .cost-bar-row--range .cost-bar-row__range::after {
+    border-color: rgba(17, 19, 24, 0.92);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-matrix,
+.cost-page[data-cost-theme="dark"] .cost-market-table {
+    background: rgba(11, 13, 17, 0.94);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-matrix tr,
+.cost-page[data-cost-theme="dark"] .cost-market-table tr {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-matrix thead th,
+.cost-page[data-cost-theme="dark"] .cost-market-table thead th {
+    background: rgba(20, 23, 29, 0.98);
+    color: var(--cost-ink);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-toolbar__meta,
+.cost-page[data-cost-theme="dark"] .cost-toolbar__label,
+.cost-page[data-cost-theme="dark"] .cost-section__caption,
+.cost-page[data-cost-theme="dark"] .cost-breakdown__figure figcaption,
+.cost-page[data-cost-theme="dark"] .cost-table-note,
+.cost-page[data-cost-theme="dark"] .cost-prose p,
+.cost-page[data-cost-theme="dark"] .cost-source-card p,
+.cost-page[data-cost-theme="dark"] .cost-bar-row__head span,
+.cost-page[data-cost-theme="dark"] .cost-bar-row__numbers span,
+.cost-page[data-cost-theme="dark"] .cost-legend__label,
+.cost-page[data-cost-theme="dark"] .cost-prose-card li,
+.cost-page[data-cost-theme="dark"] .cost-source-list li,
+.cost-page[data-cost-theme="dark"] .cost-matrix td,
+.cost-page[data-cost-theme="dark"] .cost-market-table td,
+.cost-page[data-cost-theme="dark"] .cost-matrix tbody th,
+.cost-page[data-cost-theme="dark"] .cost-market-table tbody th {
+    color: #d7dbe4;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-hero__panel-label,
+.cost-page[data-cost-theme="dark"] .cost-callout__eyebrow {
+    color: #bcc2cf;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-matrix tbody tr:hover,
+.cost-page[data-cost-theme="dark"] .cost-market-table tbody tr:hover {
+    background: rgba(0, 113, 227, 0.08);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-callout {
+    background: linear-gradient(180deg, #06080b 0%, #12161d 100%);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-section--soft {
+    background: linear-gradient(180deg, rgba(20, 23, 31, 0.88) 0%, rgba(16, 19, 26, 0.94) 100%);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-range-note {
+    background: linear-gradient(180deg, rgba(6, 8, 11, 0.98) 0%, rgba(17, 20, 27, 0.96) 100%);
+}
+
+/* --- Dark mode: hero chart --- */
+.cost-page[data-cost-theme="dark"] .cost-vbar-col__badge {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--cost-muted);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-vbar-col__badge--base {
+    background: rgba(0, 113, 227, 0.2);
+    color: #7cc0ff;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-vbar-col__bar-wrap {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-right-color: rgba(255, 255, 255, 0.1);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-savings-divider {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Dark mode: breakdown panel --- */
+.cost-page[data-cost-theme="dark"] .cost-breakdown__tab {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--cost-muted);
+    border-color: transparent;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-breakdown__tab:hover {
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--cost-ink);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-breakdown__tab.is-active {
+    background: rgba(0, 113, 227, 0.14);
+    color: #7cc0ff;
+    border-color: rgba(0, 113, 227, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-breakdown__tab.is-active .cost-breakdown__tab-sub {
+    color: #7cc0ff;
+}
+
+.cost-page[data-cost-theme="dark"] .cost-breakdown__tabs {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Dark mode: market callout --- */
+.cost-page[data-cost-theme="dark"] .cost-market-callout {
+    background: rgba(249, 115, 22, 0.07);
+    border-color: rgba(249, 115, 22, 0.18);
+}
+
+.cost-page[data-cost-theme="dark"] .cost-market-callout .cost-pill {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+}
+
+.cost-page[data-cost-theme="dark"] .page-button--secondary,
+.cost-page[data-cost-theme="dark"] .cost-closing .page-button--secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--cost-ink);
+    box-shadow: none;
+}
+
+.cost-page[data-cost-theme="dark"] .page-button--primary,
+.cost-page[data-cost-theme="dark"] .cost-closing .page-button--primary {
+    box-shadow: 0 10px 28px rgba(0, 113, 227, 0.3);
+}
+
+.cost-page[data-cost-theme="dark"] .footer {
+    background: linear-gradient(180deg, #05070b 0%, #0b0d14 50%, #05070b 100%);
+}
+
+.cost-page[data-cost-theme="dark"] .footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.08);
+    color: #8f95a3;
+}
+
+.cost-page[data-cost-theme="dark"] .footer-keywords {
+    color: #7a8091;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cost-page .cost-hero__anchors a,
+    .cost-page .cost-segmented button,
+    .cost-page .cost-chip-group button,
+    .cost-page .cost-bar-row__fill,
+    .cost-page .cost-bar-row__range,
+    .cost-page .cost-bar-row__point,
+    .cost-page .cost-source-list a {
+        transition: none !important;
+    }
+}

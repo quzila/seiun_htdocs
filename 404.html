@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow">
+    <meta name="googlebot" content="noindex,follow">
+    <title>404 ページが見つかりません｜富山県学生寮</title>
+    <style>
+        /* CSS変数の定義 */
+        :root {
+            --primary-blue-start: #007aff;
+            --primary-blue-end: #5ac8fa;
+            --primary-gradient: linear-gradient(135deg, var(--primary-blue-start) 0%, var(--primary-blue-end) 100%);
+            --text-gradient-up: linear-gradient(to top, #5ac8fa, #007aff);
+            --text-dark: #1d1d1f;
+            --text-light: #6e6e73;
+            --glass-bg: rgba(242, 242, 247, 0.75);
+            --glass-border-color: rgba(255, 255, 255, 0.6);
+            --glass-blur: blur(20px);
+            --glass-saturate: saturate(180%);
+            --border-radius: 20px;
+            --soft-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            --soft-shadow-hover: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #007aff 0%, #5ac8fa 100%);
+            padding: 1rem;
+        }
+
+        .error-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-saturate) var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-saturate) var(--glass-blur);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+        .error-code {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .error-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .error-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .error-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+        }
+
+        /* ゲーム関連のスタイル */
+        .game-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 122, 255, 0.2);
+        }
+
+        .game-title {
+            font-size: 1.1rem;
+            color: var(--primary-blue-start);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            max-width: 280px;
+            margin: 0 auto 1rem;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            border: 2px solid rgba(0, 122, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+        .card.flipped {
+            background: var(--primary-gradient);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            background: linear-gradient(135deg, #34c759, #30d158);
+            color: white;
+            cursor: default;
+            animation: matched 0.6s ease;
+        }
+
+        .card.matched:hover {
+            transform: none;
+        }
+
+        @keyframes matched {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .game-btn {
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--primary-blue-start);
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: rgba(0, 122, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .success-message {
+            color: #34c759;
+            font-weight: 600;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+            animation: celebration 2s ease-in-out;
+        }
+
+        @keyframes celebration {
+            0% { transform: translateY(0) scale(1); }
+            20% { transform: translateY(-10px) scale(1.05); }
+            40% { transform: translateY(0) scale(1); }
+            60% { transform: translateY(-5px) scale(1.02); }
+            80% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        /* 花火エフェクト */
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 25px;
+        }
+
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: firework-explosion 1.5s ease-out forwards;
+        }
+
+        @keyframes firework-explosion {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* 紙吹雪エフェクト */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .confetti.square {
+            background: var(--primary-gradient);
+        }
+
+        .confetti.circle {
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff3b30, #ff9500);
+        }
+
+        .confetti.triangle {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid #34c759;
+        }
+
+        .confetti.star {
+            background: #af52de;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--random-x)) rotate(var(--random-rotation));
+                opacity: 0;
+            }
+        }
+
+        @keyframes confetti-sway {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-20px);
+            }
+            75% {
+                transform: translateX(20px);
+            }
+        }
+
+        /* ゲームグリッドの勝利アニメーション */
+        .game-grid.victory {
+            animation: victory-pulse 1s ease-in-out;
+        }
+
+        @keyframes victory-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 480px) {
+            .error-card {
+                padding: 1.5rem;
+            }
+            
+            .error-code {
+                font-size: 3rem;
+            }
+            
+            .error-message {
+                font-size: 1.1rem;
+            }
+            
+            .game-grid {
+                max-width: 240px;
+                gap: 0.4rem;
+            }
+            
+            .card {
+                font-size: 1.2rem;
+            }
+            
+            .game-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="error-container">
+        <div class="error-card">
+            <p class="error-code" aria-hidden="true">404</p>
+            <h1 class="error-message">ページが見つかりません</h1>
+            <div class="error-description">
+                お探しのページは存在しないか、移動された可能性があります。
+            </div>
+            <a href="index.html" class="error-button">トップページに戻る</a>
+            <div class="game-section">
+                <div class="game-title">🧠 神経衰弱ミニゲーム</div>
+                <div class="game-info">
+                    <span>試行回数: <span id="moves">0</span></span>
+                    <span>ペア数: <span id="pairs">0</span>/8</span>
+                </div>
+                <div class="game-grid" id="gameGrid"></div>
+                <div class="game-controls">
+                    <button class="game-btn" onclick="resetGame()">リセット</button>
+                </div>
+                <div class="success-message" id="successMessage">
+                    🎉 おめでとうございます！全てのペアを見つけました！
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        class MemoryGame {
+            constructor() {
+                this.cards = [];
+                this.flippedCards = [];
+                this.matchedPairs = 0;
+                this.moves = 0;
+                this.isProcessing = false;
+                this.symbols = ['🏠', '🎓', '📚', '🌸', '🍎', '⭐', '🎯', '🎨'];
+                this.init();
+            }
+
+            init() {
+                this.createCards();
+                this.renderCards();
+                this.updateUI();
+            }
+
+            createCards() {
+                const cardPairs = [...this.symbols, ...this.symbols];
+                this.cards = this.shuffle(cardPairs).map((symbol, index) => ({
+                    id: index,
+                    symbol: symbol,
+                    isFlipped: false,
+                    isMatched: false
+                }));
+            }
+
+            shuffle(array) {
+                const newArray = [...array];
+                for (let i = newArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                }
+                return newArray;
+            }
+
+            renderCards() {
+                const gameGrid = document.getElementById('gameGrid');
+                gameGrid.innerHTML = '';
+                
+                this.cards.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'card';
+                    cardElement.dataset.id = card.id;
+                    cardElement.innerHTML = card.isFlipped || card.isMatched ? card.symbol : '';
+                    
+                    if (card.isFlipped) {
+                        cardElement.classList.add('flipped');
+                    }
+                    if (card.isMatched) {
+                        cardElement.classList.add('matched');
+                    }
+                    
+                    cardElement.addEventListener('click', () => this.flipCard(card.id));
+                    gameGrid.appendChild(cardElement);
+                });
+            }
+
+            flipCard(cardId) {
+                if (this.isProcessing) return;
+                
+                const card = this.cards[cardId];
+                if (card.isFlipped || card.isMatched) return;
+                
+                card.isFlipped = true;
+                this.flippedCards.push(card);
+                this.renderCards();
+
+                if (this.flippedCards.length === 2) {
+                    this.moves++;
+                    this.updateUI();
+                    this.checkMatch();
+                }
+            }
+
+            checkMatch() {
+                this.isProcessing = true;
+                const [card1, card2] = this.flippedCards;
+
+                setTimeout(() => {
+                    if (card1.symbol === card2.symbol) {
+                        card1.isMatched = true;
+                        card2.isMatched = true;
+                        this.matchedPairs++;
+                        
+                        if (this.matchedPairs === 8) {
+                            this.showSuccess();
+                        }
+                    } else {
+                        card1.isFlipped = false;
+                        card2.isFlipped = false;
+                    }
+                    
+                    this.flippedCards = [];
+                    this.isProcessing = false;
+                    this.renderCards();
+                    this.updateUI();
+                }, 1000);
+            }
+
+            updateUI() {
+                document.getElementById('moves').textContent = this.moves;
+                document.getElementById('pairs').textContent = this.matchedPairs;
+            }
+
+            showSuccess() {
+                const successMessage = document.getElementById('successMessage');
+                const gameGrid = document.getElementById('gameGrid');
+                const errorCard = document.querySelector('.error-card');
+                
+                // 勝利アニメーション開始
+                gameGrid.classList.add('victory');
+                successMessage.classList.add('show');
+                
+                // 花火エフェクトを作成
+                this.createFireworks(errorCard);
+                
+                // 紙吹雪エフェクトを作成
+                this.createConfetti(errorCard);
+                
+                // 3秒後にメッセージを非表示
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+                
+                // 1秒後にグリッドアニメーションをリセット
+                setTimeout(() => {
+                    gameGrid.classList.remove('victory');
+                }, 1000);
+            }
+
+            createFireworks(container) {
+                const colors = ['#007aff', '#5ac8fa', '#34c759', '#ff9500', '#ff3b30'];
+                
+                for (let i = 0; i < 12; i++) {
+                    setTimeout(() => {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        firework.style.left = Math.random() * 100 + '%';
+                        firework.style.top = Math.random() * 60 + 20 + '%';
+                        
+                        container.appendChild(firework);
+                        
+                        // アニメーション終了後に要素を削除
+                        setTimeout(() => {
+                            if (firework.parentNode) {
+                                firework.parentNode.removeChild(firework);
+                            }
+                        }, 1500);
+                    }, i * 100);
+                }
+            }
+
+            createConfetti(container) {
+                const shapes = ['square', 'circle', 'triangle', 'star'];
+                const colors = ['#007aff', '#5ac8fa', '#34c759', '#ff9500', '#ff3b30', '#af52de'];
+                
+                // 画面上部の複数地点からクラッカーのように紙吹雪を放出
+                const crackPoints = [
+                    { x: 20, delay: 0 },
+                    { x: 40, delay: 200 },
+                    { x: 60, delay: 100 },
+                    { x: 80, delay: 300 }
+                ];
+                
+                crackPoints.forEach(point => {
+                    setTimeout(() => {
+                        // 各地点から15個の紙吹雪を放出
+                        for (let i = 0; i < 15; i++) {
+                            setTimeout(() => {
+                                const confetti = document.createElement('div');
+                                confetti.className = `confetti ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+                                
+                                // 画面上部の特定位置から開始
+                                const startX = point.x + (Math.random() - 0.5) * 10; // 発射地点周辺にばらつき
+                                confetti.style.left = startX + '%';
+                                confetti.style.top = '-50px';
+                                
+                                // ランダムな横移動と回転を設定
+                                const randomX = (Math.random() - 0.5) * 200 + 'px';
+                                const randomRotation = Math.random() * 720 + 360 + 'deg';
+                                const duration = Math.random() * 2 + 3; // 3-5秒
+                                
+                                confetti.style.setProperty('--random-x', randomX);
+                                confetti.style.setProperty('--random-rotation', randomRotation);
+                                confetti.style.animation = `confetti-fall ${duration}s linear forwards, confetti-sway ${duration/2}s ease-in-out infinite`;
+                                
+                                // 色をランダムに設定（形によって）
+                                if (confetti.classList.contains('square')) {
+                                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                                } else if (confetti.classList.contains('circle')) {
+                                    const color1 = colors[Math.floor(Math.random() * colors.length)];
+                                    const color2 = colors[Math.floor(Math.random() * colors.length)];
+                                    confetti.style.background = `linear-gradient(45deg, ${color1}, ${color2})`;
+                                } else if (confetti.classList.contains('triangle')) {
+                                    confetti.style.borderBottomColor = colors[Math.floor(Math.random() * colors.length)];
+                                } else if (confetti.classList.contains('star')) {
+                                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                                }
+                                
+                                document.body.appendChild(confetti);
+                                
+                                // アニメーション終了後に要素を削除
+                                setTimeout(() => {
+                                    if (confetti.parentNode) {
+                                        confetti.parentNode.removeChild(confetti);
+                                    }
+                                }, duration * 1000 + 500);
+                            }, i * 50); // 各紙吹雪を50ms間隔で放出
+                        }
+                    }, point.delay);
+                });
+                
+                // 2秒後に追加の爆発
+                setTimeout(() => {
+                    const centerPoints = [
+                        { x: 30, delay: 0 },
+                        { x: 70, delay: 150 }
+                    ];
+                    
+                    centerPoints.forEach(point => {
+                        setTimeout(() => {
+                            for (let i = 0; i < 10; i++) {
+                                setTimeout(() => {
+                                    const confetti = document.createElement('div');
+                                    confetti.className = `confetti ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+                                    
+                                    const startX = point.x + (Math.random() - 0.5) * 15;
+                                    confetti.style.left = startX + '%';
+                                    confetti.style.top = '-30px';
+                                    
+                                    const randomX = (Math.random() - 0.5) * 300 + 'px';
+                                    const randomRotation = Math.random() * 1080 + 'deg';
+                                    const duration = Math.random() * 1.5 + 2.5;
+                                    
+                                    confetti.style.setProperty('--random-x', randomX);
+                                    confetti.style.setProperty('--random-rotation', randomRotation);
+                                    confetti.style.animation = `confetti-fall ${duration}s linear forwards, confetti-sway ${duration/3}s ease-in-out infinite`;
+                                    
+                                    if (confetti.classList.contains('square')) {
+                                        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                                    } else if (confetti.classList.contains('circle')) {
+                                        const color1 = colors[Math.floor(Math.random() * colors.length)];
+                                        const color2 = colors[Math.floor(Math.random() * colors.length)];
+                                        confetti.style.background = `linear-gradient(45deg, ${color1}, ${color2})`;
+                                    } else if (confetti.classList.contains('triangle')) {
+                                        confetti.style.borderBottomColor = colors[Math.floor(Math.random() * colors.length)];
+                                    } else if (confetti.classList.contains('star')) {
+                                        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                                    }
+                                    
+                                    document.body.appendChild(confetti);
+                                    
+                                    setTimeout(() => {
+                                        if (confetti.parentNode) {
+                                            confetti.parentNode.removeChild(confetti);
+                                        }
+                                    }, duration * 1000 + 500);
+                                }, i * 30);
+                            }
+                        }, point.delay);
+                    });
+                }, 2000);
+            }
+
+            reset() {
+                this.flippedCards = [];
+                this.matchedPairs = 0;
+                this.moves = 0;
+                this.isProcessing = false;
+                document.getElementById('successMessage').classList.remove('show');
+                this.createCards();
+                this.renderCards();
+                this.updateUI();
+            }
+
+            hint() {
+                // ヒント機能は削除されました
+            }
+        }
+
+        let game;
+
+        function initGame() {
+            game = new MemoryGame();
+        }
+
+        function resetGame() {
+            game.reset();
+        }
+
+        // ページ読み込み時にゲームを初期化
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

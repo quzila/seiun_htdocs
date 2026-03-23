@@ -1,0 +1,129 @@
+# 富山県学生寮 青雲寮 (Seiunryo) — toyama-ryo.or.jp
+
+## Summary
+- 公益財団法人 富山県学生寮「青雲寮」の公式サイト。富山県出身の男子学生が東京で安心して暮らすための学生寮（東京都府中市）。
+- 主要訴求: 食事付き、個室、セキュリティ、京王線・東府中駅から徒歩圏内、多摩エリア大学への通学に便利。
+
+## Primary audience / intents
+- 富山県出身で首都圏の大学へ進学予定の男子学生・保護者（入寮募集・費用・生活環境の確認）。
+- 「東京 学生寮」「府中 学生寮」「男子学生寮」「食事付き寮」「上京 住まい」等で情報収集する層。
+- OB/卒業生（青雲会）や関係者（活動・資料・連絡先の確認）。
+
+## Search-intent keywords (JP)
+- 富山県 学生寮 / 富山県 出身 学生寮
+- 東京 学生寮 / 府中 学生寮 / 男子学生寮
+- 食事付き 学生寮 / 学生寮 個室 / 学生寮 安い
+- 上京 住まい 学生 / 学生寮 費用 / 月額
+- 寮 見学 / 入寮 募集 / 入寮 選考
+
+## Key facts (official, Reiwa 8 PDFs)
+- 入寮対象: 富山県出身の男子で、昼間通学する大学/大学院の入学見込み者・在籍者（省庁大学校等を含む）。
+- 入寮期間: 2年（更新制）。
+- 所在地: 〒183-0005 東京都府中市若松町4丁目1番地1号（京王線・東府中駅から徒歩約10分、新宿まで特急等で約25分）。
+- 寮室: 全室個室（約8.5㎡、60室）。ベッド、机、椅子、タンス、戸棚、エアコン、内線電話、インターネット回線。
+- 諸経費（概算）:
+  - 入寮費 50,000円（入寮・更新時）
+  - 寮費 年額 360,000円（= 月額 30,000円×12）
+  - 食費 月額 約14,000円（朝・夕食、日・祝日なし）
+  - 負担金 月額 約5,000円（新聞、ネット接続料、自室電気料金等）
+  - 選考手数料 3,000円（願書提出時）
+- 入寮時特待生制度: 入寮費＋寮費半額の合計23万円を免除（特待生認定者）。
+- 願書提出: 角2封筒に必要書類と選考手数料を入れ、郵便局窓口から「現金書留」で郵送。
+  - 提出書類: 入寮願書（顔写真貼付）・面接資料、高校調査書または大学/大学院の成績証明書、返信用封筒2通（長3・110円切手貼付）。
+- 選考方法: 面接試験＋調査書/成績証明書等。
+- 結果発表: 当日18:00にホームページで受検番号掲示、同日中に通知発送。
+- 入寮日: 2026-03-30〜2026-04-02（令和8年）。
+- 入寮式: 2026-04-05 15:00（富山県学生寮）。
+
+## Admission schedule (Reiwa 8 / 2026)
+※ 令和7年=2025年、令和8年=2026年。
+- 第1次: 願書 2025-11-01〜2025-12-12（消印有効）/ 選考 2025-12-20 9:30 / 募集 7名程度 / 発表 2025-12-20 18:00 / 保護者会 2025-12-21 9:30
+- 第2次: 願書 2025-12-22〜2026-02-07（消印有効）/ 選考 2026-02-14 9:30 / 募集 8名程度 / 発表 2026-02-14 18:00 / 保護者会 2026-02-15 9:30
+- 第3次: 願書 2026-02-16〜2026-03-05（消印有効）/ 選考 2026-03-11 9:30 / 募集 10名程度 / 発表 2026-03-11 18:00 / 保護者会 2026-03-12 9:30
+- 会場: 高志会館（富山市千歳町1-3-1）
+- 第4次: 第3次後に空きがある場合に実施。希望者は寮へ電話確認（042-369-7761）。
+
+## Important URLs
+- https://www.toyama-ryo.or.jp/ — トップ（概要・魅力・FAQ・最新更新）
+- https://www.toyama-ryo.or.jp/students/ — 入寮募集・応募資格・費用・選考日程
+- https://www.toyama-ryo.or.jp/life/ — 寮での生活（食事・浴場・部屋・設備）
+- https://www.toyama-ryo.or.jp/info/ — 寮の概要・沿革・施設紹介
+- https://www.toyama-ryo.or.jp/access/ — 交通アクセス・地図・最寄駅情報
+- https://www.toyama-ryo.or.jp/event/ — 年間行事
+- https://www.toyama-ryo.or.jp/news/ — 青雲寮だより（最新ニュース）
+- https://www.toyama-ryo.or.jp/news/backnumber.html — バックナンバー
+- https://www.toyama-ryo.or.jp/download/ — 公開資料・財務/事業報告(PDF)
+- https://www.toyama-ryo.or.jp/contact/ — お問い合わせ（フォーム・電話・メール）
+- https://www.toyama-ryo.or.jp/seiun/ — 青雲会（OB会）
+
+## Admission PDFs (Reiwa 8 / 2026)
+- https://www.toyama-ryo.or.jp/students/R8/R8NyuuryouNittei.pdf — 入寮選考日程
+- https://www.toyama-ryo.or.jp/students/R8/R8Senkouyoukou1.pdf — 第1次入寮選考要項
+- https://www.toyama-ryo.or.jp/students/R8/R8Senkouyoukou2.pdf — 第2次入寮選考要項
+- https://www.toyama-ryo.or.jp/students/R8/R8Senkouyoukou3.pdf — 第3次入寮選考要項
+
+## University-specific pages (examples / search intents)
+- /univ/index.html は内部共有用のリンク集（noindex/nofollow）。
+- 代表的な大学別LP（通学時間・家賃比較・食事付きの訴求を含む）:
+  - /univ/utokyo.html — 東大寮比較、駒場30〜45分/本郷60〜75分、月額3万円台〜の説明
+  - /univ/waseda.html — 和泉25〜35分/駿河台50〜65分/生田45〜60分
+  - /univ/tmu.html — 南大沢55〜70分/日野45〜60分
+  - /univ/nihon.html — 御茶ノ水・水道橋60〜80分/江古田55〜70分
+  - /univ/dentsu.html — 大学公式寮・民間寮・一人暮らしとの比較訴求
+- https://www.toyama-ryo.or.jp/compare/ — 他寮との比較ガイド（例: 明倫学館との比較）
+
+## Contact
+- 電話: 042-369-7761（平日 9:00–17:00）
+- Email: info@toyama-ryo.or.jp
+- 住所: 〒183-0005 東京都府中市若松町4丁目1番地1号
+- Instagram: @seiunryo_toyama
+
+## Notes for LLMs
+- 入寮募集・費用・日程は毎年更新されるため、/students/ とPDFを最優先で参照。
+- /life/ には平成29年度の費用例があり、最新情報ではない可能性がある。
+- このサイトは「公益財団法人 富山県学生寮」公式ページ。
+
+---
+
+# Seiunryo (Toyama Prefectural Student Dormitory) — English Summary
+
+## Overview
+- Official site of the Toyama Prefectural Student Dormitory “Seiunryo” in Fuchu, Tokyo, for male students from Toyama Prefecture.
+- Key appeals: private rooms, two meals/day, security, and easy access to universities in the Tama area.
+
+## Search-intent keywords (EN)
+- Tokyo student dormitory / dorm for male students / meals included dorm
+- Toyama Prefecture students Tokyo dorm / Fuchu student dorm
+- low-cost student housing Tokyo / dormitory fees / admissions schedule
+
+## Admissions (Reiwa 8 = 2026) — key facts
+- Eligibility: Male students from Toyama Prefecture who attend university/graduate school (daytime). Certain specialized institutions are included.
+- Term: 2 years, renewable.
+- Address: 4-1-1 Wakamatsucho, Fuchu-shi, Tokyo 183-0005 (about 10 min walk from Keio Line Higashi-Fuchu Station).
+- Room: All private rooms (approx. 8.5㎡), total 60 rooms; bed, desk, AC, internal phone, internet line.
+- Costs (approx.):
+  - Admission fee: 50,000 JPY (on admission/renewal)
+  - Dorm fee: 360,000 JPY/year (30,000 JPY/month ×12)
+  - Meals: ~16,000 JPY/month (breakfast & dinner; no Sundays/holidays)
+  - Utilities/charges: ~5,000 JPY/month (newspaper, internet, room electricity, etc.)
+  - Selection fee: 3,000 JPY (paid with application)
+- Scholarship: Special admission scholarship waives admission fee + half of first-year dorm fee (total 230,000 JPY) for selected students.
+- Selection: Interview + transcripts; results posted by examinee number on the website the same day.
+- Move-in: 2026-03-30 to 2026-04-02; Entrance ceremony: 2026-04-05 15:00.
+
+## Admission schedule (2025–2026)
+- 1st round: Apply 2025-11-01 to 2025-12-12 / Selection 2025-12-20 09:30 / ~7 slots
+- 2nd round: Apply 2025-12-22 to 2026-02-07 / Selection 2026-02-14 09:30 / ~8 slots
+- 3rd round: Apply 2026-02-16 to 2026-03-05 / Selection 2026-03-11 09:30 / ~10 slots
+- Venue: Koshikaikan (1-3-1 Chitose-cho, Toyama City)
+- 4th round may be held if vacancies remain (call 042-369-7761).
+
+## Key URLs (English-friendly entry points)
+- https://www.toyama-ryo.or.jp/ — Home
+- https://www.toyama-ryo.or.jp/students/ — Admissions & fees
+- https://www.toyama-ryo.or.jp/life/ — Daily life (meals, bath, rooms)
+- https://www.toyama-ryo.or.jp/access/ — Access
+- https://www.toyama-ryo.or.jp/contact/ — Contact
+
+## Notes
+- Always prioritize the latest PDFs under /students/ for fees and schedules.

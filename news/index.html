@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青雲寮だより｜寮生活・行事・お知らせ</title>
+    <meta name="description" content="青雲寮の最新ニュースと寮生活レポートを掲載。入寮式、寮祭、交流会、企業説明会、府中駅伝などの様子を記事一覧で確認できます。">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://www.toyama-ryo.or.jp/news/">
+    <meta property="og:title" content="青雲寮だより｜寮生活・行事・お知らせ">
+    <meta property="og:description" content="青雲寮の最新ニュースと寮生活レポートを掲載。入寮式、寮祭、交流会、企業説明会、府中駅伝などの様子を記事一覧で確認できます。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.toyama-ryo.or.jp/news/">
+    <meta property="og:image" content="https://www.toyama-ryo.or.jp/images/seiun-ryo-building.jpg">
+    <meta property="og:site_name" content="富山県学生寮 青雲寮">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="青雲寮だより｜寮生活・行事・お知らせ">
+    <meta name="twitter:description" content="青雲寮の最新ニュースと寮生活レポートを掲載。入寮式、寮祭、交流会、企業説明会、府中駅伝などの様子を記事一覧で確認できます。">
+    <meta name="twitter:image" content="https://www.toyama-ryo.or.jp/images/seiun-ryo-building.jpg">
+    <link rel="stylesheet" href="assets/style.20260120232701.css">
+    <style>
+        .main-content.main-content--full {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            grid-template-columns: minmax(0, 1fr);
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-area {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        @media (max-width: 767px) {
+            .content-area {
+                padding: 1.25rem 1rem 3rem;
+            }
+        }
+
+        .news-latest-list {
+            display: grid;
+            gap: 1rem;
+            padding-left: 1.25rem;
+        }
+
+        .news-latest-list li {
+            padding-left: 0.25rem;
+        }
+
+        .news-latest-list a {
+            color: inherit;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .news-latest-list a:hover,
+        .news-latest-list a:focus-visible {
+            color: var(--accent-color);
+        }
+
+        .news-latest-list small {
+            color: var(--text-light);
+        }
+
+        .topic-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .topic-summary-card {
+            padding: 1.5rem;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            border-radius: 24px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 247, 255, 0.92)),
+                linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(96, 165, 250, 0.08));
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+        }
+
+        .topic-summary-count {
+            display: inline-block;
+            margin-bottom: 0.65rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent-color);
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .topic-summary-card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .topic-summary-card p {
+            margin: 0;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .catalog-note {
+            max-width: 52rem;
+            margin: 0 auto 1.5rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .article-count {
+            margin-bottom: 1.75rem;
+            font-size: clamp(1.3rem, 2vw, 1.9rem);
+            color: #6b7280;
+        }
+
+        .latest-articles {
+            padding-top: 0.5rem;
+        }
+
+        .latest-articles .tag-filter {
+            margin-bottom: 2rem;
+            padding: 1.75rem;
+            border-radius: 34px;
+            background: linear-gradient(180deg, rgba(244, 246, 252, 0.94), rgba(239, 242, 248, 0.9));
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .latest-articles .tag-btn {
+            min-width: 8.5rem;
+            padding: 0.9rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.62);
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            box-shadow: 0 6px 18px rgba(148, 163, 184, 0.12);
+        }
+
+        .latest-articles .tag-btn.active {
+            box-shadow: 0 14px 32px rgba(37, 99, 235, 0.24);
+        }
+
+        .article-grid {
+            gap: 2rem;
+        }
+
+        .article-card {
+            border-radius: 34px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 252, 0.96));
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 20px 48px rgba(15, 23, 42, 0.06);
+        }
+
+        .article-card-content {
+            padding: 2rem 2rem 1.8rem;
+        }
+
+        .article-card-date {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .article-card-title {
+            font-size: clamp(1.55rem, 2vw, 2rem);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .article-card-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #6b7280;
+            -webkit-line-clamp: 4;
+        }
+
+        .article-card-tags {
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .article-card-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #0f6fff;
+            font-size: 0.95rem;
+        }
+
+        .no-js .tag-filter,
+        .no-js #load-more-btn {
+            display: none;
+        }
+
+        .fallback-note {
+            margin-top: 1.25rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 767px) {
+            .latest-articles .tag-filter {
+                padding: 1.25rem;
+                border-radius: 28px;
+            }
+
+            .latest-articles .tag-btn {
+                min-width: auto;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .article-card {
+                border-radius: 28px;
+            }
+
+            .article-card-content {
+                padding: 1.5rem 1.35rem 1.35rem;
+            }
+
+            .article-card-title {
+                font-size: 1.15rem;
+            }
+
+            .article-card-tag {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+    <!-- AUTO-STRUCTURED-DATA:START -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "url": "https://www.toyama-ryo.or.jp/news/",
+          "name": "青雲寮だより｜寮生活・行事・お知らせ",
+          "description": "青雲寮の最新ニュースと寮生活レポートを掲載。入寮式、寮祭、交流会、企業説明会、府中駅伝などの様子を記事一覧で確認できます。",
+          "inLanguage": "ja"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "ホーム",
+              "item": "https://www.toyama-ryo.or.jp/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "青雲寮だより",
+              "item": "https://www.toyama-ryo.or.jp/news/"
+            }
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "name": "青雲寮だより 最新10件",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_02_22.html",
+              "name": "卒寮生を祝う会（追いコン）を開催しました"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_02_11.html",
+              "name": "府中駅伝"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_01_27.html",
+              "name": "府中駅伝自主練習会を行いました"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_01_25.html",
+              "name": "府中駅伝練習会2"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_01_25_2.html",
+              "name": "1月の寮生大会を開催しました"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_01_18.html",
+              "name": "記念講演レポート：箱根駅伝中継の舞台裏"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://www.toyama-ryo.or.jp/news/2026-2030/2026/2026_01_18_2.html",
+              "name": "二十歳を祝う会"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "url": "https://www.toyama-ryo.or.jp/news/2021-2025/2025/2025_12_02.html",
+              "name": "府中駅伝練習会"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "url": "https://www.toyama-ryo.or.jp/news/2021-2025/2025/2025_12_01.html",
+              "name": "寮祭"
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "url": "https://www.toyama-ryo.or.jp/news/2021-2025/2025/2025_11_04.html",
+              "name": "寮祭リハーサル1.5"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <!-- AUTO-STRUCTURED-DATA:END -->
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <div class="subtitle">公益財団法人</div>
+                    <p class="site-name">富山県学生寮</p>
+                </a>
+            </div>
+            <div class="seiun-title">青雲寮</div>
+            <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false"
+                aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ナビゲーション -->
+    <nav class="nav-container" id="nav-menu">
+        <div class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../info/index.html" class="nav-link">寮の概要</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link active">青雲寮だより</a></li>
+                <li class="nav-item"><a href="../life/index.html" class="nav-link">寮での生活</a></li>
+                <li class="nav-item"><a href="../event/index.html" class="nav-link">年間行事</a></li>
+                <li class="nav-item"><a href="../students/index.html" class="nav-link">入寮生の募集</a></li>
+                <li class="nav-item"><a href="../download/index.html" class="nav-link">資料ダウンロード</a></li>
+                <li class="nav-item"><a href="../contact/index.html" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 追加ナビゲーション -->
+    <nav class="additional-nav">
+        <div class="additional-nav-content">
+            <a href="../parents/index.html">▶ 保護者の方へ</a>
+            <a href="../faq/index.html">▶ よくある質問</a>
+            <a href="../cost/index.html">▶ 費用比較</a>
+            <a href="../univ/index.html">▶ 大学別通学ガイド</a>
+            <a href="../access/index.html">▶ 交通アクセス</a>
+        </div>
+    </nav>
+
+    <!-- オーバーレイ -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ヒーローセクション -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg hero-bg-1"></div>
+        <div class="hero-bg hero-bg-2"></div>
+        <div class="hero-layout">
+            <div class="hero-content">
+                <h1 class="hero-title" id="hero-title">青雲寮だより</h1>
+            <p class="hero-subtitle">寮生活・行事・お知らせを随時更新しています</p>
+                <div class="hero-divider">このページの内容</div>
+            <div class="hero-actions">
+                    <a class="hero-btn hero-btn--primary" href="#article-grid">最新記事を読む</a>
+                    <a class="hero-btn hero-btn--secondary" href="#tag-filter">話題別に探す</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content main-content--full">
+        <!-- メインコンテンツエリア -->
+        <div class="content-area">
+            <section class="content-section">
+                <h2 class="section-title">最新10件</h2>
+                <div id="latest-list">
+                    <!-- AUTO-LATEST-LIST:START -->
+                    <ol class="news-latest-list">
+                            <li><a href="2026-2030/2026/2026_02_22.html">卒寮生を祝う会（追いコン）を開催しました</a><br><small>2026年2月22日・行事・イベント</small></li>
+                            <li><a href="2026-2030/2026/2026_02_11.html">府中駅伝</a><br><small>2026年2月11日・スポーツ</small></li>
+                            <li><a href="2026-2030/2026/2026_01_27.html">府中駅伝自主練習会を行いました</a><br><small>2026年1月27日・スポーツ</small></li>
+                            <li><a href="2026-2030/2026/2026_01_25.html">府中駅伝練習会2</a><br><small>2026年1月25日・スポーツ</small></li>
+                            <li><a href="2026-2030/2026/2026_01_25_2.html">1月の寮生大会を開催しました</a><br><small>2026年1月25日・日常</small></li>
+                            <li><a href="2026-2030/2026/2026_01_18.html">記念講演レポート：箱根駅伝中継の舞台裏</a><br><small>2026年1月18日・行事・イベント</small></li>
+                            <li><a href="2026-2030/2026/2026_01_18_2.html">二十歳を祝う会</a><br><small>2026年1月18日・行事・イベント</small></li>
+                            <li><a href="2021-2025/2025/2025_12_02.html">府中駅伝練習会</a><br><small>2025年12月27日・地域交流</small></li>
+                            <li><a href="2021-2025/2025/2025_12_01.html">寮祭</a><br><small>2025年12月7日・行事・イベント</small></li>
+                            <li><a href="2021-2025/2025/2025_11_04.html">寮祭リハーサル1.5</a><br><small>2025年11月26日・行事・イベント</small></li>
+                          </ol>
+    <!-- AUTO-LATEST-LIST:END -->
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">話題別一覧</h2>
+                <div id="topic-summary">
+                    <!-- AUTO-TOPIC-CARDS:START -->
+                    <div class="topic-summary-grid">
+                          <article class="topic-summary-card">
+                            <span class="topic-summary-count">88件</span>
+                            <h3>行事・イベント</h3>
+                            <p>入寮式、寮祭、歓迎会、祝賀会など、季節ごとの催しをまとめています。</p>
+                          </article>
+                          <article class="topic-summary-card">
+                            <span class="topic-summary-count">48件</span>
+                            <h3>日常</h3>
+                            <p>寮生大会や誕生日会、日々の暮らしの風景を一覧できます。</p>
+                          </article>
+                          <article class="topic-summary-card">
+                            <span class="topic-summary-count">18件</span>
+                            <h3>OB・青雲会</h3>
+                            <p>卒寮生や青雲会との交流、節目の会合を記録しています。</p>
+                          </article>
+                          <article class="topic-summary-card">
+                            <span class="topic-summary-count">43件</span>
+                            <h3>地域交流</h3>
+                            <p>県人会や地域行事など、寮の外とのつながりを紹介します。</p>
+                          </article>
+                          <article class="topic-summary-card">
+                            <span class="topic-summary-count">34件</span>
+                            <h3>スポーツ</h3>
+                            <p>府中駅伝や自主練習会など、体を動かす話題を集めています。</p>
+                          </article>
+                          <article class="topic-summary-card">
+                            <span class="topic-summary-count">15件</span>
+                            <h3>進路・学習</h3>
+                            <p>業界研究会や講演会など、進路と学びに関する記事です。</p>
+                          </article>
+                        </div>
+    <!-- AUTO-TOPIC-CARDS:END -->
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">年別アーカイブ</h2>
+                <p class="content-text">年ごとの記事一覧は <a href="backnumber.html">青雲寮だよりバックナンバー</a> にまとめています。2026年、2025年、2024年以降の記事を年別に確認できます。</p>
+            </section>
+
+            <section class="latest-articles">
+                <p class="catalog-note">記事カードは <code>news/data/backnumber.json</code> を基準に生成します。JavaScript が使えない環境でも、直近の記事はこのまま読める構成にしています。</p>
+
+                <!-- タグフィルター -->
+                <div class="tag-filter" id="tag-filter">
+                    <!-- JSで動的生成 -->
+                </div>
+
+                <!-- 記事数表示 -->
+                <p class="article-count" id="article-count" aria-live="polite" aria-atomic="true">
+                    <!-- AUTO-ARTICLE-COUNT:START -->
+173件の記事
+    <!-- AUTO-ARTICLE-COUNT:END -->
+                </p>
+
+                <!-- 記事カードグリッド -->
+                <div class="article-grid" id="article-grid">
+                    <!-- AUTO-ARTICLE-GRID:START -->
+                          <a class="article-card" href="2026-2030/2026/2026_02_22.html">
+                            <img src="2026-2030/2026/img/02/oikon_1.jpeg" alt="卒寮生を祝う会（追いコン）を開催しました" class="article-card-image" loading="lazy" decoding="async">
+                            <div class="article-card-content">
+                              <span class="article-card-date">2026年2月22日</span>
+                              <h3 class="article-card-title">卒寮生を祝う会（追いコン）を開催しました</h3>
+                              <p class="article-card-description">2月22日、銀座ライオン新宿エルタワー店にて卒寮生を祝う会を開催しました。OBも参加し、5名の卒寮生の門出を在寮生・OB一同で温かく祝いました。</p>
+                              <div class="article-card-tags"><span class="article-card-tag">行事・イベント</span><span class="article-card-tag">OB・青雲会</span></div>
+                            </div>
+                          </a>
+                          <a class="article-card" href="2026-2030/2026/2026_02_11.html">
+                            <img src="2026-2030/2026/img/02/ekiden3.jpg" alt="府中駅伝" class="article-card-image" loading="lazy" decoding="async">
+                            <div class="article-card-content">
+                              <span class="article-card-date">2026年2月11日</span>
+                              <h3 class="article-card-title">府中駅伝</h3>
+                              <p class="article-card-description">府中駅伝に青雲寮が一般の部で4チーム出場。5℃の雨でも全チームが完走し、練習と声掛けで寮の一体感を深めた。</p>
+                              <div class="article-card-tags"><span class="article-card-tag">スポーツ</span><span class="article-card-tag">行事・イベント</span></div>
+                            </div>
+                          </a>
+                          <a class="article-card" href="2026-2030/2026/2026_01_27.html">
+                            <img src="2026-2030/2026/img/01/ekiden_night_practice_1.jpeg" alt="府中駅伝自主練習会を行いました" class="article-card-image" loading="lazy" decoding="async">
+                            <div class="article-card-content">
+                              <span class="article-card-date">2026年1月27日</span>
+                              <h3 class="article-card-title">府中駅伝自主練習会を行いました</h3>
+                              <p class="article-card-description">府中駅伝まで残り2週間となる中、寮生有志による夜間の自主練習会が行われました。急な呼びかけにも関わらず多くの寮生が集まり、大会に向けた意欲と団結力の高まりを感じる機会となりました。</p>
+                              <div class="article-card-tags"><span class="article-card-tag">スポーツ</span><span class="article-card-tag">日常</span></div>
+                            </div>
+                          </a>
+                          <a class="article-card" href="2026-2030/2026/2026_01_25.html">
+                            <img src="2026-2030/2026/img/01/ekiden_practice_5.jpeg" alt="府中駅伝練習会2" class="article-card-image" loading="lazy" decoding="async">
+                            <div class="article-card-content">
+                              <span class="article-card-date">2026年1月25日</span>
+                              <h3 class="article-card-title">府中駅伝練習会2</h3>
+                              <p class="article-card-description">2月11日に開催される府中駅伝に向け、府中の森公園で寮生10人が約2kmの合同練習を行いました。あわせて大会用オリジナルTシャツも作成し、本番当日は全員で着用して走ります。</p>
+                              <div class="article-card-tags"><span class="article-card-tag">スポーツ</span><span class="article-card-tag">地域交流</span></div>
+                            </div>
+                          </a>
+                          <a class="article-card" href="2026-2030/2026/2026_01_25_2.html">
+                            <img src="2026-2030/2026/img/01/dorm_meeting_1.jpeg" alt="1月の寮生大会を開催しました" class="article-card-image" loading="lazy" decoding="async">
+                            <div class="article-card-content">
+                              <span class="article-card-date">2026年1月25日</span>
+                              <h3 class="article-card-title">1月の寮生大会を開催しました</h3>
+                              <p class="article-card-description">1月の寮生大会を開催し、生活環境の整備や今後の予定について共有しました。寮生同士が協力し、より快適な寮生活を目指すための有意義な時間となりました。</p>
+                              <div class="article-card-tags"><span class="article-card-tag">日常</span></div>
+                            </div>
+                          </a>
+                          <a class="article-card" href="2026-2030/2026/2026_01_18.html">
+                            <img src="2026-2030/2026/img/01/Sakata1.jpeg" alt="記念講演レポート：箱根駅伝中継の舞台裏" class="article-card-image" loading="lazy" decoding="async">
+                            <div class="article-card-content">
+                              <span class="article-card-date">2026年1月18日</span>
+                              <h3 class="article-card-title">記念講演レポート：箱根駅伝中継の舞台裏</h3>
+                              <p class="article-card-description">令和4年度「20歳を祝う会」第1部の記念講演で、箱根駅伝中継の礎を築かれた坂田信久氏が語った挑戦と準備の哲学をレポートします。</p>
+                              <div class="article-card-tags"><span class="article-card-tag">行事・イベント</span><span class="article-card-tag">スポーツ</span></div>
+                            </div>
+                          </a>
+    <!-- AUTO-ARTICLE-GRID:END -->
+                </div>
+
+                <!-- もっと見る / 全件リンク -->
+                <div class="load-more">
+                    <button id="load-more-btn">もっと見る</button>
+                    <a href="backnumber.html" class="all-articles-link">全てのバックナンバーを見る →</a>
+                </div>
+                <noscript>
+                    <p class="fallback-note">絞り込みと「もっと見る」は利用できませんが、このページ下部の最新記事一覧はそのまま閲覧できます。</p>
+                    <a href="backnumber.html" class="all-articles-link">バックナンバーを見る →</a>
+                </noscript>
+            </section>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>アクセス・連絡先</h3>
+                <address>
+                    〒183-0005<br>
+                    東京都府中市若松町4丁目1番地1号<br>
+                    TEL: <a href="tel:042-369-7761">042-369-7761</a><br>
+                    Email: <a href="mailto:info@toyama-ryo.or.jp">info@toyama-ryo.or.jp</a><br>
+                    Instagram: <a href="https://www.instagram.com/seiunryo_toyama">@seiunryo_toyama </a>
+                </address>
+            </div>
+            <div class="footer-section">
+                <h3>サイトマップ</h3>
+                <ul>
+                    <li><a href="../sitemap/index.html">サイトマップ</a></li>
+                    <li><a href="../access/">交通アクセス</a></li>
+                    <li><a href="../about/index.html">このサイトについて</a></li>
+                    <li><a href="../privacy/index.html">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>関連ページ</h3>
+                <ul>
+                    <li><a href="../seiun/index.html">青雲会(OB会)</a></li>
+                    <li><a href="../download/index.html">各種資料ダウンロード</a></li>
+                    <li><a href="../contact/index.html">お問い合わせフォーム</a></li>
+                    <li><a href="https://www.instagram.com/seiunryo_toyama" rel="noopener noreferrer"
+                            target="_blank">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>関連キーワード</h3>
+                <p class="footer-keywords">
+                    東京 学生寮 | 大学 寮 東京 | 男子寮 | 上京 寮 |
+                    学生寮 安い | 府中市 寮 | 富山県 学生寮 |
+                    食事付き 寮 | セキュリティ 学生寮
+                </p>
+            </div>
+        </div>
+        <div class="footer-brand">
+            <h2 class="footer-brand-text">toyama-ryo.or.jp</h2>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2007-<span id="copyright-year">2025</span> 公益財団法人 富山県学生寮 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/script.js?v=20260323120000" defer></script>
+</body>
+
+</html>

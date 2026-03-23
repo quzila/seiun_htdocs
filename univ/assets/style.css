@@ -1,0 +1,2682 @@
+/* ======== Liquid Glass Design & Apple-style UI (Updated) ======== */
+
+/* ----------------------------------------------
+ * 基本変数定義
+ * ---------------------------------------------- */
+:root {
+    --primary-blue-start: #007aff;
+    --primary-blue-end: #5ac8fa;
+    --primary-gradient: linear-gradient(135deg, var(--primary-blue-start) 0%, var(--primary-blue-end) 100%);
+    --text-gradient-up: linear-gradient(to top, #5ac8fa, #007aff);
+
+    --text-dark: #1d1d1f;
+    --text-light: #6e6e73;
+
+    --glass-bg: rgba(242, 242, 247, 0.75);
+    --glass-border-color: rgba(255, 255, 255, 0.6);
+    --glass-blur: blur(20px);
+    --glass-saturate: saturate(180%);
+
+    --border-radius: 20px;
+    --soft-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --soft-shadow-hover: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+
+    /* モバイルナビゲーション用の変数を追加 */
+    --header-height: 72px;
+    --mobile-nav-padding-top: 100px;
+    --mobile-nav-width: min(280px, 85vw);
+}
+
+/* ----------------------------------------------
+ * 基本スタイル
+ * ---------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    overflow-x: hidden;
+    min-width: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--primary-blue-start);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-blue-end);
+    text-decoration: underline;
+}
+
+/* ----------------------------------------------
+ * ヘッダー
+ * ---------------------------------------------- */
+.header {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-saturate) var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-saturate) var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+    min-height: var(--header-height);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 0;
+}
+
+.logo-section .site-name,
+.seiun-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.seiun-title {
+    font-size: 2rem;
+}
+
+.logo-section .subtitle {
+    font-size: 0.875rem;
+    color: var(--primary-blue-start);
+    font-weight: 500;
+}
+
+/* ----------------------------------------------
+ * ハンバーガーメニュー
+ * ---------------------------------------------- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background: var(--primary-blue-start);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    transform-origin: center;
+}
+
+.hamburger.active span:first-child {
+    transform: translateY(10.5px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.hamburger.active span:last-child {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* ----------------------------------------------
+ * ナビゲーション
+ * ---------------------------------------------- */
+.nav-container {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-saturate) var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-saturate) var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border-color);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    min-width: 0;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    min-width: 0;
+}
+
+.nav-list::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-width: 0;
+}
+
+.nav-link:hover {
+    color: var(--primary-blue-start);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-link.active {
+    color: var(--primary-blue-start);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+}
+
+.additional-nav {
+    background: rgba(242, 242, 247, 0.3);
+    padding: 0.5rem 0;
+}
+
+.additional-nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    align-items: center;
+}
+
+.additional-nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.additional-nav a:hover {
+    color: var(--primary-blue-start);
+}
+
+
+.additional-nav a[aria-current="page"] {
+    color: var(--primary-blue-start);
+    font-weight: 600;
+}
+/* ----------------------------------------------
+ * ヒーローセクション
+ * ---------------------------------------------- */
+.hero {
+    position: relative;
+    min-height: clamp(360px, 62vh, 620px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: clamp(3rem, 7vw, 5rem) 1.5rem;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top center, rgba(255, 255, 255, 0.14), transparent 30%),
+        linear-gradient(135deg, rgba(6, 25, 53, 0.72), rgba(12, 91, 184, 0.48));
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-bg.show {
+    opacity: 1;
+}
+
+.hero-bg-1,
+.hero-bg-2 {
+    z-index: -1;
+}
+
+.hero-bg-1 {
+    background-image: url('img/Hero1.jpg');
+}
+
+.hero-bg-2 {
+    background-image: url('img/Hero2.jpg');
+}
+
+.hero-content {
+    max-width: 820px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.95rem;
+}
+
+.hero h1,
+.hero h2 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 4.25rem);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero p {
+    max-width: 42rem;
+    margin: 0 auto;
+    font-size: clamp(1rem, 2vw, 1.16rem);
+    line-height: 1.85;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ----------------------------------------------
+ * メインコンテンツ & カードスタイル
+ * ---------------------------------------------- */
+.main-content {
+    max-width: 1120px;
+    margin: clamp(1.4rem, 3vw, 2.2rem) auto clamp(3rem, 5vw, 4rem);
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    min-width: 0;
+}
+
+.main-content.main-content--full {
+    max-width: 1120px;
+}
+
+.content-section,
+.sidebar,
+.facility-card,
+.contact-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-saturate) var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-saturate) var(--glass-blur);
+    border-radius: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    padding: clamp(1.35rem, 2.6vw, 2.2rem);
+    transition: all 0.4s ease;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.content-section:hover,
+.sidebar:hover,
+.facility-card:hover {
+    box-shadow:
+        0 24px 48px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    transform: translateY(-4px);
+}
+
+/* ----------------------------------------------
+ * サイドバー
+ * ---------------------------------------------- */
+.sidebar {
+    padding: 1.5rem;
+    height: fit-content;
+}
+
+.sidebar h3 {
+    color: var(--primary-blue-start);
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-links {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.sidebar-links li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-links a {
+    display: block;
+    padding: 0.75rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-links a:hover {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--primary-blue-start);
+    transform: translateX(4px);
+}
+
+.cta-button {
+    display: block;
+    background: var(--primary-gradient);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+}
+
+.contact-card {
+    background: rgba(0, 122, 255, 0.05);
+    padding: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.8;
+}
+
+.contact-card a {
+    color: var(--primary-blue-start);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: var(--primary-blue-end);
+}
+
+/* ----------------------------------------------
+ * コンテンツセクション
+ * ---------------------------------------------- */
+.content-section {
+    margin-bottom: 0;
+    animation: fadeIn 0.6s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, rgba(186, 230, 253, 0.26), transparent 30%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    opacity: 0.95;
+}
+
+.content-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title {
+    font-size: clamp(1.45rem, 2.6vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text-dark);
+}
+
+.section-title .title-text {
+    background: var(--text-gradient-up);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-title .emoji {
+    display: inline-block;
+    -webkit-text-fill-color: currentColor;
+    color: currentColor;
+}
+
+.content-text {
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.seo-intro p:last-child,
+.content-text:last-child {
+    margin-bottom: 0;
+}
+
+.content-with-image {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.image-container {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--soft-shadow);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4 / 3;
+}
+
+.placeholder-image {
+    background: rgba(230, 230, 230, 0.5);
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    color: var(--text-light);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: var(--border-radius);
+}
+
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1rem;
+    margin-top: 1.4rem;
+}
+
+.facility-card {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(245, 249, 255, 0.92));
+    border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.facility-card h4 {
+    color: var(--primary-blue-start);
+    margin-bottom: 0.5rem;
+}
+
+.facility-card ul {
+    padding-left: 20px;
+    margin-top: 1rem;
+}
+
+/* SEO対策用の追加スタイル */
+.highlight-keyword {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.seo-content {
+    background:
+        radial-gradient(circle at top right, rgba(191, 219, 254, 0.36), transparent 28%),
+        linear-gradient(180deg, rgba(248, 251, 255, 0.98), rgba(244, 248, 255, 0.92));
+}
+
+.seo-intro {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* 入寮時特待生制度アコーディオンのスタイル */
+.scholarship-accordion {
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 2px solid #2196f3;
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.scholarship-accordion summary {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.05em;
+    color: #1565c0;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.scholarship-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.scholarship-accordion summary::before {
+    content: '▼';
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.scholarship-accordion[open] summary::before {
+    transform: rotate(-180deg);
+}
+
+.scholarship-accordion summary:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.scholarship-content {
+    padding: 1rem 1.5rem 1.5rem;
+    background: white;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scholarship-content p {
+    margin-bottom: 0.5rem;
+}
+
+.scholarship-content p:last-child {
+    margin-bottom: 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1rem;
+    margin-top: 1.4rem;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.35rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.feature-item h3 {
+    color: #0066cc;
+    margin-bottom: 0.5rem;
+}
+
+.faq-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta-section h2 {
+    font-size: 2em;
+    margin-bottom: 1rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.cta-button.primary {
+    background: white;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.hero-cta {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.breadcrumb {
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #0066cc;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.footer-keywords {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.6;
+}
+
+mark {
+    background-color: #fff3cd;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* 説明リスト */
+.definition-list {
+    margin-top: 1rem;
+}
+
+.definition-list-item {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.5em;
+}
+
+.definition-list-item dt {
+    flex-shrink: 0;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.definition-list-item dd {
+    margin-left: 0.5em;
+}
+
+/* ----------------------------------------------
+ * タイムライン (沿革)
+ * ---------------------------------------------- */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid;
+    border-image: var(--primary-gradient) 1;
+    margin-top: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+.timeline-item:last-of-type {
+    margin-bottom: 0;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-2rem - 11px);
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    border: 4px solid white;
+    z-index: 1;
+}
+
+.timeline-date {
+    color: var(--primary-blue-start);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* ----------------------------------------------
+ * ニュース記事
+ * ---------------------------------------------- */
+.news-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.news-date {
+    flex-shrink: 0;
+    color: var(--primary-blue-start);
+    font-weight: 600;
+    min-width: 100px;
+}
+
+.news-content {
+    flex: 1;
+}
+
+/* ----------------------------------------------
+ * フッター
+ * ---------------------------------------------- */
+.footer {
+    background: linear-gradient(180deg, #0a0e27 0%, #1a1d35 50%, #0a0e27 100%);
+    color: #d1d1d6;
+    padding: 4rem 1rem 1rem;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-blue-start), var(--primary-blue-end), transparent);
+}
+.footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 122, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+.footer-section h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    background: var(--text-gradient-up);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+}
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-section a {
+    color: #a8adc0;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    padding-left: 0;
+    position: relative;
+}
+.footer-section a::before {
+    content: '→';
+    position: absolute;
+    left: -1.2rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: var(--primary-blue-end);
+}
+.footer-section a:hover {
+    color: var(--primary-blue-end);
+    padding-left: 1.2rem;
+}
+.footer-section a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+.footer-brand {
+    max-width: 1200px;
+    margin: 4rem auto 3rem;
+    padding: 1rem;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+.footer-brand-text {
+    font-size: clamp(3.5rem, 15vw, 13rem);
+    font-weight: 900;
+    background: linear-gradient(135deg,
+        rgba(0, 122, 255, 0.2) 0%,
+        rgba(90, 200, 250, 0.4) 25%,
+        rgba(0, 122, 255, 0.25) 50%,
+        rgba(90, 200, 250, 0.4) 75%,
+        rgba(0, 122, 255, 0.2) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0.5rem 0;
+    letter-spacing: -0.05em;
+    user-select: none;
+    pointer-events: none;
+    animation: shimmer 8s ease-in-out infinite;
+    text-align: center;
+    font-family: "Montserrat", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    font-style: italic;
+    transform: skewY(-2deg);
+    filter: drop-shadow(0 0 30px rgba(0, 122, 255, 0.3));
+}
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #6e7280;
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ----------------------------------------------
+ * その他コンポーネント
+ * ---------------------------------------------- */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.gallery-item {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--soft-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: var(--soft-shadow-hover);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    color: white;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.founder-section {
+    display: flex;
+    align-items: start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.founder-image {
+    width: 150px;
+    height: 200px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--soft-shadow);
+}
+
+.founder-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.founder-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* テーブル用のレスポンシブラッパー */
+table {
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+.compare-table th,
+.compare-table td,
+.cost-detail-table th,
+.cost-detail-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.compare-table,
+.cost-detail-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    display: table;
+}
+
+.content-area {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+.image-placeholder-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.cost-chart {
+    min-width: 0;
+    width: 100%;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    min-width: 0;
+}
+
+.chart-label {
+    flex-shrink: 0;
+    width: 80px;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.chart-bar-area {
+    flex: 1;
+    min-width: 0;
+}
+
+.chart-bar {
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chart-bar.market {
+    background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
+}
+
+.chart-bar.private {
+    background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+}
+
+.chart-bar.seiyun {
+    background: var(--primary-gradient);
+}
+
+.chart-note {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.route-compare-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.route-compare-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.route-name {
+    width: 150px;
+    font-weight: 700;
+    color: #1a2a44;
+    flex-shrink: 0;
+}
+
+.route-bar-track {
+    position: relative;
+    flex: 1;
+    height: 44px;
+    background: #f5f7fb;
+    border: 1px solid #e1e7f0;
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.route-bar-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-weight: 700;
+    color: #0f1d36;
+    border-radius: 999px;
+}
+
+.route-bar-value.official-long {
+    background: linear-gradient(90deg, #ffd7de 0%, #ff7a90 100%);
+    color: #36101a;
+}
+
+.route-bar-value.official-mid {
+    background: linear-gradient(90deg, #ffe6c7 0%, #ffba66 100%);
+    color: #4a2a00;
+}
+
+.route-bar-value.seiyun {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 122, 255, 0.18);
+}
+
+.table-header-row {
+    font-weight: bold;
+    background: rgba(0, 122, 255, 0.08);
+}
+
+.cta-card {
+    background:
+        radial-gradient(circle at top right, rgba(191, 219, 254, 0.46), transparent 32%),
+        linear-gradient(135deg, #edf5ff 0%, #ffffff 100%);
+    text-align: center;
+}
+
+.cta-inline-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-card .cta-button {
+    margin-bottom: 0;
+}
+
+.cta-card .cta-button.secondary {
+    background: transparent;
+    color: var(--primary-blue-start);
+    border: 2px solid var(--primary-blue-start);
+}
+
+/* ----------------------------------------------
+ * モバイル対応 & レスポンシブ
+ * ---------------------------------------------- */
+@media (min-width: 768px) {
+    .content-with-image {
+        grid-template-columns: 1fr 300px;
+    }
+
+    .content-with-image.reverse {
+        grid-template-columns: 300px 1fr;
+    }
+
+    .content-with-image.reverse .image-container {
+        order: -1;
+    }
+}
+
+@media (min-width: 992px) {
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .seiun-title {
+        display: none;
+    }
+
+    .nav-container {
+        position: fixed;
+        top: 0;
+        right: calc(-1 * var(--mobile-nav-width));
+        width: var(--mobile-nav-width);
+        height: 100vh;
+        background: var(--glass-bg);
+        backdrop-filter: var(--glass-saturate) var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-saturate) var(--glass-blur);
+        border-left: 1px solid var(--glass-border-color);
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: none;
+        overflow-y: auto;
+    }
+
+    .nav-container.active {
+        right: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding-top: var(--mobile-nav-padding-top);
+        padding-bottom: 2rem;
+    }
+
+    .nav-link {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 1rem;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .hero {
+        margin-top: 0;
+    }
+
+    .hero h2 {
+        font-size: 1.75rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5em;
+    }
+
+    .content-section {
+        padding: 1rem;
+    }
+
+    .main-content {
+        margin-top: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .founder-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .founder-image {
+        margin-bottom: 1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-section h2 {
+        font-size: 1.5em;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .table-responsive {
+        margin: 0 -1rem;
+        padding: 0;
+        width: calc(100% + 2rem);
+    }
+
+    .table-responsive table {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .table-responsive th,
+    .table-responsive td {
+        white-space: normal;
+    }
+
+    .facility-card {
+        padding: 1rem;
+    }
+
+    .chart-label {
+        width: 60px;
+        font-size: 0.75rem;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .content-section {
+        padding: 1rem;
+    }
+
+    .main-content {
+        margin-top: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .founder-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .founder-image {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 0 0.5rem;
+    }
+
+    .main-content {
+        padding: 0 0.25rem;
+    }
+
+    .content-section,
+    .sidebar,
+    .facility-card {
+        padding: 0.75rem;
+    }
+
+    .hero h1,
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .chart-label {
+        width: 50px;
+        font-size: 0.7rem;
+    }
+
+    .chart-bar {
+        font-size: 0.85rem;
+        padding: 0.4rem;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    table th,
+    table td {
+        padding: 0.5rem !important;
+    }
+}
+
+/* ----------------------------------------------
+ * アクセシビリティ & 印刷用スタイル
+ * ---------------------------------------------- */
+:focus {
+    outline: 2px solid var(--primary-blue-start);
+    outline-offset: 2px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    background-color: #f0f0f0;
+    text-decoration: underline;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 印刷用スタイル */
+@media print {
+
+    .header,
+    .nav-container,
+    .additional-nav,
+    .sidebar,
+    .footer {
+        display: none;
+    }
+
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .content-area {
+        width: 100%;
+    }
+}
+
+/* ----------------------------------------------
+ * ダークモード対応
+ * ---------------------------------------------- */
+
+/* Comparison Table & Utilities */
+.comparison-table th,
+.comparison-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    background: linear-gradient(135deg, #1a5fb4, #3584e4);
+    color: white;
+    text-align: left;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.highlight-col {
+    background-color: #fff9e6;
+}
+
+.text-danger {
+    color: #c0392b;
+}
+
+.text-success {
+    color: #27ae60;
+}
+
+.bg-success-light {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(39, 174, 96, 0.05));
+    border-left: 4px solid #27ae60;
+}
+
+.bg-gray-100 {
+    background-color: #f9f9f9;
+}
+
+.bg-green-100 {
+    background-color: #e8f5e9;
+}
+
+.text-warning {
+    color: #e67e22;
+}
+
+.text-primary {
+    color: var(--primary-blue-start);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-dark: #e0e0e0;
+        --text-light: #a0a0a0;
+        --glass-bg: rgba(30, 30, 30, 0.75);
+        --glass-border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+        background-color: #121212;
+        color: var(--text-dark);
+    }
+
+    .content-section,
+    .sidebar,
+    .facility-card,
+    .contact-card {
+        background: rgba(30, 30, 30, 0.75);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero {
+        color: #ffffff;
+    }
+
+    .footer {
+        background: #0a0a0a;
+        color: #d1d1d6;
+    }
+
+    .nav-link,
+    .sidebar-links a,
+    .additional-nav a {
+        color: var(--text-dark);
+    }
+
+    .nav-link:hover,
+    .sidebar-links a:hover {
+        background: rgba(0, 122, 255, 0.2);
+    }
+
+    .contact-card {
+        background: rgba(0, 122, 255, 0.1);
+    }
+
+    .facility-card,
+    .feature-item {
+        background: linear-gradient(180deg, rgba(17, 24, 39, 0.82), rgba(15, 23, 42, 0.94));
+    }
+
+    .timeline {
+        border-left-color: var(--primary-gradient);
+    }
+
+    .timeline-item::before {
+        border-color: #121212;
+    }
+
+    .gallery-caption {
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    .feature-item {
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-item h3 {
+        color: #8cc4ff;
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, #0a66d1 0%, #002f7a 100%);
+        color: #ffffff;
+    }
+
+    .cta-button.primary {
+        background: #e6f1ff;
+        color: #003a99;
+    }
+
+    .cta-button.secondary {
+        border-color: #e6f1ff;
+        color: #e6f1ff;
+    }
+
+    .cta-card {
+        background: linear-gradient(135deg, #0f1c3a 0%, #0a234a 100%);
+        color: #e6f1ff;
+    }
+
+    .cta-card .cta-button.secondary {
+        border-color: #e6f1ff;
+        color: #e6f1ff;
+    }
+
+    .table-header-row {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Comparison Table Dark Mode */
+    .comparison-table th,
+    .comparison-table td {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .comparison-table th {
+        background: linear-gradient(135deg, #103d75, #1c4e8a);
+        /* Darker blue gradient */
+    }
+
+    .highlight-col {
+        background-color: rgba(255, 249, 230, 0.05);
+    }
+
+    .text-danger {
+        color: #ff6b6b;
+    }
+
+    .text-success {
+        color: #51cf66;
+    }
+
+    .bg-success-light {
+        background: rgba(39, 174, 96, 0.15);
+        border-left-color: #51cf66;
+    }
+
+    .bg-gray-100 {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .bg-green-100 {
+        background-color: rgba(39, 174, 96, 0.15);
+    }
+
+    .text-warning {
+        color: #ff922b;
+    }
+
+    .text-primary {
+        color: #5ac8fa;
+    }
+
+    a {
+        color: #5ac8fa;
+    }
+
+    a:hover {
+        color: #8cc4ff;
+    }
+}
+
+/* ----------------------------------------------
+ * ルートタイムライン (New)
+ * ---------------------------------------------- */
+.route-timeline {
+    position: relative;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+
+.route-step {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.route-step:last-child {
+    padding-bottom: 0;
+}
+
+/* 縦線 */
+.route-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+.route-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    background: white;
+    border: 2px solid var(--primary-blue-start);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.route-content {
+    flex: 1;
+    padding-top: 0.25rem;
+}
+
+.route-title {
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-dark);
+}
+
+.route-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.route-time {
+    display: inline-block;
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--primary-blue-start);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.route-total-time {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 122, 255, 0.05);
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary-blue-start);
+    border: 1px solid rgba(0, 122, 255, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    .route-step:not(:last-child)::before {
+        background: #333;
+    }
+
+    .route-icon {
+        background: #1c1c1e;
+        border-color: #0a84ff;
+    }
+
+    .route-title {
+        color: #fff;
+    }
+
+    .route-desc {
+        color: #a0a0a0;
+    }
+
+    .route-time {
+        background: rgba(10, 132, 255, 0.2);
+        color: #5ac8fa;
+    }
+
+    .route-total-time {
+        background: rgba(10, 132, 255, 0.1);
+        color: #5ac8fa;
+        border-color: rgba(10, 132, 255, 0.2);
+    }
+}
+
+/* ----------------------------------------------
+ * 比較テーブル・推奨ルート (Refactored)
+ * ---------------------------------------------- */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header-row-blue {
+    background: linear-gradient(135deg, #1a365d, #2563eb);
+    color: white;
+}
+
+.th-item {
+    padding: 12px;
+    border: 1px solid #ddd;
+    width: 20%;
+}
+
+.th-official {
+    padding: 12px;
+    border: 1px solid #ddd;
+    width: 26%;
+}
+
+.th-seiun-general {
+    padding: 12px;
+    border: 1px solid #ddd;
+    width: 27%;
+}
+
+.th-seiun-special {
+    padding: 12px;
+    border: 1px solid #ddd;
+    width: 27%;
+}
+
+.td-label {
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.td-value {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.tr-even {
+    background-color: #f9f9f9;
+}
+
+.bg-green-light {
+    background-color: #f0fdf4;
+}
+
+.bg-green-strong {
+    background-color: #dcfce7;
+}
+
+.bg-yellow-light {
+    background-color: #fef3c7;
+}
+
+.bg-yellow-lighter {
+    background-color: #fef9c3;
+}
+
+.td-large {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.td-large-bold {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.td-xlarge {
+    font-size: 1.2em;
+}
+
+.td-center {
+    text-align: center;
+}
+
+.card-recommended-green {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 2px solid #16a34a;
+}
+
+@media (prefers-color-scheme: dark) {
+    .table-header-row-blue {
+        background: linear-gradient(135deg, #103d75, #1c4e8a);
+    }
+
+    .th-item,
+    .th-official,
+    .th-seiun-general,
+    .th-seiun-special,
+    .td-label,
+    .td-value {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .tr-even {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .bg-green-light {
+        background-color: rgba(39, 174, 96, 0.15);
+    }
+
+    .bg-green-strong {
+        background-color: rgba(39, 174, 96, 0.25);
+    }
+
+    .bg-yellow-light {
+        background-color: rgba(255, 146, 43, 0.15);
+    }
+
+    .bg-yellow-lighter {
+        background-color: rgba(255, 146, 43, 0.1);
+    }
+
+    .card-recommended-green {
+        background: rgba(39, 174, 96, 0.15);
+        border-color: #2b8a3e;
+    }
+}
+
+/* ----------------------------------------------
+ * デイリースケジュール (Refactored)
+ * ---------------------------------------------- */
+.daily-schedule {
+    list-style: none;
+    padding: 0;
+}
+
+.schedule-item {
+    margin-bottom: 0.5rem;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.bg-gray-light {
+    background: #f8fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+    .bg-gray-light {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* ----------------------------------------------
+ * Hitotsubashi Page Specific Styles
+ * ---------------------------------------------- */
+
+/* Comparison Table */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    text-align: center;
+}
+
+.highlight-header-red {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+}
+
+.highlight-header-orange {
+    background: linear-gradient(135deg, #d35400, #e67e22);
+}
+
+.table-label {
+    font-weight: bold;
+}
+
+.table-label-large {
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.highlight-cell-red {
+    text-align: center;
+    background: #fff5f5;
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.highlight-cell-orange {
+    text-align: center;
+    background: #fff8f0;
+    font-weight: bold;
+}
+
+.table-cell-center {
+    text-align: center;
+}
+
+.table-cell-bold {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-cell-border {
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table-row-gray {
+    background: #f9f9f9;
+}
+
+.highlight-cell-red-bg {
+    text-align: center;
+    background: #fff5f5;
+}
+
+.highlight-cell-orange-bg {
+    text-align: center;
+    background: #fff8f0;
+}
+
+.table-row-highlight {
+    background: linear-gradient(135deg, #e8f4f8, #d4edda);
+}
+
+.highlight-total-red {
+    text-align: center;
+    background: #fff5f5;
+    font-size: 1.2rem;
+    color: #c0392b;
+    font-weight: bold;
+    border: 2px solid #c0392b;
+}
+
+.highlight-total-orange {
+    text-align: center;
+    background: #fff8f0;
+    font-size: 1.1rem;
+    color: #d35400;
+    font-weight: bold;
+    border: 2px solid #d35400;
+}
+
+.highlight-cell-green {
+    text-align: center;
+    background: #f0fff0;
+}
+
+.table-row-yellow {
+    background: #fffde7;
+}
+
+.highlight-savings-red {
+    text-align: center;
+    background: #fff5f5;
+    font-size: 1.05rem;
+    color: #c0392b;
+    font-weight: bold;
+    border: 2px solid #c0392b;
+}
+
+.highlight-savings-orange {
+    text-align: center;
+    background: #fff8f0;
+    font-weight: bold;
+    color: #d35400;
+    border: 2px solid #d35400;
+}
+
+/* Reasons Box */
+.reasons-box {
+    background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+    border-left: 5px solid #c0392b;
+    margin-top: 1.5rem;
+}
+
+.reasons-list {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+/* Cost Breakdown */
+.cost-breakdown {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    margin-bottom: 1.5rem;
+}
+
+.cost-table-wrapper {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.cost-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.highlight-cell-red-text {
+    text-align: center;
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.table-note {
+    font-size: 0.9rem;
+}
+
+.table-row-highlight-green {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+}
+
+.highlight-total-red-text {
+    text-align: center;
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.chart-note {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Schedule List */
+.schedule-list {
+    list-style: none;
+    padding: 0;
+}
+
+.schedule-item {
+    margin-bottom: 0.5rem;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.schedule-item-gray {
+    margin-bottom: 0.5rem;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Voice Cards */
+.voice-card-blue {
+    margin-top: 1rem;
+    background: rgba(0, 122, 255, 0.05);
+    border-left: 4px solid #1a5a96;
+}
+
+.voice-card-green {
+    margin-top: 1rem;
+    background: rgba(46, 204, 113, 0.05);
+    border-left: 4px solid #27ae60;
+}
+
+/* CTA Card */
+.cta-card-blue {
+    background: linear-gradient(135deg, #1a5a96, #2980b9);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.cta-title {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.cta-text {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+}
+
+.cta-inline-buttons {
+    margin-top: 1.5rem;
+}
+
+.cta-button-white {
+    background: white;
+    color: #1a5a96;
+    font-weight: bold;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.cta-button-transparent {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 30px;
+}
+
+.cta-contact {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+
+    .comparison-table th,
+    .comparison-table td,
+    .cost-table th,
+    .cost-table td {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .highlight-cell-red,
+    .highlight-cell-red-bg,
+    .highlight-total-red,
+    .highlight-savings-red {
+        background: rgba(192, 57, 43, 0.2);
+        color: #ff6b6b;
+        border-color: #ff6b6b;
+    }
+
+    .highlight-cell-orange,
+    .highlight-cell-orange-bg,
+    .highlight-total-orange,
+    .highlight-savings-orange {
+        background: rgba(211, 84, 0, 0.2);
+        color: #ff9f43;
+        border-color: #ff9f43;
+    }
+
+    .table-row-gray,
+    .schedule-item-gray {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .table-row-highlight,
+    .table-row-highlight-green,
+    .highlight-cell-green {
+        background: rgba(39, 174, 96, 0.2);
+    }
+
+    .table-row-yellow {
+        background: rgba(241, 196, 15, 0.15);
+    }
+
+    .reasons-box {
+        background: rgba(192, 57, 43, 0.15);
+        border-left-color: #ff6b6b;
+    }
+
+    .cost-breakdown {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .voice-card-blue {
+        background: rgba(0, 122, 255, 0.15);
+        border-left-color: #5ac8fa;
+    }
+
+    .voice-card-green {
+        background: rgba(46, 204, 113, 0.15);
+        border-left-color: #2ecc71;
+    }
+
+    .cta-card-blue {
+        background: linear-gradient(135deg, #103d75, #1c4e8a);
+    }
+
+    /* Scholarship Accordion Dark Mode */
+    .scholarship-accordion {
+        background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+        border-color: #42a5f5;
+    }
+
+    .scholarship-accordion summary {
+        color: #90caf9;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .scholarship-accordion summary:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .scholarship-content {
+        background: rgba(30, 30, 30, 0.95);
+        color: #e0e0e0;
+    }
+}
+
+/* ----------------------------------------------
+ * サブナビ (nav-subnav / additional-nav) 制御
+ * ---------------------------------------------- */
+/* デスクトップ: nav-subnavを非表示 */
+@media (min-width: 769px) {
+    .nav-subnav { display: none; }
+}
+
+/* モバイル: additional-navを非表示、nav-subnavをハンバーガー内に表示 */
+@media (max-width: 768px) {
+    .additional-nav { display: none; }
+    .nav-subnav {
+        border-top: 2px solid rgba(0,0,0,0.06);
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+    }
+    .nav-subnav-label {
+        display: block;
+        padding: 0.5rem 2rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-light);
+    }
+    .nav-subnav a {
+        display: block;
+        padding: 0.75rem 2rem;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.9rem;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+        transition: color 0.2s;
+    }
+    .nav-subnav a:hover { color: var(--primary-blue-start); }
+}
+
+/* ================================================================
+ * Design Update v2 — info/index.html デザイン準拠
+ * Clean White Cards / ダークモード強化
+ * ================================================================ */
+
+/* content-section::before の白グラデーションをダークモードで除去 */
+@media (prefers-color-scheme: dark) {
+    .content-section::before {
+        background:
+            radial-gradient(circle at top right, rgba(90, 200, 250, 0.04), transparent 30%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+    }
+}
+
+/* テーブルセルハイライト（青雲寮列・良い・悪い・縞）— ダークモード対応 */
+.cell-seiun-highlight {
+    background-color: #e8f4fd;
+}
+
+.cell-good {
+    color: #1565c0;
+}
+
+.cell-bad {
+    color: #c0392b;
+}
+
+.row-stripe {
+    background-color: #f9f9f9;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cell-seiun-highlight {
+        background-color: rgba(30, 100, 200, 0.22);
+    }
+
+    .cell-good {
+        color: #5ac8fa;
+    }
+
+    .cell-bad {
+        color: #ff6b6b;
+    }
+
+    .row-stripe {
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+}
+
+/* ページ背景を淡いグレーに */
+body {
+    background-color: #f5f5f7;
+}
+
+/* カードを白ベースのクリーンなデザインに変更 */
+.content-section,
+.facility-card {
+    background: #ffffff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.content-section:hover,
+.facility-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: none;
+}
+
+/* セクションタイトルをよりシャープに */
+.section-title .title-text {
+    font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* ダークモード: カードをダークに */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+    }
+
+    .content-section,
+    .facility-card {
+        background: #242424;
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .content-section:hover,
+    .facility-card:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* ================================================================
+ * 費用比較テーブル — ダークモード対応クラス
+ * インラインスタイルを置き換えるための共通クラス
+ * ================================================================ */
+.cost-compare-wrap {
+    overflow-x: auto;
+    margin-top: 1rem;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+}
+
+.cost-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+}
+
+.cost-compare-table thead tr {
+    background: linear-gradient(135deg, var(--primary-blue-start) 0%, var(--primary-blue-end) 100%);
+    color: #ffffff;
+}
+
+.cost-compare-table th {
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    text-align: left;
+}
+
+.cost-compare-table td {
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--text-dark);
+}
+
+.cost-compare-table tbody tr:nth-child(even) td {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.cost-compare-table .total-row {
+    font-weight: bold;
+}
+
+.cost-compare-table .total-row td {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.cost-compare-table .cost-high {
+    color: #c0392b;
+}
+
+.cost-compare-table .cost-low {
+    color: var(--primary-blue-start);
+}
+
+/* ダークモード: 費用比較テーブル */
+@media (prefers-color-scheme: dark) {
+    .cost-compare-table thead tr {
+        background: linear-gradient(135deg, #103d75 0%, #1c4e8a 100%);
+    }
+
+    .cost-compare-table th {
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .cost-compare-table td {
+        border-color: rgba(255, 255, 255, 0.08);
+        color: var(--text-dark);
+    }
+
+    .cost-compare-table tbody tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .cost-compare-table .total-row td {
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .cost-compare-table .cost-high {
+        color: #ff6b6b;
+    }
+
+    .cost-compare-table .cost-low {
+        color: #5ac8fa;
+    }
+}
+
+/* ================================================================
+ * chart-bar 未定義クラス補完 + chart-bar-area ダークモード対応
+ * ================================================================ */
+
+/* 民間学生寮・有料系 */
+.chart-bar.dormitory {
+    background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+}
+
+/* 大学公式寮（こだ寮など） */
+.chart-bar.kodai {
+    background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+}
+
+/* 大学公式寮（汎用）— 食費込で中程度の費用 */
+.chart-bar.official {
+    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+}
+
+/* 青雲寮 通常料金 */
+.chart-bar.seiun-normal {
+    background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+}
+
+/* 青雲寮 特待生料金 */
+.chart-bar.seiyun-special {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+/* 三鷹寮など公式安価寮 */
+.chart-bar.mitaka {
+    background: linear-gradient(135deg, #757575 0%, #9e9e9e 100%);
+}
+
+/* chart-bar-area: バーの背景トラック */
+.chart-bar-area {
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    .chart-bar-area {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
+/* ================================================================
+ * cost-table th/td のパディング・ボーダー（テーブルが小さく見える問題を修正）
+ * ================================================================ */
+.cost-table {
+    min-width: 400px;
+}
+
+.cost-table th,
+.cost-table td {
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+}
+
+.cost-table thead tr {
+    background: linear-gradient(135deg, var(--primary-blue-start) 0%, var(--primary-blue-end) 100%);
+    color: #ffffff;
+}
+
+.cost-table th {
+    font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cost-table th,
+    .cost-table td {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .cost-table thead tr {
+        background: linear-gradient(135deg, #103d75 0%, #1c4e8a 100%);
+    }
+
+    .table-row-highlight-green {
+        background: rgba(39, 174, 96, 0.2);
+    }
+
+    .highlight-cell-red-text {
+        color: #ff6b6b;
+    }
+}
