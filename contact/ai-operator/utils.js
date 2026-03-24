@@ -31,10 +31,22 @@ export const createSessionId = () => {
 
 export const nowIso = () => runtimeNow();
 
+const normalizeUrl = (value) => {
+    const raw = typeof value === "string" ? value.trim() : "";
+    if (!raw) return "";
+    try {
+        const parsed = new URL(raw);
+        parsed.pathname = parsed.pathname.replace(/\/{2,}/g, "/");
+        return parsed.toString();
+    } catch (_error) {
+        return raw;
+    }
+};
+
 export const normalizeLink = (link) => {
     if (!link || typeof link !== "object") return null;
     const title = typeof link.title === "string" ? link.title.trim() : "";
-    const url = typeof link.url === "string" ? link.url.trim() : "";
+    const url = normalizeUrl(link.url);
     if (!title || !url) return null;
     return {
         title,
@@ -47,7 +59,7 @@ export const normalizeLink = (link) => {
 export const normalizeCitation = (citation) => {
     if (!citation || typeof citation !== "object") return null;
     const title = typeof citation.title === "string" ? citation.title.trim() : "";
-    const url = typeof citation.url === "string" ? citation.url.trim() : "";
+    const url = normalizeUrl(citation.url);
     if (!title || !url) return null;
     return {
         title,
@@ -149,15 +161,53 @@ export const escapeHtml = (text) =>
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
+const escapeAttribute = (text) =>
+    String(text || "").replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+const createAnchor = (label, url) => {
+    const normalizedUrl = normalizeUrl(url);
+    if (!normalizedUrl) return escapeHtml(label);
+    return `<a href="${escapeAttribute(normalizedUrl)}" class="break-all font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900">${escapeHtml(label)}</a>`;
+};
+
+const stripTrailingPunctuation = (value) => {
+    const match = String(value || "").match(/^(.*?)([),.!?、。]+)?$/);
+    return {
+        body: match?.[1] || "",
+        trailing: match?.[2] || "",
+    };
+};
+
 /**
  * Format markdown-style text to HTML
- * Supports: **bold**, *italic*, and line breaks
+ * Supports: **bold**, *italic*, markdown links, plain URLs, and line breaks
  */
 export const formatMarkdown = (text) => {
     if (!text) return "";
-    const escapedText = escapeHtml(text);
-    return escapedText
+    const placeholders = [];
+    const tokenFor = (html) => {
+        const token = `__SEIUN_LINK_${placeholders.length}__`;
+        placeholders.push({ token, html });
+        return token;
+    };
+
+    let rendered = escapeHtml(text)
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_match, label, url) => tokenFor(createAnchor(label, url)))
+        .replace(/(^|[\s(])(https?:\/\/[^\s<]+)/g, (_match, prefix, url) => {
+            const { body, trailing } = stripTrailingPunctuation(url);
+            if (!body) return `${prefix}${url}`;
+            return `${prefix}${tokenFor(createAnchor(body, body))}${trailing}`;
+        })
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
         .replace(/\*(?!\*)(.+?)\*/g, "<em>$1</em>")
         .replace(/\n/g, "<br>");
+
+    for (const placeholder of placeholders) {
+        rendered = rendered.replaceAll(placeholder.token, placeholder.html);
+    }
+
+    return rendered;
 };

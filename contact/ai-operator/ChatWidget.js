@@ -38,6 +38,9 @@ const STUDENTS_FLOW_LINK = "/students/application-flow/";
 const UNIV_LINK = "/univ/";
 const ACCESS_LINK = "/access/";
 const LIFE_LINK = "/life/";
+const INQUIRY_ONLY_LINKS = [
+    { title: "お問い合わせフォーム", url: CONTACT_LINK, label: "お問い合わせフォーム", reason: "公開情報にない内容はこちらからご確認ください。" }
+];
 
 const createWelcomeMessage = () => ({
     id: WELCOME_MESSAGE.id,
@@ -375,12 +378,11 @@ export const ChatWidget = () => {
                 lastActivityAt: nowIso(),
             });
             const fallbackAnswer = buildFallbackAnswer(userMessage.text, requestCurrentPath);
-            const suggestedLinks = getActiveLinkSet(
-                Array.isArray(aiResponse.suggestedLinks) && aiResponse.suggestedLinks.length
+            const suggestedLinks = aiResponse.resultType === "answer"
+                ? []
+                : Array.isArray(aiResponse.suggestedLinks) && aiResponse.suggestedLinks.length
                     ? aiResponse.suggestedLinks
-                    : buildContextualLinks(userMessage.text, requestCurrentPath),
-                requestCurrentPath
-            );
+                    : INQUIRY_ONLY_LINKS;
             const botMessage = {
                 id: createSessionId(),
                 text: aiResponse.answer || fallbackAnswer,
@@ -399,15 +401,12 @@ export const ChatWidget = () => {
             console.error(error);
             const botMessage = {
                 id: createSessionId(),
-                text: buildFallbackAnswer(userMessage.text, window.location.pathname),
+                text: "申し訳ありません。現在AIサービスに接続できません。お問い合わせフォームをご利用ください。",
                 sender: MessageSender.BOT,
                 timestamp: nowIso(),
                 resultType: "error",
                 citations: [],
-                suggestedLinks: getActiveLinkSet(
-                    buildContextualLinks(userMessage.text, window.location.pathname),
-                    window.location.pathname
-                ),
+                suggestedLinks: INQUIRY_ONLY_LINKS,
             };
             setSessionState((prev) => ({
                 ...prev,
@@ -758,10 +757,10 @@ export const ChatWidget = () => {
                                                             ],
                                                         }),
                                                         message.sender === MessageSender.BOT && message.citations?.length
-                                                            ? renderLinkChips(message.citations, "参考ページ", isDarkMode ? "soft" : "default")
+                                                            ? renderLinkChips(message.citations, "詳しいページ", isDarkMode ? "soft" : "default")
                                                             : null,
-                                                        message.sender === MessageSender.BOT && message.suggestedLinks?.length
-                                                            ? renderLinkChips(message.suggestedLinks, "次に見るページ", isDarkMode ? "soft" : "default")
+                                                        message.sender === MessageSender.BOT && message.resultType !== "answer" && message.suggestedLinks?.length
+                                                            ? renderLinkChips(message.suggestedLinks, "お問い合わせ", isDarkMode ? "soft" : "default")
                                                             : null,
                                                     ],
                                                 })
