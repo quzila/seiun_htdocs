@@ -987,31 +987,9 @@
     })();
   </script>
   <div id="seiun-ai-widget"></div>
-  <script type="module">
-    const widgetHost = document.getElementById("seiun-ai-widget") ?? (() => {
-      const el = document.createElement("div");
-      el.id = "seiun-ai-widget";
-      document.body.appendChild(el);
-      return el;
-    })();
-    const loadWidget = () => {
-      const widgetSrc = "../contact/ai-operator/seiun-ai-operator.20250216120000.js";
-      import(widgetSrc)
-        .then((mod) => {
-          if (mod && mod.mountSeiunAIOperator) {
-            mod.mountSeiunAIOperator(widgetHost);
-          }
-        })
-        .catch((err) => {
-          console.error("[AIチャット] load failed", widgetSrc, err);
-        });
-    };
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(loadWidget, { timeout: 2500 });
-    } else {
-      window.setTimeout(loadWidget, 1500);
-    }
-  </script>
+  <script
+    type="module"
+    src="../contact/ai-operator/widget-loader.20260324183000.js?v=20260324194500"></script>
   <script src="../assets/script.20251227161716.js" defer></script>
 </body>
 </html>

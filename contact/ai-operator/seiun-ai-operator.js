@@ -5,10 +5,10 @@
 
 // Import the bundled vendor code (React, Gemini SDK, etc.)
 // Note: add version query to avoid stale caches when browsers held old immutable responses
-import "./bundle.js?v=20250216120000";
+import "./bundle.js?v=20260324194500";
 
 // Import application modules
-import { ChatWidget } from "./ChatWidget.js?v=20250216120000";
+import { ChatWidget } from "./ChatWidget.js?v=20260324194500";
 
 // CSS resources
 const TAILWIND_CSS = "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";

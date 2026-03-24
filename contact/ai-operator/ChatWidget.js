@@ -5,9 +5,23 @@
  */
 
 // Versioned imports to bypass stale immutable caches
-import { callGeminiAPI } from "./api-service.js?v=20250216120000";
-import { MessageSender, formatMarkdown } from "./utils.js?v=20250216120000";
-import { WELCOME_MESSAGE } from "./config.js?v=20250216120000";
+import { callChatAPI } from "./api-service.js?v=20260324194500";
+import {
+    CHAT_CLIENT_VERSION,
+    CHAT_MAX_INPUT_CHARS,
+    CHAT_SESSION_TTL_MS,
+    CHAT_STORAGE_KEY,
+    WELCOME_MESSAGE
+} from "./config.js?v=20260324194500";
+import {
+    MessageSender,
+    createSessionId,
+    hydrateChatMessage,
+    nowIso,
+    safeParseJson,
+    serializeChatMessage,
+    formatMarkdown
+} from "./utils.js?v=20260324194500";
 
 // Access React from the global bundle
 const React = window.ni;
@@ -15,19 +29,193 @@ const { useState, useEffect, useRef } = React;
 const jsx = window.he.jsx;
 const jsxs = window.he.jsxs;
 
+const CONTACT_LINK = "/contact/";
+const COST_LINK = "/cost/";
+const FAQ_LINK = "/faq/";
+const STUDENTS_LINK = "/students/";
+const STUDENTS_ELIGIBILITY_LINK = "/students/eligibility/";
+const STUDENTS_FLOW_LINK = "/students/application-flow/";
+const UNIV_LINK = "/univ/";
+const ACCESS_LINK = "/access/";
+const LIFE_LINK = "/life/";
+
+const createWelcomeMessage = () => ({
+    id: WELCOME_MESSAGE.id,
+    text: WELCOME_MESSAGE.text,
+    sender: MessageSender.BOT,
+    timestamp: nowIso(),
+    resultType: "answer",
+    citations: [],
+    suggestedLinks: [],
+});
+
+const createFreshSession = () => ({
+    sessionId: createSessionId(),
+    lastActivityAt: nowIso(),
+    currentVersion: CHAT_CLIENT_VERSION,
+    messages: [createWelcomeMessage()],
+});
+
+const isStorageAvailable = () => typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+
+const loadSessionFromStorage = () => {
+    const fresh = createFreshSession();
+    if (!isStorageAvailable()) {
+        return fresh;
+    }
+
+    try {
+        const raw = safeParseJson(window.localStorage.getItem(CHAT_STORAGE_KEY), null);
+        if (!raw || raw.currentVersion !== CHAT_CLIENT_VERSION) {
+            window.localStorage.removeItem(CHAT_STORAGE_KEY);
+            return fresh;
+        }
+
+        const lastActivityAt = typeof raw.lastActivityAt === "string" && raw.lastActivityAt ? raw.lastActivityAt : fresh.lastActivityAt;
+        const lastActivityMs = Date.parse(lastActivityAt);
+        if (!Number.isFinite(lastActivityMs) || Date.now() - lastActivityMs >= CHAT_SESSION_TTL_MS) {
+            window.localStorage.removeItem(CHAT_STORAGE_KEY);
+            return fresh;
+        }
+
+        const messages = Array.isArray(raw.messages)
+            ? raw.messages.map((message) => hydrateChatMessage(message)).filter(Boolean)
+            : [];
+
+        if (!messages.length) {
+            window.localStorage.removeItem(CHAT_STORAGE_KEY);
+            return fresh;
+        }
+
+        return {
+            sessionId: typeof raw.sessionId === "string" && raw.sessionId ? raw.sessionId : fresh.sessionId,
+            lastActivityAt,
+            currentVersion: CHAT_CLIENT_VERSION,
+            messages,
+        };
+    } catch (_error) {
+        return fresh;
+    }
+};
+
+const buildContextualLinks = (question, currentPath) => {
+    const text = `${question || ""} ${currentPath || ""}`.toLowerCase();
+    if (/募集|願書|選考|締切|入寮|特待|書類|面接|後期合格/.test(text)) {
+        return [
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "募集全体の案内です。" },
+            { title: "応募資格・選考日程", url: STUDENTS_ELIGIBILITY_LINK, reason: "資格と選考日程を確認できます。" },
+            { title: "入寮までの流れ", url: STUDENTS_FLOW_LINK, reason: "必要書類と応募手順を確認できます。" },
+        ];
+    }
+    if (/費用|寮費|月額|年額|食費|特待生|お金/.test(text)) {
+        return [
+            { title: "費用比較", url: COST_LINK, reason: "費用の比較表を確認できます。" },
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "募集案内の費用情報です。" },
+            { title: "よくある質問", url: FAQ_LINK, reason: "費用まわりの質問を確認できます。" },
+        ];
+    }
+    if (/通学|アクセス|大学|キャンパス|何分|電車|最寄/.test(text)) {
+        return [
+            { title: "大学別通学ガイド", url: UNIV_LINK, reason: "大学ごとの通学情報を確認できます。" },
+            { title: "交通アクセス", url: ACCESS_LINK, reason: "寮までのアクセス案内です。" },
+            { title: "お問い合わせ", url: CONTACT_LINK, reason: "個別の通学事情はお問い合わせください。" },
+        ];
+    }
+    if (/見学|相談|問い合わせ|連絡|メール|電話|保護者/.test(text)) {
+        return [
+            { title: "お問い合わせ", url: CONTACT_LINK, reason: "見学や個別相談はこちらです。" },
+            { title: "よくある質問", url: FAQ_LINK, reason: "事前によくある質問を確認できます。" },
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "募集に関する公開情報です。" },
+        ];
+    }
+    if (/生活|食事|門限|設備|部屋|wi[-\s]?fi|wifi|ネット|ルール/.test(text)) {
+        return [
+            { title: "寮での生活", url: LIFE_LINK, reason: "生活や設備の案内です。" },
+            { title: "よくある質問", url: FAQ_LINK, reason: "生活ルールのよくある質問です。" },
+            { title: "お問い合わせ", url: CONTACT_LINK, reason: "公開情報にない細かな確認はこちらです。" },
+        ];
+    }
+    return [
+        { title: "ホーム", url: "/", reason: "青雲寮の概要です。" },
+        { title: "よくある質問", url: FAQ_LINK, reason: "最初に確認したい質問をまとめています。" },
+        { title: "お問い合わせ", url: CONTACT_LINK, reason: "不明点の相談はこちらです。" },
+    ];
+};
+
+const buildFallbackAnswer = (question, currentPath) => {
+    const normalized = `${question || ""} ${currentPath || ""}`.toLowerCase();
+    if (/募集|願書|選考|締切|入寮|特待|書類|面接|後期合格/.test(normalized)) {
+        return "募集条件や選考日程は公開中の募集ページをご確認ください。個別事情がある場合はお問い合わせページからご相談ください。";
+    }
+    if (/費用|寮費|月額|年額|食費|特待生|お金/.test(normalized)) {
+        return "費用は公開ページの数値だけをご確認ください。最新の募集案内と費用比較ページをご案内します。";
+    }
+    if (/通学|アクセス|大学|キャンパス|何分|電車|最寄/.test(normalized)) {
+        return "通学やアクセスは大学別通学ガイドと交通アクセスの公開情報をご確認ください。個別の事情はお問い合わせページからご相談ください。";
+    }
+    if (/見学|相談|問い合わせ|連絡|メール|電話|保護者/.test(normalized)) {
+        return "見学や個別事情の確認は、お問い合わせページからのご相談をご案内します。";
+    }
+    if (/生活|食事|門限|設備|部屋|wi[-\s]?fi|wifi|ネット|ルール/.test(normalized)) {
+        return "生活や設備は公開中の生活ページとFAQをご確認ください。公開情報にない内容はお問い合わせページからご相談ください。";
+    }
+    return "公開情報だけでは判断できませんでした。まずはFAQや募集ページをご確認ください。個別の確認はお問い合わせページからお願いします。";
+};
+
+const getActiveLinkSet = (links, currentPath) => {
+    const path = (currentPath || "").toLowerCase();
+    if (path.startsWith("/students/eligibility")) {
+        return [
+            { title: "応募資格・選考日程", url: STUDENTS_ELIGIBILITY_LINK, reason: "現在のページに近い案内です。" },
+            { title: "入寮までの流れ", url: STUDENTS_FLOW_LINK, reason: "次に確認しやすいページです。" },
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "募集全体の案内です。" },
+        ];
+    }
+    if (path.startsWith("/students/application-flow")) {
+        return [
+            { title: "入寮までの流れ", url: STUDENTS_FLOW_LINK, reason: "現在のページに近い案内です。" },
+            { title: "応募資格・選考日程", url: STUDENTS_ELIGIBILITY_LINK, reason: "関連する募集情報です。" },
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "募集全体の案内です。" },
+        ];
+    }
+    if (path.startsWith("/students")) {
+        return [
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "現在のページに近い案内です。" },
+            { title: "応募資格・選考日程", url: STUDENTS_ELIGIBILITY_LINK, reason: "次に確認しやすい募集情報です。" },
+            { title: "入寮までの流れ", url: STUDENTS_FLOW_LINK, reason: "応募手順を確認できます。" },
+        ];
+    }
+    if (path.startsWith("/cost")) {
+        return [
+            { title: "費用比較", url: COST_LINK, reason: "現在のページに近い案内です。" },
+            { title: "よくある質問", url: FAQ_LINK, reason: "費用関連の質問を確認できます。" },
+            { title: "お問い合わせ", url: CONTACT_LINK, reason: "個別相談はこちらです。" },
+        ];
+    }
+    if (path.startsWith("/univ")) {
+        return [
+            { title: "大学別通学ガイド", url: UNIV_LINK, reason: "現在のページに近い案内です。" },
+            { title: "交通アクセス", url: ACCESS_LINK, reason: "アクセス情報を確認できます。" },
+            { title: "お問い合わせ", url: CONTACT_LINK, reason: "個別事情はお問い合わせください。" },
+        ];
+    }
+    if (path.startsWith("/contact")) {
+        return [
+            { title: "お問い合わせ", url: CONTACT_LINK, reason: "現在のページに近い案内です。" },
+            { title: "よくある質問", url: FAQ_LINK, reason: "問い合わせ前によく確認される内容です。" },
+            { title: "入寮生の募集", url: STUDENTS_LINK, reason: "募集情報に戻れます。" },
+        ];
+    }
+    return links;
+};
+
 export const ChatWidget = () => {
+    const [sessionState, setSessionState] = useState(() => loadSessionFromStorage());
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false); // keep DOM mounted for exit animation
     const [isMobile, setIsMobile] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [buttonPhase, setButtonPhase] = useState("circle"); // circle | expanded
-    const [messages, setMessages] = useState([
-        {
-            ...WELCOME_MESSAGE,
-            sender: MessageSender.BOT,
-            timestamp: new Date()
-        }
-    ]);
     const [inputText, setInputText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const scrollRef = useRef(null);
@@ -36,6 +224,10 @@ export const ChatWidget = () => {
     const touchStartY = useRef(0);
     const closeTimerRef = useRef(null);
     const bodyOverflowRef = useRef(null);
+    const inactivityTimerRef = useRef(null);
+    const messages = sessionState.messages;
+    const sessionId = sessionState.sessionId;
+    const lastActivityAt = sessionState.lastActivityAt;
 
     const scrollToBottom = () => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -45,6 +237,53 @@ export const ChatWidget = () => {
         if (!isVisible) return;
         scrollToBottom();
     }, [messages, isOpen, isVisible]);
+
+    useEffect(() => {
+        if (!isStorageAvailable()) return;
+        try {
+            window.localStorage.setItem(
+                CHAT_STORAGE_KEY,
+                JSON.stringify({
+                    sessionId: sessionState.sessionId,
+                    lastActivityAt: sessionState.lastActivityAt,
+                    currentVersion: CHAT_CLIENT_VERSION,
+                    messages: sessionState.messages.map((message) => serializeChatMessage(message)),
+                })
+            );
+        } catch (_error) {
+            // Ignore persistence failures in restricted browsing modes.
+        }
+    }, [sessionState]);
+
+    useEffect(() => {
+        if (!lastActivityAt) return;
+        if (inactivityTimerRef.current) {
+            clearTimeout(inactivityTimerRef.current);
+            inactivityTimerRef.current = null;
+        }
+
+        const lastActivityMs = Date.parse(lastActivityAt);
+        if (!Number.isFinite(lastActivityMs)) return;
+
+        const delay = Math.max(0, lastActivityMs + CHAT_SESSION_TTL_MS - Date.now());
+        inactivityTimerRef.current = window.setTimeout(() => {
+            setSessionState(createFreshSession());
+            if (isStorageAvailable()) {
+                try {
+                    window.localStorage.removeItem(CHAT_STORAGE_KEY);
+                } catch (_error) {
+                    // Ignore failures when storage is blocked.
+                }
+            }
+        }, delay);
+
+        return () => {
+            if (inactivityTimerRef.current) {
+                clearTimeout(inactivityTimerRef.current);
+                inactivityTimerRef.current = null;
+            }
+        };
+    }, [lastActivityAt]);
 
     useEffect(() => {
         if (isOpen) {
@@ -107,28 +346,74 @@ export const ChatWidget = () => {
         if (!inputText.trim() || isLoading) return;
 
         const userMessage = {
-            id: Date.now().toString(),
+            id: createSessionId(),
             text: inputText,
             sender: MessageSender.USER,
-            timestamp: new Date()
+            timestamp: nowIso(),
+            resultType: null,
+            citations: [],
+            suggestedLinks: [],
         };
 
         const updatedMessages = [...messages, userMessage];
-        setMessages(updatedMessages);
+        const requestCurrentUrl = window.location.href;
+        const requestCurrentPath = window.location.pathname;
+        setSessionState((prev) => ({
+            ...prev,
+            lastActivityAt: nowIso(),
+            messages: [...prev.messages, userMessage],
+        }));
         setInputText("");
         setIsLoading(true);
 
         try {
-            const aiResponse = await callGeminiAPI(updatedMessages);
+            const aiResponse = await callChatAPI({
+                messages: updatedMessages,
+                sessionId,
+                currentUrl: requestCurrentUrl,
+                currentPath: requestCurrentPath,
+                lastActivityAt: nowIso(),
+            });
+            const fallbackAnswer = buildFallbackAnswer(userMessage.text, requestCurrentPath);
+            const suggestedLinks = getActiveLinkSet(
+                Array.isArray(aiResponse.suggestedLinks) && aiResponse.suggestedLinks.length
+                    ? aiResponse.suggestedLinks
+                    : buildContextualLinks(userMessage.text, requestCurrentPath),
+                requestCurrentPath
+            );
             const botMessage = {
-                id: (Date.now() + 1).toString(),
-                text: aiResponse,
+                id: createSessionId(),
+                text: aiResponse.answer || fallbackAnswer,
                 sender: MessageSender.BOT,
-                timestamp: new Date()
+                timestamp: nowIso(),
+                resultType: aiResponse.resultType || "error",
+                citations: Array.isArray(aiResponse.citations) ? aiResponse.citations : [],
+                suggestedLinks: suggestedLinks,
             };
-            setMessages((prev) => [...prev, botMessage]);
+            setSessionState((prev) => ({
+                ...prev,
+                lastActivityAt: nowIso(),
+                messages: [...prev.messages, botMessage],
+            }));
         } catch (error) {
             console.error(error);
+            const botMessage = {
+                id: createSessionId(),
+                text: buildFallbackAnswer(userMessage.text, window.location.pathname),
+                sender: MessageSender.BOT,
+                timestamp: nowIso(),
+                resultType: "error",
+                citations: [],
+                suggestedLinks: getActiveLinkSet(
+                    buildContextualLinks(userMessage.text, window.location.pathname),
+                    window.location.pathname
+                ),
+            };
+            setSessionState((prev) => ({
+                ...prev,
+                lastActivityAt: nowIso(),
+                messages: [...prev.messages, botMessage],
+            }));
         } finally {
             setIsLoading(false);
         }
@@ -210,6 +495,10 @@ export const ChatWidget = () => {
             clearTimeout(closeTimerRef.current);
             closeTimerRef.current = null;
         }
+        setSessionState((prev) => ({
+            ...prev,
+            lastActivityAt: nowIso(),
+        }));
         setIsVisible(true);
         requestAnimationFrame(() => setIsOpen(true));
     };
@@ -224,6 +513,79 @@ export const ChatWidget = () => {
         } else {
             openChat();
         }
+    };
+
+    const handleInputChange = (event) => {
+        setInputText(event.target.value);
+        setSessionState((prev) => ({
+            ...prev,
+            lastActivityAt: nowIso(),
+        }));
+    };
+
+    const renderLinkChips = (links, title, tone = "default") => {
+        const normalizedLinks = Array.isArray(links) ? links.filter(Boolean) : [];
+        if (!normalizedLinks.length) return null;
+
+        return jsxs("div", {
+            className: "mt-3 space-y-2",
+            children: [
+                jsx("p", {
+                    className: `text-[11px] font-semibold uppercase tracking-[0.18em] ${tone === "soft" ? "text-blue-200" : "text-blue-700"}`,
+                    children: title,
+                }),
+                jsx("div", {
+                    className: "flex flex-wrap gap-2",
+                    children: normalizedLinks.map((link) =>
+                        {
+                            const chipTitle = typeof link.label === "string" && link.label.trim()
+                                ? link.label.trim()
+                                : typeof link.title === "string"
+                                    ? link.title.trim()
+                                    : "";
+                            const chipReason = typeof link.reason === "string" && link.reason.trim()
+                                ? link.reason.trim()
+                                : typeof link.title === "string" && link.title.trim() && chipTitle !== link.title.trim()
+                                    ? link.title.trim()
+                                    : "";
+
+                            return jsx("a", {
+                                href: link.url,
+                                className: "inline-flex max-w-full items-start gap-2 rounded-full border border-blue-200/70 bg-white px-3 py-2 text-left text-[12px] font-medium text-blue-950 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow",
+                                children: jsxs("span", {
+                                    className: "flex min-w-0 flex-col",
+                                    children: [
+                                        jsx("span", { className: "truncate", children: chipTitle }),
+                                        chipReason
+                                            ? jsx("span", {
+                                                  className: "text-[11px] font-normal leading-snug text-slate-500",
+                                                  children: chipReason,
+                                              })
+                                            : null,
+                                    ],
+                                }),
+                            }, `${link.url}-${chipTitle}`);
+                        }
+                    ),
+                }),
+            ],
+        });
+    };
+
+    const renderMessageStatus = (message) => {
+        if (message.sender !== MessageSender.BOT || !message.resultType || message.resultType === "answer") {
+            return null;
+        }
+
+        const label = message.resultType === "fallback" ? "分からないため誘導" : "接続エラー";
+        const statusClass = message.resultType === "fallback"
+            ? "bg-amber-100 text-amber-900 border-amber-200"
+            : "bg-rose-100 text-rose-900 border-rose-200";
+
+        return jsx("span", {
+            className: `inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold ${statusClass}`,
+            children: label,
+        });
     };
 
     const themeClasses = isDarkMode
@@ -384,7 +746,25 @@ export const ChatWidget = () => {
                                             }),
                                             jsx("div", {
                                                 className: `max-w-[78%] px-4 py-3 rounded-2xl text-sm leading-relaxed border shadow-lg break-words ${message.sender === MessageSender.USER ? themeClasses.userBubble : themeClasses.botBubble}`,
-                                                dangerouslySetInnerHTML: { __html: formatMarkdown(message.text) }
+                                                children: jsxs("div", {
+                                                    children: [
+                                                        jsxs("div", {
+                                                            className: "flex items-center gap-2",
+                                                            children: [
+                                                                jsx("div", {
+                                                                    dangerouslySetInnerHTML: { __html: formatMarkdown(message.text) }
+                                                                }),
+                                                                renderMessageStatus(message),
+                                                            ],
+                                                        }),
+                                                        message.sender === MessageSender.BOT && message.citations?.length
+                                                            ? renderLinkChips(message.citations, "参考ページ", isDarkMode ? "soft" : "default")
+                                                            : null,
+                                                        message.sender === MessageSender.BOT && message.suggestedLinks?.length
+                                                            ? renderLinkChips(message.suggestedLinks, "次に見るページ", isDarkMode ? "soft" : "default")
+                                                            : null,
+                                                    ],
+                                                })
                                             })
                                         ]
                                     })
@@ -418,8 +798,9 @@ export const ChatWidget = () => {
                                     jsx("input", {
                                         type: "text",
                                         value: inputText,
-                                        onChange: (e) => setInputText(e.target.value),
-                                        placeholder: "質問を入力...",
+                                        onChange: handleInputChange,
+                                        maxLength: CHAT_MAX_INPUT_CHARS,
+                                        placeholder: "公開情報で知りたいことを入力...",
                                         className: `flex-1 px-4 py-3 rounded-2xl border focus:outline-none transition-all ${themeClasses.input}`
                                     }),
                                     jsxs("button", {
@@ -441,7 +822,7 @@ export const ChatWidget = () => {
                             }),
                             jsx("div", {
                                 className: `mt-2 text-[8px] leading-tight ${themeClasses.notice}`,
-                                children: "回答は必ずしも正しいとは限りません。重要な情報は確認するようにしてください。"
+                                children: "公開情報に基づいて案内しています。不明点はお問い合わせください。"
                             })
                         ]
                     })
