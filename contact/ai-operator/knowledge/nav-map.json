@@ -1,5 +1,5 @@
 {
-  "version": "20260324103609",
+  "version": "20260325024444",
   "intents": [
     {
       "id": "recruitment",
@@ -192,8 +192,14 @@
       "id": "general",
       "keywords": [],
       "pageTypeBoosts": {
-        "home": 1,
-        "faq": 1
+        "home": 10,
+        "faq": 8,
+        "life": 3,
+        "cost": 3,
+        "access": 2,
+        "students": 2,
+        "students-pdf-historical": -8,
+        "students-pdf-current": -5
       },
       "suggestedLinks": [
         {

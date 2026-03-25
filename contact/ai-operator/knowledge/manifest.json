@@ -1,6 +1,6 @@
 {
-  "version": "20260324103609",
-  "generated_at": "2026-03-24T10:36:09Z",
+  "version": "20260325024444",
+  "generated_at": "2026-03-25T02:44:44Z",
   "source_paths": [
     "access/index.html",
     "compare/index.html",
@@ -11,10 +11,6 @@
     "faq/index.html",
     "index.html",
     "life/index.html",
-    "students/R7/R7NyuuryouNittei.pdf",
-    "students/R7/R7Senkouyoukou1.pdf",
-    "students/R7/R7Senkouyoukou2.pdf",
-    "students/R7/R7Senkouyoukou3.pdf",
     "students/R8/R8NyuuryouNittei.pdf",
     "students/R8/R8Senkouyoukou1.pdf",
     "students/R8/R8Senkouyoukou2.pdf",
@@ -59,5 +55,5 @@
     "univ/waseda.html",
     "univ/ynu.html"
   ],
-  "chunk_count": 1977
+  "chunk_count": 1934
 }
